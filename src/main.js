@@ -9,7 +9,12 @@ Vue.use(ElementUI)
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false;
- 
+
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
+
 const router = new VueRouter({ routes,mode: 'history' });
 
 new Vue({

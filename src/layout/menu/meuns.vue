@@ -1,27 +1,15 @@
 
 <template>
   <el-menu
-    default-active="1"
+    :default-active="this.$route.path"
     class="el-menu-demo"
     mode="horizontal"
+    router
   >
-    <el-menu-item index="1">首页</el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">我的工作台</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
-      <el-submenu index="2-4">
-        <template slot="title">选项4</template>
-        <el-menu-item index="2-4-1">选项1</el-menu-item>
-        <el-menu-item index="2-4-2">选项2</el-menu-item>
-        <el-menu-item index="2-4-3">选项3</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="3" disabled>消息中心</el-menu-item>
-    <el-menu-item index="4">
-      <a href="https://www.ele.me" target="_blank">订单管理</a>
+  <el-menu-item v-for="(item,i) in showMenus"  style="width:100px;" :key="i" :index="item.index">
+        {{ item.label }}
     </el-menu-item>
+
   </el-menu>
 </template>
 
@@ -31,3 +19,42 @@
   float:left;
 }
 </style>
+<script >
+export default {
+   data() {
+      return {
+        menutotalwidth:0,
+        showMenus:[],
+        hideMenus:[],
+        menus: [
+          {index:'/',label:'首页'},
+        {index:'/page/test/pageone',label:'测试1'},
+        {index:'/page/test/pageone',label:'测试2'},
+        {index:'/page/test/pageone',label:'测试3'},
+        {index:'/page/test/pageone',label:'测试4'},
+        {index:'/page/test/pageone',label:'测试5'},
+         {index:'/page/test/pageone',label:'测试5'},
+          {index:'/page/test/pageone',label:'测试5'},
+           {index:'/page/test/pageone',label:'测试5'},
+            {index:'/page/test/pageone',label:'测试5'},
+             {index:'/page/test/pageone',label:'测试5'},
+              {index:'/page/test/pageone',label:'测试5'},
+               {index:'/page/test/pageone',label:'测试5'}
+        ],
+      };
+    },
+    mounted : function() {
+      var elwidth=document.querySelector(".el-header").offsetWidth;
+      this.menutotalwidth=elwidth-elwidth*0.1*2-document.querySelector("#logopanel").offsetWidth-document.querySelector("#userpanel").offsetWidth;
+      this.menutotalwidth=this.menutotalwidth<200?200:this.menutotalwidth;
+
+      for(var i=0;i<this.menus.length;i++){
+        if(i<this.menutotalwidth/100-2){
+          this.showMenus.push(this.menus[i]);
+        }
+      }
+
+
+   }
+}
+</script>

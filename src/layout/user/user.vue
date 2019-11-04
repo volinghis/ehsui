@@ -1,5 +1,5 @@
-<template>
-  <div>
+<template >
+  <div id="userpanel">
     <el-dropdown>
       <span class="el-dropdown-link">
         admin
@@ -86,6 +86,11 @@
   };
 </script>
 <style scoped>
+#userpanel{
+  position: relative;;
+  float: right;
+  right: 0px;;
+}
 .query{
     width: 180px;
     margin-top: 15px;
