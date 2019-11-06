@@ -62,9 +62,9 @@ export default {
         {
           index: "/page/test/pageone",
           key: "2",
-          label: "测试1",
+          label: "设备管理",
           children: [
-            { index: "/page/test/pageone", key: "23", label: "测试11" },
+            { index: "/page/eam/eamAccountPrint/index", key: "eamAccountPrint", label: "设备台账" },
             { index: "/page/test/pageone", key: "223", label: "测试12" }
           ]
         },
