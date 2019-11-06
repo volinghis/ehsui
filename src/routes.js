@@ -5,6 +5,8 @@ import Content from './layout/content/content.vue';
 import PageOne from './page/test/pageone.vue';
 import UserSetting from './page/account/setting/index.vue';
 import eamPartLibrary from './page/eam/eamPartLibrary/index.vue';
+import eamAccountPrint from './page/eam/eamAccountPrint/index.vue';
+import UserCenter from './page/account/center/index.vue';
 const routes = [
     { path: '/',name:'home',component:Layout,
     children: [
@@ -13,9 +15,11 @@ const routes = [
             {path: 'test/pageone', name:"pageone", component: PageOne },
             {path: 'test/pageone', name:"pageone", component: PageOne },
             {path: 'account/setting/index', name:'index',component: UserSetting },
-            {path: 'eam/eamPartLibrary/index', name:'index',component: eamPartLibrary }
-        ]},
+            {path: 'eam/eamPartLibrary/index', name:'index',component: eamPartLibrary },
+            {path: 'account/center/index', name:"center",component:UserCenter},
+            {path: 'eam/eamAccountPrint/index', name:"eamAccountPrint",component:eamAccountPrint}
       ] },
     { path: '/user/login', name:'userLogin',component: UserLogin }
+    ]}
 ];
 export default routes;
