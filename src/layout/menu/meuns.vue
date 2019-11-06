@@ -68,7 +68,14 @@ export default {
             { index: "/page/test/pageone", key: "223", label: "测试12" }
           ]
         },
-        { index: "/page/test/pageone", key: "3", label: "测试3" },
+        {
+          index: "/",
+          key: "3",
+          label: "备件管理",
+          children: [
+            { index: "/page/eam/eamPartLibrary/index", key: "eamPartLibrary", label: "备件台账" }
+          ]
+        },
         { index: "/page/test/pageone", key: "4", label: "测试4" },
         { index: "/page/test/pageone", key: "5", label: "测试5" },
         { index: "/page/test/pageone", key: "6", label: "测试6" },
