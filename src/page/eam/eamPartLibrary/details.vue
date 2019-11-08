@@ -5,10 +5,10 @@
                 <el-card shadow="hover">
                     <div slot="header" style="text-align:left;">
                         <span style="font-weight: bold;"><i class="el-icon-s-cooperation"></i>备件详情</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">编辑</el-button>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click="edit">编辑</el-button>
                     </div>
-                    <div>
-                        <el-row style="text-align:left;line-height:25px;">
+                    <div><el-form style="text-align:left;line-height:25px;"> 
+                        <el-row>
                             <el-col>
                                 <div class="demo-fit">
                                     <div class="block" fit="fit" :key="fit">
@@ -24,7 +24,7 @@
                             <el-col :span="24" v-for="(item, index) in partData" :key="index">
                                 <span class="title">{{ item.title }}：</span><span class="content">{{ item.content }}</span>
                             </el-col>
-                        </el-row>
+                        </el-row></el-form>
                     </div>
                 </el-card>
             </el-col>
@@ -32,7 +32,6 @@
                 <el-card shadow="hover" style="height: 420px;">
                     <div slot="header" style="text-align:left;">
                         <span style="font-weight: bold;"><i class="el-icon-s-tools"></i>相关设备</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
                     </div>
                     <div>
                         <el-row style="text-align:left;">
@@ -40,6 +39,11 @@
                                 <el-table :data="tableData" style="width: 100%;"  height="320" size="medium">
                                     <el-table-column fixed prop="code" label="设备编号" width="100"> </el-table-column>
                                     <el-table-column fixed prop="name" label="设备名称" width="100"> </el-table-column>
+                                    <el-table-column fixed prop="completion" label="资料完整度" width="200">
+                                        <template slot-scope="scope">
+                                            <el-progress :percentage="scope.row.completion" :color="customColors" ></el-progress>
+                                        </template>
+                                    </el-table-column>
                                     <el-table-column prop="type" label="设备型号" width="100"> </el-table-column>
                                     <el-table-column prop="model" label="设备类型" width="100"> </el-table-column>
                                     <el-table-column prop="factory" label="生产厂商" width="100"> </el-table-column>
@@ -64,15 +68,15 @@
                                 </div>
                                 <el-row >
                                     <div style="line-height:20px;font-size: small; height: 210px">
-                                        <el-col >2019-10-1，张三在检修发动机中使用此备件</el-col>
-                                        <el-col >2019-10-1，李四在检修锅炉中使用此备件</el-col>
-                                        <el-col >2019-10-1，张三在检修热机中使用此备件</el-col>
-                                        <el-col >2019-10-1，张三在检修发动机中使用此备件</el-col>
-                                        <el-col >2019-10-1，李四在检修发动机中使用此备件</el-col>
-                                        <el-col >2019-10-1，李四在检修热机中使用此备件</el-col>
-                                        <el-col >2019-10-1，李四在检修锅炉中使用此备件</el-col>
-                                        <el-col >2019-10-1，张三在检修锅炉中使用此备件</el-col>
-                                        <el-col >2019-10-1，李四在检修发动机中使用此备件</el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，张三在检修发动机中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，李四在检修锅炉中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，张三在检修热机中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，张三在检修发动机中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，李四在检修发动机中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，李四在检修热机中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，李四在检修锅炉中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，张三在检修锅炉中使用此备件</a></el-col>
+                                        <el-col ><a href="#" style="text-decoration:none;">2019-10-1，李四在检修发动机中使用此备件</a></el-col>
                                     </div>
                                 </el-row>
                             </el-card>
@@ -85,10 +89,18 @@
                                 <el-row>
                                     <el-col>
                                         <el-table :data="tableData1" style="width: 100%" size="mini" height="210">
-                                            <el-table-column prop="time" label="修改时间" width="100"> </el-table-column>
-                                            <el-table-column prop="person" label="修改人员" width="100"></el-table-column>
+                                            <el-table-column prop="person" label="修改人员" width="80">
+                                                <template slot-scope="scope">
+                                                    <a href="#" style="text-decoration:none;">
+                                                        <el-tag size="medium">{{ scope.row.person }}<i class="el-icon-medal"></i></el-tag>
+                                                    </a>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column prop="ucontent" label="修改内容" width="140"> </el-table-column>
                                             <el-table-column prop="contribution" label="贡献度" width="150"> 
-                                                <el-rate v-model="value" disabled show-score text-color="#ff9900" score-template="{value}"></el-rate>
+                                                <template slot-scope="scope"> 
+                                                    <el-rate v-model="scope.row.contribution" disabled text-color="#ff9900"></el-rate>
+                                                </template>
                                             </el-table-column>
                                         </el-table>
                                     </el-col>
@@ -143,6 +155,7 @@
                 tableData: [{
                     code: '0001',
                     name: '发动机',
+                    completion:20,
                     type:'FDJ_0001',
                     model:'发动机',
                     factory:'西安余辉',
@@ -158,6 +171,7 @@
                 }, {
                     code: '0002',
                     name: '锅炉',
+                    completion:40,
                     type:'FDJ_0001',
                     model:'锅炉',
                     factory:'西安余辉',
@@ -173,6 +187,7 @@
                 }, {
                     code: '0003',
                     name: '起重机',
+                    completion:80,
                     type:'FDJ_0001',
                     model:'起重机',
                     factory:'西安余辉',
@@ -188,6 +203,7 @@
                 },  {
                     code: '0004',
                     name: '起重机',
+                    completion:100,
                     type:'FDJ_0001',
                     model:'起重机',
                     factory:'西安余辉',
@@ -203,6 +219,7 @@
                 }, {
                     code: '0005',
                     name: '起重机',
+                    completion:60,
                     type:'FDJ_0001',
                     model:'起重机',
                     factory:'西安余辉',
@@ -218,6 +235,7 @@
                 },  {
                     code: '0006',
                     name: '起重机',
+                    completion:80,
                     type:'FDJ_0001',
                     model:'起重机',
                     factory:'西安余辉',
@@ -233,6 +251,7 @@
                 }, {
                     code: '0007',
                     name: '阀门',
+                    completion:40,
                     type:'FDJ_0001',
                     model:'阀门',
                     factory:'西安余辉',
@@ -248,31 +267,36 @@
                 }],
                 tableData1:[
                     {
-                    time:'2019-9-9',
+                    ucontent:'2019-9-9完善资料',
                     person:'张三',
-                    contribution:'+10分'
+                    contribution:3
                     },
                     {
-                    time:'2019-9-19',
+                    ucontent:'2019-9-19纠错',
                     person:'李四',
-                    contribution:'+10分'
+                    contribution:1
                     },
                     {
-                    time:'2019-9-20',
+                    ucontent:'2019-9-20完善资料',
                     person:'王五',
-                    contribution:'+10分'
+                    contribution:4
                     },
                     {
-                    time:'2019-9-22',
-                    person:'lisi',
-                    contribution:'+10分'
+                    ucontent:'2019-9-22纠错',
+                    person:'王珊',
+                    contribution:3
                     },
                     {
-                    time:'2019-9-29',
+                    ucontent:'2019-9-29纠错',
                     person:'陈烨',
-                    contribution:'+10分'
+                    contribution:2
                     }
                 ]
+            }
+        },
+        methods:{
+            edit() {
+                alert('submit!');
             }
         }
     }
@@ -292,7 +316,9 @@
     
     }
     .el-card__header{
-        background-color: whitesmoke;
+        /* background-color: whitesmoke; */
+        background-color:#dcdfe6;
+        padding: 10px 20px;
     }
     
 </style>
