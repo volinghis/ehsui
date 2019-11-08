@@ -101,7 +101,6 @@ export default {
       document.querySelector("#logopanel").offsetWidth -
       document.querySelector("#userpanel").offsetWidth;
     this.menutotalwidth = this.menutotalwidth < 200 ? 200 : this.menutotalwidth;
-    console.log("tttt"+parseInt(this.menutotalwidth / 100) );
     for (var i = 0; i < this.menus.length; i++) {
       if (i < parseInt(this.menutotalwidth / 100) - 1) {
         this.showMenus.push(this.menus[i]);
@@ -112,11 +111,9 @@ export default {
           children: [this.menus[i]]
         });
       } else {
-        console.log("1234567");
         this.hideMenus[0].children.push(this.menus[i]);
       }
     }
-    console.log(".."+this.hideMenus[0].children.length);
   }
 };
 </script>

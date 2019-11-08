@@ -8,6 +8,7 @@
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },
   "dependencies": {
+    "babili-webpack-plugin": "^0.1.2",
     "echarts": "^4.4.0",
     "element-ui": "^2.3.4",
     "vue": "^2.5.16",
