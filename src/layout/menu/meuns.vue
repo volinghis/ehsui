@@ -73,7 +73,7 @@ export default {
           key: "3",
           label: "备件管理",
           children: [
-            { index: "/page/eam/eamPartLibrary/index", key: "eamPartLibrary", label: "备件台账" }
+            { index: "/page/eam/eamPartLibrary/details", key: "eamPartLibrary", label: "备件台账" }
           ]
         },
         { index: "/page/test/pageone", key: "4", label: "测试4" },

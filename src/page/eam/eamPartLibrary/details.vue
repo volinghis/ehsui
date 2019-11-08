@@ -63,7 +63,7 @@
                                     <span style="font-weight: bold;"><i class="el-icon-s-order"></i>备件领用记录</span>
                                 </div>
                                 <el-row >
-                                    <div style="line-height:20px;font-size: small; height: 230px">
+                                    <div style="line-height:20px;font-size: small; height: 210px">
                                         <el-col >2019-10-1，张三在检修发动机中使用此备件</el-col>
                                         <el-col >2019-10-1，李四在检修锅炉中使用此备件</el-col>
                                         <el-col >2019-10-1，张三在检修热机中使用此备件</el-col>
@@ -84,7 +84,7 @@
                                 </div>
                                 <el-row>
                                     <el-col>
-                                        <el-table :data="tableData1" style="width: 100%" size="mini" height="230">
+                                        <el-table :data="tableData1" style="width: 100%" size="mini" height="210">
                                             <el-table-column prop="time" label="修改时间" width="100"> </el-table-column>
                                             <el-table-column prop="person" label="修改人员" width="100"></el-table-column>
                                             <el-table-column prop="contribution" label="贡献度" width="150"> 
@@ -279,15 +279,15 @@
   </script>
 <style>
     .title{
-        width: 100px;
-        text-align: left;
-        line-height: 20px;
+        width: 75px;
+        float: left;
+        line-height: 25px;
         font-size: small;
         font-weight: bold;
     }
     .content{
-        width: 255px;
-        float: right;
+        float: left;
+        line-height: 25px;
         font-size: small;
     
     }
