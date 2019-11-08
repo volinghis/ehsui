@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div class="page-header-wrapper-grid-content-main ">
         <el-row :gutter="24"> 
             <el-col :md="24" :lg="7">
              <el-card>
