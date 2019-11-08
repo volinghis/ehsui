@@ -4,7 +4,7 @@
             <el-col :md="24" :lg="6">
                 <el-card shadow="hover">
                     <div slot="header" style="text-align:left;">
-                        <span style="font-weight: bold;">备件详情</span>
+                        <span style="font-weight: bold;"><i class="el-icon-s-cooperation"></i>备件详情</span>
                         <el-button style="float: right; padding: 3px 0" type="text">编辑</el-button>
                     </div>
                     <div>
@@ -31,7 +31,7 @@
             <el-col :md="24" :lg="18">
                 <el-card shadow="hover" style="height: 420px;">
                     <div slot="header" style="text-align:left;">
-                        <span style="font-weight: bold;">相关设备</span>
+                        <span style="font-weight: bold;"><i class="el-icon-s-tools"></i>相关设备</span>
                         <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
                     </div>
                     <div>
@@ -60,7 +60,7 @@
                         <el-col :span="15">
                             <el-card shadow="hover">
                                 <div slot="header" style="text-align:left;">
-                                    <span style="font-weight: bold;">备件领用记录</span>
+                                    <span style="font-weight: bold;"><i class="el-icon-s-order"></i>备件领用记录</span>
                                 </div>
                                 <el-row >
                                     <div style="line-height:20px;font-size: small; height: 230px">
@@ -80,14 +80,13 @@
                         <el-col :span="9">
                             <el-card shadow="hover">
                                 <div slot="header" style="text-align:left;">
-                                    <span style="font-weight: bold;">资料纠错/补全记录</span>
+                                    <span style="font-weight: bold;"><i class="el-icon-s-claim"></i>资料纠错/补全记录</span>
                                 </div>
                                 <el-row>
                                     <el-col>
-
                                         <el-table :data="tableData1" style="width: 100%" size="mini" height="230">
                                             <el-table-column prop="time" label="修改时间" width="100"> </el-table-column>
-                                            <el-table-column prop="person" label="修改人员" width="100"> </el-table-column>
+                                            <el-table-column prop="person" label="修改人员" width="100"></el-table-column>
                                             <el-table-column prop="contribution" label="贡献度" width="150"> 
                                                 <el-rate v-model="value" disabled show-score text-color="#ff9900" score-template="{value}"></el-rate>
                                             </el-table-column>
@@ -280,17 +279,22 @@
   </script>
 <style>
     .title{
-        width: 200px;
+        width: 100px;
         text-align: left;
         line-height: 20px;
         font-size: small;
         font-weight: bold;
     }
     .content{
-        width: 200px;
-        text-align: right;
+        width: 255px;
+        float: right;
         font-size: small;
+    
     }
+    .el-card__header{
+        background-color: whitesmoke;
+    }
+    
 </style>
 
 
