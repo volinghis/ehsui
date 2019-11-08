@@ -64,8 +64,8 @@ export default {
           key: "2",
           label: "设备管理",
           children: [
-            { index: "/page/eam/eamAccountPrint/index", key: "eamAccountPrint", label: "设备台账" },
-            { index: "/page/test/pageone", key: "223", label: "测试12" }
+            { index: "/page/eam/eamAccountPrint/index", key: "eamAccountPrint", label: "设备列表" },
+            { index: "/page/eam/eamAccountPrint/details", key: "223", label: "设备详情" }
           ]
         },
         {
