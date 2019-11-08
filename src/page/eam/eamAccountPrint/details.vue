@@ -4,8 +4,8 @@
             <el-col :md="24" :lg="6">
                 <el-card shadow="hover">
                     <div slot="header" class="devDetailsTitle item-title" size="small">
-                        <span>设备详情</span>
-                        <el-button style="float: right; padding: 1px 0" type="text">编辑</el-button>
+                        <span><i class="el-icon-s-tools">设备详情</i></span>
+                        <el-button style="float: right; padding: 3px 0" type="text">编辑</el-button>
                     </div>
                      <div class="accountPrints">
                         <el-row>
@@ -58,12 +58,17 @@
             <el-col :md="24" :lg="18">
                 <el-card style="margin-bottom:12px;" shadow="hover">
                      <div slot="header" class="partTitle item-title">
-                        <span>关联备件</span>
+                        <span><i class="el-icon-s-cooperation"></i>关联备件</span>
                     </div>
                         <el-table :data="partData" style="width: 100%"  :highlight-current-row="true">
                             <el-table-column type="index" width="50" fixed></el-table-column>
                             <el-table-column prop="deviceCode" label="备件编码" width="100" fixed></el-table-column>
-                            <el-table-column prop="deviceName" label="备件名称" width="100"></el-table-column>
+                            <el-table-column prop="deviceName" label="备件名称" width="100" fixed></el-table-column>
+                            <el-table-column prop="complete" label="资料完整度" width="150">
+                                <template slot-scope="scope">
+                                    <el-progress :percentage="scope.row.complete" :color="customColorMethod"></el-progress>
+                                </template>
+                            </el-table-column>
                             <el-table-column prop="brand" label="品牌"></el-table-column>
                             <el-table-column prop="norm" label="规格"></el-table-column>
                             <el-table-column prop="warehouse" label="所在仓库"></el-table-column>
@@ -78,10 +83,10 @@
                 </el-card>
                
                     <el-row :gutter="10">
-                        <el-col :md="24" :lg="15">
+                        <el-col :md="24" :lg="14">
                              <el-card shadow="hover">
                                 <div slot="header" class="repairTitle item-title">
-                                    <span>检修记录</span>
+                                    <span><i class="el-icon-s-order"></i>检修记录</span>
                                 </div>
                                 <el-table :data="tableData" style="width: 100%">
                                     <el-table-column prop="date" label="检修日期"></el-table-column>
@@ -90,10 +95,10 @@
                                 </el-table>
                              </el-card>
                         </el-col>
-                        <el-col :md="24" :lg="9">
+                        <el-col :md="24" :lg="10">
                              <el-card shadow="hover">
                                 <div slot="header" class="modifyTitle item-title">
-                                    <span>资料纠错/补全记录</span>
+                                    <span><i class="el-icon-s-claim"></i>资料纠错/补全记录</span>
                                 </div>
                                 <el-table :data="modifyData" style="width: 100%">
                                     <el-table-column prop="name" label="修改人" >
@@ -103,7 +108,11 @@
                                         </template>
                                     </el-table-column>
                                     <el-table-column prop="modifyContent" label="修改内容" width="180"></el-table-column>
-                                    <el-table-column prop="contribute" label="贡献度"></el-table-column>
+                                    <el-table-column prop="contribute" label="贡献度" width="180">
+                                        <template slot-scope="scope">
+                                            <el-rate v-model="scope.row.contribute" :allow-half="true" disabled show-score text-color="#ff9900" score-template="{value}"></el-rate>
+                                        </template>
+                                    </el-table-column>
                                 </el-table>
                              </el-card>
                         </el-col>
@@ -124,6 +133,7 @@
           partData: [{
             deviceCode: '10000001',
             deviceName: '阀门',
+            complete:10 ,
             brand: '川跃',
             norm: 'FM',
             warehouse: '一号仓库',
@@ -137,6 +147,7 @@
           }, {
             deviceCode: '10000001',
             deviceName: '阀门',
+            complete:50,
             brand: '川跃',
             norm: 'FM 15',
             warehouse: '一号仓库',
@@ -150,6 +161,7 @@
           }, {
            deviceCode: '10000001',
             deviceName: '阀门',
+            complete:80,
             brand: '川跃',
             norm: 'FM',
             warehouse: '一号仓库',
@@ -163,6 +175,7 @@
           }, {
             deviceCode: '10000001',
             deviceName: '阀门',
+            complete:100,
             brand: '上海一恒',
             norm: 'FM',
             warehouse: '一号仓库',
@@ -207,26 +220,35 @@
             date: '2016-05-02',
             name: '王小虎',
             modifyContent: '2016-05-02 完善资料',
-            contribute: '+10分',
+            contribute:4.5,
             }, {
             date: '2016-05-04',
             name: '王小龙',
             modifyContent: '2016-05-02 纠错',
-            contribute: '+20分',
+            contribute:2,
             }, {
             date: '2016-05-01',
             name: '王小鼠',
             modifyContent: '2016-05-02 纠错',
-            contribute: '+10分',
+            contribute:5,
             }, {
             date: '2016-05-03',
             name: '王小虎',
             modifyContent: '2016-05-02 完善设备资料',
-            contribute: '+10分',
+            contribute:3.7,
         }]
         }
       },
       methods: {
+        customColorMethod(percentage) {
+            if (percentage < 30) {
+                    return '#909399';
+                } else if (percentage < 70) {
+                    return '#e6a23c';
+                } else {
+                    return '#67c23a';
+            }
+         }
      }
     }
      
@@ -236,7 +258,6 @@
    .item-title{
         text-align: left;
         font-weight: bold;
-        line-height: 1.7px;
     }
     .accountPrints{
         margin-top: 15px;
@@ -245,6 +266,12 @@
         text-align: left;
         line-height: 26px;
     }
+
+    .el-card__header{
+        background-color: whitesmoke;
+        padding: 10px 20px;
+    }
+
 </style>
 
 
