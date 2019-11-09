@@ -7,7 +7,7 @@
 </div>
 
 </template>
-<style >
+<style scoped>
 #logopanel{
     position: relative;
     float: left;
