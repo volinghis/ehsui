@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .el-header{
   padding-left: 10%;
   padding-right: 10%;
