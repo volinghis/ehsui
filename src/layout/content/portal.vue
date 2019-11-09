@@ -59,8 +59,6 @@ export default {
         }
     },
      makeWord(max, min) {
-       console.log("123");
-       console.log(this.nameList.length);
             var nameLen = Math.ceil(Math.random() * max + min);
             var name = [];
             for (var i = 0; i < nameLen; i++) {

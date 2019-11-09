@@ -1,6 +1,6 @@
 <template>
     <div >
-        <el-row :gutter="24"> 
+        <el-row :gutter="24">
             <el-col :md="24" :lg="6">
                 <el-card shadow="hover">
                     <div slot="header" style="text-align:left;">
