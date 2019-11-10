@@ -19,26 +19,54 @@ Router.prototype.push = function push (location) {
   return routerPush.call(this, location).catch(error => error)
 }
 const routes = [
-  { path: '/', 
-name: 'home', 
-component: Layout,
+  {
+    path: '/',
+    name: 'home',
+    component: Layout,
     children: [
       { path: '', name: 'portal', component: Portal },
-      { path: 'page',
-name: 'content',
-component: Content, 
-children: [
-        { path: 'test/pageone', name: 'pageone', component: PageOne },
-        { path: 'test/pageone', name: 'pageone', component: PageOne },
-        { path: 'account/setting/index', name: 'index', component: UserSetting },
-        { path: 'eam/eamPartLibrary/index', name: 'index', component: eamPartLibrary },
-        { path: 'eam/eamPartLibrary/details', name: 'details', component: EamPartDetails },
-        { path: 'account/center/index', name: 'center', component: UserCenter },
-        { path: 'eam/eamAccountPrint/index', name: 'eamAccountPrint', component: eamAccountPrint },
-        { path: 'eam/eamAccountPrint/details', name: 'EamAccountDetails', component: EamAccountDetails }
-      ] },
+      {
+        path: 'page',
+        name: 'content',
+        component: Content,
+        children: [
+          { path: 'test/pageone', name: 'pageone', component: PageOne },
+          { path: 'test/pageone', name: 'pageone', component: PageOne },
+          {
+            path: 'account/setting/index',
+            name: 'index',
+            component: UserSetting
+          },
+          {
+            path: 'eam/eamPartLibrary/index',
+            name: 'index',
+            component: eamPartLibrary
+          },
+          {
+            path: 'eam/eamPartLibrary/details',
+            name: 'details',
+            component: EamPartDetails
+          },
+          {
+            path: 'account/center/index',
+            name: 'center',
+            component: UserCenter
+          },
+          {
+            path: 'eam/eamAccountPrint/index',
+            name: 'eamAccountPrint',
+            component: eamAccountPrint
+          },
+          {
+            path: 'eam/eamAccountPrint/details',
+            name: 'EamAccountDetails',
+            component: EamAccountDetails
+          }
+        ]
+      },
       { path: '/user/login', name: 'userLogin', component: UserLogin }
-    ] }
+    ]
+  }
 ]
 export default new Router({
   mode: 'history',
