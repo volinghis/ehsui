@@ -190,13 +190,11 @@ export default {
         if (valid) {
           alert('submit!')
         } else {
-          console.log('error submit!!')
           return false
         }
       })
     },
     handleChange (value) {
-      console.log(value)
     },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
@@ -204,7 +202,6 @@ export default {
           this.dialogFormVisible = false
           alert('submit!')
         } else {
-          console.log('error submit!!')
           return false
         }
       })

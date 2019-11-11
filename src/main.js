@@ -5,6 +5,7 @@ import store from './store'
 import element from './element'
 import echarts from './echarts'
 import './global/common.less'
+import './styles/index.scss'
 
 Vue.config.productionTip = false
 
