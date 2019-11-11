@@ -10,10 +10,10 @@ import menus from './menu/meuns.vue'
 import logo from './logo/logo.vue'
 import user from './user/user.vue'
 export default {
-  components:{
-    "menus":menus,
-    "logo":logo,
-    "user" :user
+  components: {
+    'menus': menus,
+    'logo': logo,
+    'user': user
   }
 }
 </script>

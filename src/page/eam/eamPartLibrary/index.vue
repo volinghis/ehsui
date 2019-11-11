@@ -83,109 +83,108 @@
 </template>
 
 <script>
-  export default {
-    methods: {
-        handleClick(row) {
-            console.log(row);
-        },
-        toggleAdvanced () {
-            this.advanced = !this.advanced
-        }
+export default {
+  methods: {
+    handleClick (row) {
     },
-    data() {
-      return {
-          // 高级搜索 展开/关闭
-        advanced: false,
-        // 查询参数
-        queryParam: {},
-        customColor: '#409eff',
-        customColors: [
-            {color: '#f56c6c', percentage: 20},
-            {color: '#e6a23c', percentage: 40},
-            {color: '#5cb87a', percentage: 60},
-            {color: '#1989fa', percentage: 80},
-            {color: '#6f7ad3', percentage: 100}
-        ],
-        tableData: [{
-          code: 'FM-0001',
-          name: '阀门',
-          completion:80,
-          type: '阀门',
-          model: '阀门',
-          norm: 'FM_0001_01',
-          brand: '上海市普陀牌',
-          warehouse: '1号仓库',
-          unit: '个',
-          price: '100',
-          amount: '56',
-          warningValue: '10'
-        },{
-          code: 'FM-0001',
-          name: '阀门',
-          completion:80,
-          type: '阀门',
-          model: '阀门',
-          norm: 'FM_0001_01',
-          brand: '上海市普陀牌',
-          warehouse: '1号仓库',
-          unit: '个',
-          price: '100',
-          amount: '56',
-          warningValue: '10'
-        },{
-          code: 'FM-0001',
-          name: '阀门',
-          completion:80,
-          type: '阀门',
-          model: '阀门',
-          norm: 'FM_0001_01',
-          brand: '上海市普陀牌',
-          warehouse: '1号仓库',
-          unit: '个',
-          price: '100',
-          amount: '56',
-          warningValue: '10'
-        },{
-          code: 'FM-0001',
-          name: '阀门',
-          completion:80,
-          type: '阀门',
-          model: '阀门',
-          norm: 'FM_0001_01',
-          brand: '上海市普陀牌',
-          warehouse: '1号仓库',
-          unit: '个',
-          price: '100',
-          amount: '56',
-          warningValue: '10'
-        },{
-          code: 'FM-0001',
-          name: '阀门',
-          completion:80,
-          type: '阀门',
-          model: '阀门',
-          norm: 'FM_0001_01',
-          brand: '上海市普陀牌',
-          warehouse: '1号仓库',
-          unit: '个',
-          price: '100',
-          amount: '56',
-          warningValue: '10'
-        },{
-          code: 'FM-0001',
-          name: '阀门',
-          completion:80,
-          type: '阀门',
-          model: '阀门',
-          norm: 'FM_0001_01',
-          brand: '上海市普陀牌',
-          warehouse: '1号仓库',
-          unit: '个',
-          price: '100',
-          amount: '56',
-          warningValue: '10'
-        }]
-      }
+    toggleAdvanced () {
+      this.advanced = !this.advanced
+    }
+  },
+  data () {
+    return {
+      // 高级搜索 展开/关闭
+      advanced: false,
+      // 查询参数
+      queryParam: {},
+      customColor: '#409eff',
+      customColors: [
+        { color: '#f56c6c', percentage: 20 },
+        { color: '#e6a23c', percentage: 40 },
+        { color: '#5cb87a', percentage: 60 },
+        { color: '#1989fa', percentage: 80 },
+        { color: '#6f7ad3', percentage: 100 }
+      ],
+      tableData: [{
+        code: 'FM-0001',
+        name: '阀门',
+        completion: 80,
+        type: '阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FM-0001',
+        name: '阀门',
+        completion: 80,
+        type: '阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FM-0001',
+        name: '阀门',
+        completion: 80,
+        type: '阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FM-0001',
+        name: '阀门',
+        completion: 80,
+        type: '阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FM-0001',
+        name: '阀门',
+        completion: 80,
+        type: '阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FM-0001',
+        name: '阀门',
+        completion: 80,
+        type: '阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }]
     }
   }
+}
 </script>
