@@ -84,151 +84,149 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass');
-          }
-          callback();
+export default {
+  data () {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'))
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
         }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm.pass) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
-      return {
-        tabPosition: 'left',
-        imageUrl: '',
-        dialogTableVisible: false,
-        dialogFormVisible: false,
-        ruleForm: {
-          pass: '',
-          checkPass: '',
-        },
-        rules: {
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
-          ],
-          checkPass: [
-            { validator: validatePass2, trigger: 'blur' }
-          ]
-        },
-        form1: {
-          name: '',
-          region: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        formLabelWidth: '80px',
-        options: [{
-          value: 'shannxi',
-          label: '陕西',
-          children: [{
-            value: 'xiann',
-            label: '西安',
-            children: [{
-              value: 'changan',
-              label: '长安区'
-            }, {
-              value: 'yanta',
-              label: '雁塔区'
-            }, {
-              value: 'beilin',
-              label: '碑林区'
-            }, {
-              value: 'baqiao',
-              label: '灞桥区'
-            }]
-          }]
-        }],
-        form: {
-          name: '',
-          email: '',
-          telephone:'',
-          gender: '男',
-          region: '',
-          delivery: false,
-          type: [],
-          desc: '',
-        },
-        rules: {
-          name: [
-            { required: true, message: '请输入名称', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-          ],
-          telephone:[
-            {required: true, message: '请输入手机号', trigger: 'blur'},
-            { min: 11, max: 11, message: '11位手机号码', trigger: 'blur' }
-          ],
-          region: [
-            { required: true, message: '请选择居住地', trigger: 'change' }
-          ],
-          desc: [
-            { required: true, message: '请填写个人简介', trigger: 'blur' }
-          ]
-        }
+        callback()
       }
+    }
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else if (value !== this.ruleForm.pass) {
+        callback(new Error('两次输入密码不一致!'))
+      } else {
+        callback()
+      }
+    }
+    return {
+      tabPosition: 'left',
+      imageUrl: '',
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      ruleForm: {
+        pass: '',
+        checkPass: ''
+      },
+      form1: {
+        name: '',
+        region: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      formLabelWidth: '80px',
+      options: [{
+        value: 'shannxi',
+        label: '陕西',
+        children: [{
+          value: 'xiann',
+          label: '西安',
+          children: [{
+            value: 'changan',
+            label: '长安区'
+          }, {
+            value: 'yanta',
+            label: '雁塔区'
+          }, {
+            value: 'beilin',
+            label: '碑林区'
+          }, {
+            value: 'baqiao',
+            label: '灞桥区'
+          }]
+        }]
+      }],
+      form: {
+        name: '',
+        email: '',
+        telephone: '',
+        gender: '男',
+        region: '',
+        delivery: false,
+        type: [],
+        desc: ''
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ],
+        telephone: [
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          { min: 11, max: 11, message: '11位手机号码', trigger: 'blur' }
+        ],
+        region: [
+          { required: true, message: '请选择居住地', trigger: 'change' }
+        ],
+        desc: [
+          { required: true, message: '请填写个人简介', trigger: 'blur' }
+        ],
+        pass: [
+          { validator: validatePass, trigger: 'blur' }
+        ],
+        checkPass: [
+          { validator: validatePass2, trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  methods: {
+    handleAvatarSuccess (res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw)
     },
-    methods: {
-      handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-    },
-    OnUpdate(){
+    OnUpdate () {
 
     },
-    onSubmit(formName) {
-        this.$refs[formName].validate((valid) => {
+    onSubmit (formName) {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          alert('submit!')
         } else {
-          console.log('error submit!!');
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
+      })
     },
-    handleChange(value) {
-      console.log(value);
+    handleChange (value) {
+      console.log(value)
     },
-    submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.dialogFormVisible= false,
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-        this.dialogFormVisible= false
-      },
-    beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
-      const isLt2M = file.size / 1024 / 1024 < 2;
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.dialogFormVisible = false
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
+      this.dialogFormVisible = false
+    },
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
+        this.$message.error('上传头像图片只能是 JPG 格式!')
       }
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
+        this.$message.error('上传头像图片大小不能超过 2MB!')
       }
-      return isJPG && isLt2M;
+      return isJPG && isLt2M
     }
   }
-};
+}
 </script>
 
 <style>
