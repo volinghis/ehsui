@@ -99,7 +99,7 @@ export default {
     var elwidth = document.querySelector('.el-header').offsetWidth
     this.menutotalwidth =
       elwidth -
-      elwidth * 0.1 * 2 -
+      elwidth * 0.2 * 2 -
       document.querySelector('#logopanel').offsetWidth -
       document.querySelector('#userpanel').offsetWidth
     this.menutotalwidth = this.menutotalwidth < 200 ? 200 : this.menutotalwidth

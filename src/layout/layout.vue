@@ -20,15 +20,15 @@ export default {
 
 <style scoped>
 .el-header{
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
   border-bottom: solid 1px #e6e6e6;;
 
 }
 .el-main{
   margin-top: 2px;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 #app {
   font-family: Helvetica, sans-serif;
