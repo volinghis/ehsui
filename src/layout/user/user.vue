@@ -6,7 +6,7 @@
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item><a href="../../account/center/index" style="text-decoration:none;" target="_self">个人中心</a></el-dropdown-item>
+        <el-dropdown-item><a href="#" @click="goCenter" style="text-decoration:none;">个人中心</a></el-dropdown-item>
         <el-dropdown-item>安全退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -31,6 +31,11 @@
 
 <script>
 export default {
+  methods: {
+    goCenter () {
+      this.$router.push({ name: 'center' })
+    }
+  }
 }
 </script>
 <style scoped>
