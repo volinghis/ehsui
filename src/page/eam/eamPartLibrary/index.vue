@@ -1,7 +1,7 @@
 <template>
     <el-card :bordered="false">
         <div class="table-page-search-wrapper">
-        <el-form :inline="true" :model="queryParam" class="demo-form-inline" size="small">
+        <el-form :inline="true" :model="queryParam" class="demo-form-inline" size="small" label-position="left">
             <el-row :gutter="48">
             <el-col :md="8" :sm="24">
                 <el-form-item label="备件编号：">
@@ -50,49 +50,79 @@
         </el-form>
         </div>
         <div class="table-operator">
-            <el-button type="primary" icon="el-icon-plus" style="float:left;">新增</el-button>
+            <el-button type="primary" icon="el-icon-plus" style="float:left;margin-bottom: 5px;" size="small" @click="handleAdd()">新增</el-button>
         </div>
         <template>
-            <el-table :data="tableData" border style="width: 100%">
+            <el-table :data="tableData" border  style="width: 100%" max-height="600" >
                 <el-table-column fixed type="index" width="50"> </el-table-column>
+                <el-table-column fixed prop="type" label="图片" width="70">
+                   <el-image style="width: 30px; height: 30px" :src="url" :fit="fit" :preview-src-list="srcList"></el-image>
+                </el-table-column>
                 <el-table-column fixed prop="code" label="备件编号" width="150"> </el-table-column>
                 <el-table-column fixed prop="name" label="备件名称" width="120"> </el-table-column>
-                <el-table-column fixed prop="completion" label="资料完整度" width="200">
+                <el-table-column fixed prop="completion" label="资料完整度" width="160" sortable>
                     <template slot-scope="scope">
                         <el-progress :percentage="scope.row.completion" :color="customColors" ></el-progress>
                     </template>
                 </el-table-column>
-                <el-table-column prop="type" label="备件类型" width="120"> </el-table-column>
-                <el-table-column prop="model" label="备件型号" width="120"> </el-table-column>
+                <el-table-column prop="type" label="备件类型" width="100"> </el-table-column>
+                <el-table-column prop="model" label="备件型号" width="100"> </el-table-column>
                 <el-table-column prop="norm" label="备件规格" width="120"> </el-table-column>
                 <el-table-column prop="brand" label="品牌" width="120"> </el-table-column>
-                <el-table-column prop="warehouse" label="所在仓库" width="120"> </el-table-column>
-                <el-table-column prop="unit" label="单位" width="120"> </el-table-column>
-                <el-table-column prop="price" label="价格" width="120"> </el-table-column>
-                <el-table-column prop="amount" label="数量" width="120"> </el-table-column>
-                <el-table-column prop="warningValue" label="库存预警值" width="120"> </el-table-column>
+                <el-table-column prop="warehouse" label="所在仓库" width="100"> </el-table-column>
+                <el-table-column prop="unit" label="单位" width="100"> </el-table-column>
+                <el-table-column prop="price" label="价格" width="100" sortable> </el-table-column>
+                <el-table-column prop="amount" label="数量" width="100" sortable> </el-table-column>
+                <el-table-column prop="warningValue" label="库存预警值" width="100"> </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                 <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-                    <el-button type="text" size="small">编辑</el-button>
+                    <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
+                    <el-button @click="handleEdit(scope.row)" type="primary" size="small">编辑</el-button>
                 </template>
                 </el-table-column>
             </el-table>
-            </template>
+            <el-pagination
+                style="text-align:right;"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page.sync="currentPage1"
+                :page-size="10"
+                background
+                layout="total,prev, pager, next"
+                :total="100">
+            </el-pagination>
+        </template>
     </el-card>
 </template>
 
 <script>
 export default {
   methods: {
+    handleAdd () {
+      this.$router.push({ name: 'partBaseForm' })
+    },
     handleClick (row) {
+      this.$router.push({ name: 'partDetails' })
+    },
+    handleEdit (row) {
+      this.$router.push({ name: 'partEdit' })
     },
     toggleAdvanced () {
       this.advanced = !this.advanced
+    },
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
     }
   },
   data () {
     return {
+      fit: 'cover',
+      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      srcList: ['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
+      currentPage1: 1,
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -119,9 +149,74 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
-        code: 'FM-0001',
+        code: 'GL-0001',
+        name: '锅炉',
+        completion: 20,
+        type: '锅炉',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'GL-0001',
+        name: '锅炉',
+        completion: 20,
+        type: '锅炉',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'GL-0001',
+        name: '锅炉',
+        completion: 20,
+        type: '锅炉',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'QYFM-0001',
+        name: '气压阀门',
+        completion: 60,
+        type: '气压阀门',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FDJ-0001',
+        name: '发电机',
+        completion: 100,
+        type: '发电机',
+        model: '阀门',
+        norm: 'FM_0001_01',
+        brand: '上海市普陀牌',
+        warehouse: '1号仓库',
+        unit: '个',
+        price: '100',
+        amount: '56',
+        warningValue: '10'
+      }, {
+        code: 'FM-0002',
         name: '阀门',
-        completion: 80,
+        completion: 70,
         type: '阀门',
         model: '阀门',
         norm: 'FM_0001_01',
@@ -132,9 +227,9 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
-        code: 'FM-0001',
+        code: 'FM-0002',
         name: '阀门',
-        completion: 80,
+        completion: 70,
         type: '阀门',
         model: '阀门',
         norm: 'FM_0001_01',
@@ -145,9 +240,9 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
-        code: 'FM-0001',
+        code: 'FM-0002',
         name: '阀门',
-        completion: 80,
+        completion: 70,
         type: '阀门',
         model: '阀门',
         norm: 'FM_0001_01',
@@ -158,23 +253,10 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
-        code: 'FM-0001',
-        name: '阀门',
-        completion: 80,
-        type: '阀门',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'FM-0001',
-        name: '阀门',
-        completion: 80,
-        type: '阀门',
+        code: 'GL-0002',
+        name: '锅炉',
+        completion: 90,
+        type: '锅炉',
         model: '阀门',
         norm: 'FM_0001_01',
         brand: '上海市普陀牌',
@@ -188,3 +270,11 @@ export default {
   }
 }
 </script>
+<style>
+  .el-table th>.cell{
+    text-align: center;
+  }
+  .el-table td div {
+    text-align: center;
+  }
+</style>
