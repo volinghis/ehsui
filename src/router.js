@@ -8,9 +8,14 @@ import PageOne from './page/test/pageone.vue'
 import UserSetting from './page/account/setting/index.vue'
 import eamPartLibrary from './page/eam/eamPartLibrary/index.vue'
 import EamPartDetails from './page/eam/eamPartLibrary/details.vue'
+import EamPartEdit from './page/eam/eamPartLibrary/edit.vue'
 import eamAccountPrint from './page/eam/eamAccountPrint/index.vue'
 import UserCenter from './page/account/center/index.vue'
 import EamAccountDetails from './page/eam/eamAccountPrint/details.vue'
+import BaseStepForm from './page/eam/eamPartLibrary/stepForm/baseForm.vue'
+import BaseStepFormOne from './page/eam/eamPartLibrary/stepForm/step1.vue'
+import BaseStepFormTwo from './page/eam/eamPartLibrary/stepForm/step2.vue'
+import BaseStepFormThree from './page/eam/eamPartLibrary/stepForm/step3.vue'
 
 Vue.use(Router)
 
@@ -39,13 +44,38 @@ const routes = [
           },
           {
             path: 'eam/eamPartLibrary/index',
-            name: 'index',
+            name: 'partLibraryIndex',
             component: eamPartLibrary
           },
           {
             path: 'eam/eamPartLibrary/details',
-            name: 'details',
+            name: 'partDetails',
             component: EamPartDetails
+          },
+          {
+            path: 'eam/eamPartLibrary/edit',
+            name: 'partEdit',
+            component: EamPartEdit
+          },
+          {
+            path: 'eam/eamPartLibrary/stepForm/baseForm',
+            name: 'partBaseForm',
+            component: BaseStepForm
+          },
+          {
+            path: 'eam/eamPartLibrary/stepForm/step1',
+            name: 'partStepOne',
+            component: BaseStepFormOne
+          },
+          {
+            path: 'eam/eamPartLibrary/stepForm/step2',
+            name: 'partStepTwo',
+            component: BaseStepFormTwo
+          },
+          {
+            path: 'eam/eamPartLibrary/stepForm/step3',
+            name: 'partStepThree',
+            component: BaseStepFormThree
           },
           {
             path: 'account/center/index',
