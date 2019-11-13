@@ -6,7 +6,7 @@
         <el-card shadow="hover">
           <div slot="header"
                style="text-align:left;">
-            <span style="font-weight: bold;"><i class="el-icon-s-cooperation"></i>备件详情</span>
+            <span style="font-weight: bold;font-size: 16px;"><i class="el-icon-s-cooperation"></i>备件详情</span>
             <el-button style="float: right; padding: 3px 0"
                        type="text"
                        @click="edit">编辑</el-button>
@@ -48,7 +48,7 @@
                  style="height: 420px;">
           <div slot="header"
                style="text-align:left;">
-            <span style="font-weight: bold;"><i class="el-icon-s-tools"></i>相关设备</span>
+            <span style="font-weight: bold;font-size: 16px;"><i class="el-icon-s-tools"></i>相关设备</span>
           </div>
           <div>
             <el-row style="text-align:left;">
@@ -118,7 +118,7 @@
             <el-card shadow="hover">
               <div slot="header"
                    style="text-align:left;">
-                <span style="font-weight: bold;"><i class="el-icon-s-order"></i>备件领用记录</span>
+                <span style="font-weight: bold;font-size: 16px;"><i class="el-icon-s-order"></i>备件领用记录</span>
               </div>
               <el-row>
                 <div style="line-height:20px;font-size: small; height: 210px">
@@ -148,7 +148,7 @@
             <el-card shadow="hover">
               <div slot="header"
                    style="text-align:left;">
-                <span style="font-weight: bold;"><i class="el-icon-s-claim"></i>资料纠错/补全记录</span>
+                <span style="font-weight: bold;font-size: 16px;"><i class="el-icon-s-claim"></i>资料纠错/补全记录</span>
               </div>
               <el-row>
                 <el-col>
