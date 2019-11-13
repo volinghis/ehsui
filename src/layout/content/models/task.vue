@@ -6,9 +6,10 @@
       <el-table :data="tableData"
                 size="mini">
         <el-table-column type="index"
-                         :index="indexMethod">
+                          width="20">
         </el-table-column>
         <el-table-column prop="date"
+                          width="100"
                          label="日期"> </el-table-column>
         <el-table-column prop="name"
                          label="流转"> </el-table-column>
