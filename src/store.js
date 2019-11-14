@@ -16,7 +16,7 @@ export default new Vuex.Store({
     initMenuDatas (state) {
       // 测试-数据 typ[0上级菜单，1页面菜单，2页面功能]，这里是http请求后端接口获取数据路由数据。
       state.menuDatas = [
-        { code: 'home', label: '首页', key: '1', path: '/', component: '/test/pageone', leaf: true },
+        { code: 'home', label: '首页', key: '1', path: '/', component: '/layout/content/portal', leaf: true },
         {
           code: 'edmManager',
           label: '设备管理',
