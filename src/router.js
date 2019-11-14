@@ -1,105 +1,71 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Portal from './layout/content/portal.vue'
-import UserLogin from './user/login.vue'
-import Layout from './layout/layout.vue'
-import Content from './layout/content/content.vue'
-import PageOne from './page/test/pageone.vue'
-import UserSetting from './page/account/setting/index.vue'
-import eamPartLibrary from './page/eam/eamPartLibrary/index.vue'
-import EamPartDetails from './page/eam/eamPartLibrary/details.vue'
-import EamPartEdit from './page/eam/eamPartLibrary/edit.vue'
-import eamAccountPrint from './page/eam/eamAccountPrint/index.vue'
-import UserCenter from './page/account/center/index.vue'
-import EamAccountDetails from './page/eam/eamAccountPrint/details.vue'
-import BaseStepForm from './page/eam/eamPartLibrary/stepForm/baseForm.vue'
-import BaseStepFormOne from './page/eam/eamPartLibrary/stepForm/step1.vue'
-import BaseStepFormTwo from './page/eam/eamPartLibrary/stepForm/step2.vue'
-import BaseStepFormThree from './page/eam/eamPartLibrary/stepForm/step3.vue'
 
+import store from './store'
 Vue.use(Router)
 
 const routerPush = Router.prototype.push
 Router.prototype.push = function push (location) {
   return routerPush.call(this, location).catch(error => error)
 }
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Layout,
-    children: [
-      { path: '', name: 'portal', component: Portal },
-      {
-        path: 'page',
-        name: 'content',
-        component: Content,
-        children: [
-          { path: 'test/pageone', name: 'pageone', component: PageOne },
-          { path: 'test/pageone', name: 'pageone', component: PageOne },
-          {
-            path: 'account/setting/index',
-            name: 'index',
-            component: UserSetting
-          },
-          {
-            path: 'eam/eamPartLibrary/index',
-            name: 'partLibraryIndex',
-            component: eamPartLibrary
-          },
-          {
-            path: 'eam/eamPartLibrary/details',
-            name: 'partDetails',
-            component: EamPartDetails
-          },
-          {
-            path: 'eam/eamPartLibrary/edit',
-            name: 'partEdit',
-            component: EamPartEdit
-          },
-          {
-            path: 'eam/eamPartLibrary/stepForm/baseForm',
-            name: 'partBaseForm',
-            component: BaseStepForm
-          },
-          {
-            path: 'eam/eamPartLibrary/stepForm/step1',
-            name: 'partStepOne',
-            component: BaseStepFormOne
-          },
-          {
-            path: 'eam/eamPartLibrary/stepForm/step2',
-            name: 'partStepTwo',
-            component: BaseStepFormTwo
-          },
-          {
-            path: 'eam/eamPartLibrary/stepForm/step3',
-            name: 'partStepThree',
-            component: BaseStepFormThree
-          },
-          {
-            path: 'account/center/index',
-            name: 'center',
-            component: UserCenter
-          },
-          {
-            path: 'eam/eamAccountPrint/index',
-            name: 'eamAccountPrint',
-            component: eamAccountPrint
-          },
-          {
-            path: 'eam/eamAccountPrint/details',
-            name: 'EamAccountDetails',
-            component: EamAccountDetails
-          }
-        ]
-      },
-      { path: '/user/login', name: 'userLogin', component: UserLogin }
-    ]
-  }
+
+const _import = file => require('./page' + file + '.vue').default
+// 全局路由(无需嵌套)
+const globalRoutes = [
+  { path: '/404', component: _import('/404'), name: '404', meta: { title: '404' } },
+  { path: '/user/login', component: _import('/user/login'), name: 'login', meta: { title: '登录' } }
 ]
-export default new Router({
+// 主入口路由(需嵌套整体布局页面)
+const mainRoutes = {
+  path: '/', component: _import('/layout/container/index'), name: 'index', children: []
+}
+
+const vueRouter = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: routes
+  scrollBehavior: () => ({ x: 0, y: 0 }),
+  isAdd: false
 })
+// 判断当前是否全局路由
+function isGlobalRoutes (to) {
+  for (let i in globalRoutes) {
+    if (globalRoutes[i].path === to.path) {
+      return true
+    }
+  }
+  return false
+}
+// 添加动态(菜单)路， 参数menu：菜单列表
+function addDynamicMenu (routes, md) {
+  if (md && md.length > 0) {
+    for (var i = 0; i < md.length; i++) {
+      if (md[i].component && !md[i].children) {
+        var router = {}
+        router.path = md[i].path
+        router.name = md[i].code
+        router.component = _import(md[i].component)
+        routes.push(router)
+      } else {
+        addDynamicMenu(routes, md[i].children)
+      }
+    }
+  }
+}
+
+vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
+  if (vueRouter.options.isAdd || isGlobalRoutes(to)) { // 判断是否已经添加动态路由,或者当前为全局路由的时候。 直接访问
+    next()
+  } else {
+    store.dispatch('initMenuDatas')
+    var routes = []
+    addDynamicMenu(routes, store.state.menuDatas)
+    mainRoutes.children = routes
+    vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
+      mainRoutes,
+      { path: '*', redirect: { name: '404' } }
+    ])
+    vueRouter.options.isAdd = true
+    next({ ...to, replace: true })
+  }
+})
+export default vueRouter

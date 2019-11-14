@@ -1,5 +1,5 @@
 <template>
-    <chart :options="options" :auto-resize="true"></chart>
+   <div>12312</div>
 </template>
 <script>
 require('echarts/lib/chart/pie')

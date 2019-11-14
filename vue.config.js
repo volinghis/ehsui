@@ -2,6 +2,13 @@
 const CompressionPlugin = require('compression-webpack-plugin')
 module.exports = {
   productionSourceMap: false,
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "~@/styles/variables.scss";`
+      }
+    }
+  },
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production') {
       return {

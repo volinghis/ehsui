@@ -1,0 +1,22 @@
+.main-container{
+  height: 100% !important;
+  width: 100% !important;
+  min-width: $bodyMinWidth !important;
+  min-height:$bodyMinHight !important;
+}
+.el-header {
+  height: $headerHeight !important;
+  background-color: #B3C0D1;
+}
+.el-footer {
+  background-color: #B3C0D1;
+  height:$footerHeight !important;
+  bottom: 0px !important;
+}
+.el-aside {
+  width:$sideBarWidth !important;
+  background-color: #D3DCE6;
+}
+.el-main {
+  background-color: #E9EEF3;
+}
