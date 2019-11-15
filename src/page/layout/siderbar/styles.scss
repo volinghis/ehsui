@@ -1,8 +1,7 @@
 .el-button{
-  width: 80%;
-  height: 50px;
-  margin-top: 10px !important;
-  margin-left: 10px !important;
-  margin-right: 10px !important;
-  margin-bottom: 10px !important;
+  width: $sideBarWidth*0.8 !important;
+  height: 40px;
+  margin-top: $sideBarWidth*0.1 !important;
+  margin-left: $sideBarWidth*0.1 !important;
 }
+
