@@ -1,5 +1,5 @@
 <template>
-   <chart :options="options"></chart>
+   <chart :options="options" :autoresize="true" theme="ehsecharts"></chart>
 </template>
 <script>
 require('echarts/lib/chart/pie')
@@ -7,10 +7,9 @@ require('echarts/lib/chart/pie')
 require('echarts/lib/component/title')
 // 引入legend组件
 require('echarts/lib/component/legend')
+
 export default {
-  data () {
-    return {}
-  },
+
   mounted: function () {
     this.options = {
       title: {

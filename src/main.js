@@ -8,10 +8,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './styles/index.scss' // global css
 import globalCss from './styles/variables.scss'
 import globalVars from './components/global/globalVars.js'
+import ehsecharts from './components/theme/ehsecharts.project.json'
 Vue.config.productionTip = false
 Vue.prototype.GlobalCss = globalCss
 Vue.prototype.GlobalVars = globalVars
 Vue.use(ElementUI)
+ECharts.registerTheme('ehsecharts', ehsecharts)
 Vue.component('chart', ECharts)
 new Vue({
   router,

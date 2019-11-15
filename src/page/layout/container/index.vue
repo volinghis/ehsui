@@ -2,11 +2,12 @@
   <el-container  class="main-container">
   <el-header >Header</el-header>
   <el-container >
+    <el-aside :style="{height:($store.state.contentHeight+parseInt(GlobalCss.footerHeight))+'px'}"><siderbar ></siderbar></el-aside>
     <el-container>
-      <el-aside :style="{height:$store.state.contentHeight+'px'}"><siderbar ></siderbar></el-aside>
       <el-main :style="{height:$store.state.contentHeight+'px'}"><router-view></router-view></el-main>
+      <el-footer>Footer</el-footer>
     </el-container>
-    <el-footer>Footer</el-footer>
+
   </el-container>
 </el-container>
 </template>

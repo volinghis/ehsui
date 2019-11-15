@@ -1,11 +1,16 @@
 <template>
- <el-menu :default-active="this.$router.path" class="el-menu-demo"  router>
+<div>
+<template  v-for="item in $store.state.menuDatas">
+  <el-button :key="item.key"  round>{{item.label}}</el-button>
+  </template>
+</div>
+ <!-- <el-menu :default-active="$router.path" class="el-menu-demo"  router>
     <template v-for="item in $store.state.menuDatas">
       <el-menu-item
         v-if="item.leaf"
         :key="item.key"
         :index="item.path"
-      >{{ item.label }}</el-menu-item>
+      >{{ item.label }}{{$router.path}}</el-menu-item>
       <el-submenu v-else  :key="item.key" :index="item.path">
         <template slot="title">{{item.label}}</template>
         <el-menu-item
@@ -15,7 +20,7 @@
         >{{itemsub.label}}</el-menu-item>
       </el-submenu>
     </template>
-  </el-menu>
+  </el-menu> -->
 </template>
 <script>
 import datas from './datas'
