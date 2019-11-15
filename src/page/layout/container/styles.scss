@@ -6,17 +6,29 @@
 }
 .el-header {
   height: $headerHeight !important;
-  background-color: #49a9ee;
+    background: #49a9ee;
+
 }
 .el-footer {
-  background-color: #B3C0D1;
+  background: #ffffff;
   height:$footerHeight !important;
   bottom: 0px !important;
+  text-align: center;
+  color: #999999;
+  vertical-align: middle !important;
+      background: -moz-linear-gradient(top,  #ffffff 0%, #f4f7f7 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f4f7f7));
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#f4f7f7 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#f4f7f7 100%);
+    background: -ms-linear-gradient(top,  #ffffff 0%,#f4f7f7 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#f4f7f7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f4f7f7',GradientType=0 );
+
 }
 .el-aside {
   width:$sideBarWidth !important;
-  background-color: #D3DCE6;
+  background: #f4f7f7;
 }
 .el-main {
-  background-color: #E9EEF3;
+  background: #ffffff;
 }
