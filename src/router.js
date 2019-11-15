@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import store from './store'
+import globalVars from './components/global/globalVars.js'
 Vue.use(Router)
 
 const routerPush = Router.prototype.push
@@ -13,7 +14,7 @@ const _import = file => require('./page' + file + '.vue').default
 // 全局路由(无需嵌套)
 const globalRoutes = [
   { path: '/404', component: _import('/404'), name: '404', meta: { title: '404' } },
-  { path: '/user/login', component: _import('/user/login'), name: 'login', meta: { title: '登录' } }
+  { path: '/user/login', component: _import('/user/login/index'), name: 'login', meta: { title: '登录' } }
 ]
 // 主入口路由(需嵌套整体布局页面)
 const mainRoutes = {
@@ -51,21 +52,31 @@ function addDynamicMenu (routes, md) {
     }
   }
 }
-
+vueRouter.addRoutes(globalRoutes)
 vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
-  if (vueRouter.options.isAdd || isGlobalRoutes(to)) { // 判断是否已经添加动态路由,或者当前为全局路由的时候。 直接访问
-    next()
+  const token = sessionStorage.getItem(globalVars.userToken)
+  if (!token) {
+    // 1.1 如果没有获取到，要访问非登录页面，则不让访问，进入到登录页面/login
+    if (!isGlobalRoutes(to)) {
+      next({ path: '/user/login' })
+    } else {
+      next()
+    }
   } else {
-    store.dispatch('initMenuDatas')
-    var routes = []
-    addDynamicMenu(routes, store.state.menuDatas)
-    mainRoutes.children = routes
-    vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
-      mainRoutes,
-      { path: '*', redirect: { name: '404' } }
-    ])
-    vueRouter.options.isAdd = true
-    next({ ...to, replace: true })
+    if (vueRouter.options.isAdd || isGlobalRoutes(to)) { // 判断是否已经添加动态路由,或者当前为全局路由的时候。 直接访问
+      next()
+    } else {
+      store.dispatch(globalVars.initMenuDatasMethodName)
+      var routes = []
+      addDynamicMenu(routes, store.state.menuDatas)
+      mainRoutes.children = routes
+      vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
+        mainRoutes,
+        { path: '*', redirect: { name: '404' } }
+      ])
+      vueRouter.options.isAdd = true
+      next({ ...to, replace: true })
+    }
   }
 })
 export default vueRouter
