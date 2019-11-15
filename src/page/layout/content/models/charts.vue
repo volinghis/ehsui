@@ -13,50 +13,41 @@ export default {
   mounted: function () {
     this.options = {
       title: {
-        text: '搜索热度统计',
-        subtext: '统计当月搜索情况',
+        text: '故障原因占比',
+        subtext: '',
         x: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
       legend: {
         orient: 'vertical',
-        x: 'left',
-        data: ['输煤机', '气阀检修', '常用消缺', '检修过程', '磨煤机']
+        left: 'left',
+        data: ['外力破坏', '磨损', '损伤', '二次损伤', '操作不当', '润滑过多或过少', '老化']
       },
       series: [
         {
-          name: '搜索热度',
+          name: '故障来源',
           type: 'pie',
-          avoidLabelOverlap: false,
-          label: {
-            normal: {
-              show: false,
-              position: 'center'
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: '20'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
-
+          radius: '45%',
+          center: ['50%', '70%'],
           data: [
-            { value: 335, name: '输煤机' },
-            { value: 310, name: '气阀检修' },
-            { value: 234, name: '常用消缺' },
-            { value: 135, name: '检修过程' },
-            { value: 342, name: '磨煤机' },
-            { value: 555, name: '电梯' },
-            { value: 131, name: '运输带' },
-            { value: 89, name: '风机' },
-            { value: 456, name: '锅炉' },
-            { value: 432, name: '除尘' }
-          ]
+            { value: 335, name: '磨损' },
+            { value: 210, name: '外力破坏' },
+            { value: 334, name: '损伤' },
+            { value: 135, name: '二次损伤' },
+            { value: 42, name: '操作不当' },
+            { value: 55, name: '润滑过多或过少' },
+            { value: 131, name: '老化' }
+          ],
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 15,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
         }
       ]
     }
