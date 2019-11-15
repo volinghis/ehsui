@@ -24,8 +24,8 @@ export default new Vuex.Store({
           path: '',
           leaf: false,
           children: [
-            { code: 'edmManagerAccount', label: '设备台帐', key: '21', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
-            { code: 'edmManagerAccountPrint', label: '备件台帐', key: '22', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true }]
+            { code: 'edmAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
+            { code: 'edmPartManager', label: '备件台帐', key: '22', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true }]
         },
         {
           code: 'systemManager',
