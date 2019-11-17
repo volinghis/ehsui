@@ -14,6 +14,7 @@
     "echarts": "^4.4.0",
     "element-ui": "^2.12.0",
     "eslint": "^5.16.0",
+    "nprogress": "^0.2.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
     "vue-echarts": "^4.0.4",

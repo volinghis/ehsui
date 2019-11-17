@@ -6,6 +6,9 @@
 span{
   font-size: 12px;
 }
+#nprogress .bar {
+  background: greenyellow !important; //自定义颜色
+}
 body {
   height:100%;
   -moz-osx-font-smoothing: grayscale;

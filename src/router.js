@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import store from './store'
-import globalVars from './components/global/globalVars.js'
+import Store from './store'
+import GlobalVars from './components/global/globalVars.js'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 Vue.use(Router)
 
 const routerPush = Router.prototype.push
@@ -18,7 +20,7 @@ const globalRoutes = [
 ]
 // 主入口路由(需嵌套整体布局页面)
 const mainRoutes = {
-  path: '/', component: _import('/layout/container/index'), name: 'index', children: []
+  path: '/', component: _import('/layout/container/index'), name: 'index', meta: { title: '门户' }, children: []
 }
 
 const vueRouter = new Router({
@@ -44,6 +46,7 @@ function addDynamicMenu (routes, md) {
         var router = {}
         router.path = md[i].path
         router.name = md[i].code
+        router.meta = { title: md[i].label }
         router.component = _import(md[i].component)
         routes.push(router)
       } else {
@@ -53,12 +56,17 @@ function addDynamicMenu (routes, md) {
   }
 }
 vueRouter.addRoutes(globalRoutes)
+vueRouter.afterEach(function (to, from) {
+  Store.dispatch(GlobalVars.addTabsMethodName, to)
+  NProgress.done()
+})
 vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
-  const token = sessionStorage.getItem(globalVars.userToken)
+  NProgress.start()
+  const token = sessionStorage.getItem(GlobalVars.userToken)
   if (!token) {
     // 1.1 如果没有获取到，要访问非登录页面，则不让访问，进入到登录页面/login
     if (!isGlobalRoutes(to)) {
-      next({ path: '/user/login' })
+      next({ name: 'login' })
     } else {
       next()
     }
@@ -66,16 +74,16 @@ vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
     if (vueRouter.options.isAdd || isGlobalRoutes(to)) { // 判断是否已经添加动态路由,或者当前为全局路由的时候。 直接访问
       next()
     } else {
-      store.dispatch(globalVars.initMenuDatasMethodName)
+      Store.dispatch(GlobalVars.initMenuDatasMethodName)
       var routes = []
-      addDynamicMenu(routes, store.state.menuDatas)
+      addDynamicMenu(routes, Store.state.menuDatas)
       mainRoutes.children = routes
       vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
         mainRoutes,
         { path: '*', redirect: { name: '404' } }
       ])
       vueRouter.options.isAdd = true
-      next({ ...to, replace: true })
+      next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
     }
   }
 })

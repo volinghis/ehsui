@@ -1,19 +1,19 @@
 <template>
- <el-menu   :default-active="this.$router.currentRoute.path" background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"  router>
+ <el-menu ref="menuEL" :default-active="this.$router.currentRoute.name" :background-color="GlobalCss.menuBgColor"
+      :text-color="GlobalCss.menuText"
+      :active-text-color="GlobalCss.menuActiveText"  @select="menuSelect">
     <template v-for="item in $store.state.menuDatas">
       <el-menu-item
         v-if="item.leaf"
-        :key="item.key"
-        :index="item.path"
+        :key="item.code"
+        :index="item.code"
       >{{ item.label }}</el-menu-item>
-      <el-submenu v-else  :key="item.key" :index="item.path">
+      <el-submenu v-else  :key="item.code" :index="item.code">
         <template slot="title">{{item.label}}</template>
         <el-menu-item
           v-for="itemsub in item.children"
-          :key="itemsub.key"
-          :index="itemsub.path"
+          :key="itemsub.code"
+          :index="itemsub.code"
         >{{itemsub.label}}</el-menu-item>
       </el-submenu>
     </template>

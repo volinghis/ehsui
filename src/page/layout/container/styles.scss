@@ -6,30 +6,33 @@
 }
 .el-header {
   height: $headerHeight !important;
-    background: #49a9ee;
+  background: #49a9ee;
 
 }
+.tab-header{
+  height: $tabHeight !important;
+  background: $bodyBgColor !important;
+  overflow: hidden !important;
+}
+$gradientColor:#f4f7f7;
 .el-footer {
-  background: #ffffff;
+  background: $bodyBgColor;
   height:$footerHeight !important;
   bottom: 0px !important;
   text-align: center;
   color: #999999;
   vertical-align: middle !important;
-      background: -moz-linear-gradient(top,  #ffffff 0%, #f4f7f7 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f4f7f7));
-    background: -webkit-linear-gradient(top,  #ffffff 0%,#f4f7f7 100%);
-    background: -o-linear-gradient(top,  #ffffff 0%,#f4f7f7 100%);
-    background: -ms-linear-gradient(top,  #ffffff 0%,#f4f7f7 100%);
-    background: linear-gradient(to bottom,  #ffffff 0%,#f4f7f7 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f4f7f7',GradientType=0 );
-
+    background: -moz-linear-gradient(top,  $bodyBgColor 0%, $gradientColor 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$bodyBgColor), color-stop(100%,$gradientColor));
+    background: -webkit-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
+    background: -o-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
+    background: -ms-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
+    background: linear-gradient(to bottom,  $bodyBgColor 0%,$gradientColor 100%);
 }
 .el-aside {
   width:$sideBarWidth !important;
-  background: #545c64;
+  background: $menuBgColor;
 }
 .el-main {
-  padding: 0 0 0 0 px;
-  background: #ffffff;
+  background: $bodyBgColor;
 }
