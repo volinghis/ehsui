@@ -1,5 +1,6 @@
 <template>
-    <el-card :bordered="false">
+    <!-- <el-card :bordered="false" > -->
+      <div style="width: 100%" max-height="$store.state.contentHeight">
         <div class="table-page-search-wrapper">
         <el-form :inline="true" :model="queryParam" class="demo-form-inline" size="small" label-position="left">
             <el-row :gutter="48">
@@ -53,14 +54,14 @@
             <el-button type="primary" icon="el-icon-plus" style="float:left;margin-bottom: 5px;" size="small" @click="handleAdd()">新增</el-button>
         </div>
         <template>
-            <el-table :data="tableData" border  style="width: 100%" max-height="600" >
+            <el-table :data="tableData" border>
                 <el-table-column fixed type="index" width="50"> </el-table-column>
                 <el-table-column fixed prop="type" label="图片" width="70">
                    <el-image style="width: 30px; height: 30px" :src="url" :fit="fit" :preview-src-list="srcList"></el-image>
                 </el-table-column>
                 <el-table-column fixed prop="code" label="备件编号" width="150"> </el-table-column>
                 <el-table-column fixed prop="name" label="备件名称" width="120"> </el-table-column>
-                <el-table-column fixed prop="completion" label="资料完整度" width="160" sortable>
+                <el-table-column fixed prop="completion" label="资料完整度" width="180" sortable>
                     <template slot-scope="scope">
                         <el-progress :percentage="scope.row.completion" :color="customColors" ></el-progress>
                     </template>
@@ -68,11 +69,11 @@
                 <el-table-column prop="type" label="备件类型" width="100"> </el-table-column>
                 <el-table-column prop="model" label="备件型号" width="100"> </el-table-column>
                 <el-table-column prop="norm" label="备件规格" width="120"> </el-table-column>
-                <el-table-column prop="brand" label="品牌" width="120"> </el-table-column>
+                <el-table-column prop="brand" label="品牌" width="150"> </el-table-column>
                 <el-table-column prop="warehouse" label="所在仓库" width="100"> </el-table-column>
-                <el-table-column prop="unit" label="单位" width="100"> </el-table-column>
-                <el-table-column prop="price" label="价格" width="100" sortable> </el-table-column>
-                <el-table-column prop="amount" label="数量" width="100" sortable> </el-table-column>
+                <el-table-column prop="unit" label="单位" width="80"> </el-table-column>
+                <el-table-column prop="price" label="价格" width="80" sortable> </el-table-column>
+                <el-table-column prop="amount" label="数量" width="80" sortable> </el-table-column>
                 <el-table-column prop="warningValue" label="库存预警值" width="100"> </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                 <template slot-scope="scope">
@@ -92,7 +93,8 @@
                 :total="100">
             </el-pagination>
         </template>
-    </el-card>
+      </div>
+    <!-- </el-card> -->
 </template>
 
 <script>

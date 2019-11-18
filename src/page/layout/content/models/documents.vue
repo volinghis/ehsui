@@ -3,15 +3,12 @@
   <template v-for="items in datas">
      <a  :key="items.title" href="#"><span>{{items.title}}</span></a>
      <div :key="items.key">
-       <el-rate
-            :value="items.rate"
-            disabled
-            show-score
-            text-color="#ff9900">
-</el-rate>
-     <span>发布日期:{{items.createTime}}</span>
-     <span>浏览量:{{items.browseCount}}</span>
-     <span>点赞数量:{{items.upCount}}</span>
+       <el-rate :value="items.rate" disabled show-score text-color="#ff9900"></el-rate>
+        <span><i class="el-icon-date"></i>发布日期:{{items.createTime}}</span>
+        <el-divider direction="vertical"></el-divider>
+        <span><i class="el-icon-view"></i>浏览量:{{items.browseCount}}</span>
+        <el-divider direction="vertical"></el-divider>
+        <span><i class="el-icon-thumb"></i>点赞数量:{{items.upCount}}</span>
      <br><br>
      </div>
   </template>
@@ -32,13 +29,15 @@ export default {
 }
 </script>
 <style scoped>
-.el-rate{
-  margin-left: 10px;
-}
-a span{
-  font-size: 14px;
-}
-span{
-  margin-left: 10px;
-}
+  .el-rate{
+    margin-left: 0px;
+  }
+  a span{
+    font-size: 14px;
+    color:black
+  }
+  span{
+    margin-left: 0px;
+    color:#909399
+  }
 </style>

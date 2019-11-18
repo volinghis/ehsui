@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-table :data="tableData" style="width: 100%" size="mini">
-      <el-table-column prop="date" label="日期" width="100"></el-table-column>
-      <el-table-column prop="deviceName" label="检修设备" width="120"></el-table-column>
-      <el-table-column prop="nature" label="检修性质" width="100"></el-table-column>
-      <el-table-column prop="team" label="检修班组" width="120"></el-table-column>
-      <el-table-column prop="name" label="负责人" width="100"></el-table-column>
+      <el-table-column prop="date" label="日期" width="110"></el-table-column>
+      <el-table-column prop="deviceName" label="检修设备" width="170"></el-table-column>
+      <el-table-column prop="nature" label="检修性质" width="120"></el-table-column>
+      <el-table-column prop="team" label="检修班组" width="150"></el-table-column>
+      <el-table-column prop="name" label="负责人" width="120"></el-table-column>
       <el-table-column prop="status" label="状态"></el-table-column>
     </el-table>
   </div>

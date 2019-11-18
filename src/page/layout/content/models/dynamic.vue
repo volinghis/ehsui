@@ -15,10 +15,10 @@
         <el-col :span="5">
           <span style="color: #909399;">{{items.team}}</span>
         </el-col>
-        <el-col :span="5">
+        <el-col :span="4">
           <span >{{items.content}}</span>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="5">
           <a href="#"><span style="color: #409EFF">{{items.title}}</span></a>
         </el-col>
       </el-row>
