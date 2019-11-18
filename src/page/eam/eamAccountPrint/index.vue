@@ -93,7 +93,6 @@
           <div class="table-list">
             <template>
               <el-table :data="tableData"
-                        border
                         style="width: 100%"
                         size="medium">
                 <el-table-column type="index"
