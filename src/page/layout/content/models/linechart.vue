@@ -54,7 +54,7 @@ export default {
       },
       grid: {
         top: '15%',
-        bottom: '10%',
+        bottom: '25%',
         containLabel: true
       },
       toolbox: {
@@ -98,7 +98,7 @@ export default {
       },
       grid: {
         top: '15%',
-        bottom: '10%',
+        bottom: '25%',
         containLabel: true
       },
       toolbox: {
@@ -141,7 +141,7 @@ export default {
       },
       grid: {
         top: '10%',
-        bottom: '10%',
+        bottom: '25%',
         containLabel: true
       },
       toolbox: {
