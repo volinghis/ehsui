@@ -6,6 +6,9 @@
 span{
   font-size: 12px;
 }
+.el-card__body{
+  background-color: $bodyBgColor !important;
+}
 #nprogress .bar {
   background: greenyellow !important; //自定义颜色
 }

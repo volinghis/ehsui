@@ -1,5 +1,5 @@
 <template>
- <el-menu ref="menuEL" :default-active="this.$router.currentRoute.name" :background-color="GlobalCss.menuBgColor"
+ <el-menu ref="menuEL"  :background-color="GlobalCss.menuBgColor"
       :text-color="GlobalCss.menuText"
       :active-text-color="GlobalCss.menuActiveText"  @select="menuSelect">
     <template v-for="item in $store.state.menuDatas">

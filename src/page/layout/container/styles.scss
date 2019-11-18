@@ -6,10 +6,12 @@
 }
 .el-header {
   height: $headerHeight !important;
-  background: #49a9ee;
+  background: #015cf3;
+  padding: 0 0 0 0px !important;
 
 }
 .tab-header{
+  padding: 0 0 0 0px;
   height: $tabHeight !important;
   background: $bodyBgColor !important;
   overflow: hidden !important;
@@ -29,10 +31,12 @@ $gradientColor:#f4f7f7;
     background: -ms-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
     background: linear-gradient(to bottom,  $bodyBgColor 0%,$gradientColor 100%);
 }
+
 .el-aside {
   width:$sideBarWidth !important;
   background: $menuBgColor;
 }
 .el-main {
+  padding: 0 0 0 0px;
   background: $bodyBgColor;
 }
