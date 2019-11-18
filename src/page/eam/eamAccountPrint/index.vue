@@ -8,38 +8,43 @@
               <el-row :gutter="48">
                 <el-col :md="8"
                         :sm="24">
-                  <el-form-item label="设备编号">
+                  <el-form-item label="设备编号:">
                     <el-input v-model="queryParam.deviceNum"
+                              size="small"
                               placeholder />
                   </el-form-item>
                 </el-col>
                 <el-col :md="8"
                         :sm="24">
-                  <el-form-item label="设备状态">
+                  <el-form-item label="设备名称:">
                     <el-input v-model="queryParam.deviceNum"
+                              size="small"
                               placeholder />
                   </el-form-item>
                 </el-col>
                 <template v-if="advanced">
                   <el-col :md="8"
                           :sm="24">
-                    <el-form-item label="设备名称">
+                    <el-form-item label="负责人:">
                       <el-input v-model="queryParam.deviceName"
-                                style="width: 100%" />
+                                size="small"/>
                     </el-form-item>
                   </el-col>
                   <el-col :md="8"
                           :sm="24">
-                    <el-form-item label="更新日期">
+                    <el-form-item label="启用日期:">
                       <el-date-picker v-model="queryParam.date"
-                                      style="width: 100%"
-                                      placeholder="请输入更新日期" />
+                                      size="small"
+                                      style="width:200px;"
+                                      placeholder="请输入启用日期" />
                     </el-form-item>
                   </el-col>
                   <el-col :md="8"
                           :sm="24">
-                    <el-form-item label="使用状态">
+                    <el-form-item label="使用状态:">
                       <el-select v-model="queryParam.useStatus"
+                                 size="small"
+                                 style="width:200px;"
                                  placeholder="请选择">
                         <el-option value="0"
                                    label="全部"></el-option>
@@ -52,8 +57,9 @@
                   </el-col>
                   <el-col :md="8"
                           :sm="24">
-                    <el-form-item label="使用状态">
-                      <el-input v-model="queryParam.deviceNum"
+                    <el-form-item label="生产厂家:">
+                      <el-input v-model="queryParam.factoryName"
+                                size="small"
                                 placeholder />
                     </el-form-item>
                   </el-col>
@@ -63,8 +69,10 @@
                   <span class="table-page-search-submitButtons"
                         :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
                     <el-button type="primary"
+                               size="small"
                                @click="$refs.table.refresh(true)">查询</el-button>
                     <el-button style="margin-left: 8px"
+                               size="small"
                                @click="() => queryParam = {}">重置</el-button>
                     <a @click="toggleAdvanced"
                        style="margin-left: 8px">
@@ -76,88 +84,126 @@
               </el-row>
             </el-form>
           </div>
-          <template>
-            <el-table :data="tableData"
-                      border
-                      style="width: 100%"
-                      size="medium">
-              <el-table-column type="index"
-                               width="50"
-                               fixed></el-table-column>
-              <el-table-column fixed
-                               prop="deviceImg"
-                               label="设备图片"
-                               width="80">
-                <template slot-scope="scope">
-                  <el-image class="table-td-deviceImg"
-                            :src="scope.row.deviceImg"
-                            :preview-src-list="[scope.row.deviceImg]"></el-image>
-                </template>
-              </el-table-column>
-              <el-table-column fixed
-                               prop="deviceNum"
-                               label="设备编号"
-                               width="150"></el-table-column>
-              <el-table-column fixed
-                               prop="deviceName"
-                               label="设备名称"
-                               width="120"></el-table-column>
-              <el-table-column prop="complete"
-                               label="资料完整度"
-                               width="150">
-                <template slot-scope="scope">
-                  <el-progress :percentage="scope.row.complete"
-                               :color="customColorMethod"></el-progress>
-                </template>
-              </el-table-column>
-              <el-table-column prop="factoryName"
-                               label="生产厂家"
-                               width="120"
-                               :show-overflow-tooltip="true"></el-table-column>
-              <el-table-column prop="supplier"
-                               label="供应商"
-                               width="120"></el-table-column>
-              <el-table-column prop="installLocation"
-                               label="安装位置"
-                               width="120"></el-table-column>
-              <el-table-column prop="runDate"
-                               label="启用日期"
-                               width="120"></el-table-column>
-              <el-table-column prop="purchaseTime"
-                               label="采购时间"
-                               width="100"></el-table-column>
-              <el-table-column prop="warranty"
-                               label="保修期"
-                               width="100"></el-table-column>
-              <el-table-column prop="repairFrequency"
-                               label="检修频率"
-                               width="100"></el-table-column>
-              <el-table-column prop="buyingPrice"
-                               label="采购价格"
-                               width="100"></el-table-column>
-              <el-table-column prop="person"
-                               label="负责人"
-                               width="100"></el-table-column>
-              <el-table-column prop="deviceStatus"
-                               label="设备状态"
-                               width="100"></el-table-column>
-              <el-table-column fixed="right"
-                               label="操作"
-                               width="120">
-                <template slot-scope="scope">
-                  <el-button @click="handleClick(scope.row)"
-                             type="text">查看</el-button>
-                  <el-divider direction="vertical"></el-divider>
-                  <el-button type="text"
-                             size="small">编辑</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </template>
-        </el-col>
-      </el-row>
-    </el-card>
-  </div>
+          <div class="operate">
+            <el-button type="primary"
+                       size="small"
+                       @click="handleAdd"
+                       icon="el-icon-plus">新增</el-button>
+          </div>
+          <div class="table-list">
+            <template>
+              <el-table :data="tableData"
+                        border
+                        style="width: 100%"
+                        size="medium">
+                <el-table-column type="index"
+                                 width="50"
+                                 fixed></el-table-column>
+                <el-table-column fixed
+                                 prop="deviceImg"
+                                 label="设备图片"
+                                 width="80">
+                  <template slot-scope="scope">
+                    <el-image class="table-td-deviceImg"
+                              :src="scope.row.deviceImg"
+                              :preview-src-list="[scope.row.deviceImg]"></el-image>
+                  </template>
+                </el-table-column>
+                <el-table-column fixed
+                                 prop="deviceNum"
+                                 label="设备编号"
+                                 width="150"></el-table-column>
+                <el-table-column fixed
+                                 prop="deviceName"
+                                 label="设备名称"
+                                 width="120"></el-table-column>
+                <el-table-column prop="complete"
+                                 label="资料完整度"
+                                 sortable
+                                 width="150">
+                  <template slot-scope="scope">
+                    <el-progress :percentage="scope.row.complete"
+                                 :color="customColorMethod"></el-progress>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="factoryName"
+                                 label="生产厂家"
+                                 width="120"
+                                 :show-overflow-tooltip="true"></el-table-column>
+                <el-table-column prop="supplier"
+                                 label="供应商"
+                                 width="120"></el-table-column>
+                <el-table-column prop="installLocation"
+                                 label="安装位置"
+                                 width="120"></el-table-column>
+                <el-table-column prop="runDate"
+                                 label="启用日期"
+                                 width="120"></el-table-column>
+                <el-table-column prop="purchaseTime"
+                                 label="采购时间"
+                                 width="100"></el-table-column>
+                <el-table-column prop="warranty"
+                                 label="保修期"
+                                 width="100"></el-table-column>
+                <el-table-column prop="repairFrequency"
+                                 label="检修频率"
+                                 width="100"></el-table-column>
+                <el-table-column prop="buyingPrice"
+                                 label="采购价格"
+                                 width="100"></el-table-column>
+                <el-table-column prop="person"
+                                 label="负责人"
+                                 width="100"></el-table-column>
+                <el-table-column prop="deviceStatus"
+                                 label="设备状态"
+                                 width="100"></el-table-column>
+                <el-table-column fixed="right"
+                                 align="center"
+                                 label="操作"
+                                 width="180">
+                  <template slot-scope="scope">
+                    <el-button @click="handleViewClick(scope.row)"
+                               type="primary"
+                               size="mini">查看</el-button>
+                    <el-button type="warning"
+                               @click="handleEditClick(scope.row)"
+                               size="mini">补全/纠错</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <div class="pagination"
+                   style="float:right;margin-top:12px;">
+                <el-pagination background
+                               layout="total, prev, pager, next"
+                               :current-page="1"
+                               :page-size="10"
+                               :total="100"
+                               @current-change="handlePageChange"></el-pagination>
+              </div>
+              <!-- 编辑弹出框 -->
+              <el-dialog title="设备新增"
+                         :visible.sync="editVisible"
+                         width="30%">
+                <el-form ref="form"
+                         :model="form"
+                         label-width="70px">
+                  <el-form-item label="设备名称">
+                    <el-input v-model="form.name"></el-input>
+                  </el-form-item>
+                </el-form>
+                <span slot="footer"
+                      class="dialog-footer">
+                  <el-button @click="editVisible = false">取 消</el-button>
+                  <el-button type="primary"
+                             @click="saveEdit">确 定</el-button>
+                </span>
+              </el-dialog>
+            </template>
+</div>
+</el-col>
+</el-row>
+</el-card>
+</div>
 </template>
 <script>
 export default {
@@ -165,17 +211,15 @@ export default {
     return {
       // 高级搜索 展开/关闭
       advanced: false,
+      editVisible: false,
       queryParam: {},
-      deviceForm: {
-        deviceName: ''
-      },
-
+      form: {},
       tableData: [
         {
           deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
           deviceNum: '2019100001',
           deviceName: '锅炉',
-          complete: 80,
+          complete: 90,
           factoryName: '上海辉腾设备公司',
           supplier: '西安宇辉',
           installLocation: '锅炉专业',
@@ -223,7 +267,7 @@ export default {
           deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
           deviceNum: '2019100001',
           deviceName: '锅炉',
-          complete: 50,
+          complete: 20,
           factoryName: '上海辉腾设备公司',
           installLocation: '锅炉专业',
           supplier: '西安宇辉',
@@ -248,12 +292,33 @@ export default {
         return '#67c23a'
       }
     },
-    handleClick (scope) {
-      window.location.href = './details'
+    handleViewClick (scope) {
+      this.$router.push({ name: 'details' })
+    },
+    handleEditClick (scope) {
+      window.location.href = './edit'
     },
     toggleAdvanced () {
       this.advanced = !this.advanced
+    },
+    handlePageChange () {
+      console.log()
+    },
+    // 新增操作
+    handleAdd () {
+      this.editVisible = true
+    },
+    // 保存编辑
+    saveEdit () {
+      this.editVisible = false
+      // this.$message.success(`修改第 ${this.idx + 1} 行成功`)
+      // this.$set(this.tableData, this.idx, this.form)
     }
   }
 }
 </script>
+<style scoped>
+.operate {
+  margin-bottom: 20px;
+}
+</style>
