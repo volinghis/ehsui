@@ -25,9 +25,9 @@ export default {
         formatter: '{a} <br/>{b}: {c} ({d}%)'
       },
       legend: {
-        orient: 'horizontal',
-        y: 'bottom',
-        x: 'center',
+        orient: 'vertical',
+        y: 'top',
+        x: 'right',
         icon: 'circle',
         data: ['电气专业', '锅炉专业', '汽机专业', '热工专业', '热控专业']
       },
