@@ -36,6 +36,7 @@
               <el-input class="input-new-tag"
                         v-if="inputVisible"
                         v-model="inputValue"
+                        size="mini"
                         ref="saveTagInput"
                         @keyup.enter.native="handleInputConfirm"
                         @blur="handleInputConfirm">
