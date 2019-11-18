@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card>
+    <el-card shadow="hover">
       <el-row>
         <el-col :md="24">
           <div class="table-page-search-wrapper">
@@ -320,4 +320,7 @@ export default {
 .operate {
   margin-bottom: 20px;
 }
+  .el-card {
+    border: 1px solid #ffffff;
+  }
 </style>
