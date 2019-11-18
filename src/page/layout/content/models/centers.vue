@@ -5,7 +5,8 @@
               :lg="24">
           <div class="account-center-avatarHolder">
             <div class="avatar">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573316031111&di=385743a637cec681a0d6ba53de6d15fb&imgtype=0&src=http%3A%2F%2Fs4.sinaimg.cn%2Fmw690%2F006NO2XVzy7rcbse191a3%26690"/>
+              <img src="https://s4.aconvert.com/convert/p3r68-cdx67/bm2et-j5hic.svg"/>
+              <!-- <img src='../../../../assets/Avatar.svg'/> -->
             </div>
             <div class="username">东恒测试</div>
             <div class="bio">海纳百川，有容乃大</div>
