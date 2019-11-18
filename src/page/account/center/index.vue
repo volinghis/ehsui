@@ -3,7 +3,7 @@
     <el-row :gutter="24">
       <el-col :md="24"
               :lg="7">
-        <el-card>
+        <el-card shadow="hover">
           <div class="account-center-avatarHolder">
             <div class="avatar">
               <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
@@ -65,6 +65,7 @@
       <el-col :md="24"
               :lg="17">
         <el-card style="width:100%"
+                  shadow="hover"
                  :bordered="false"
                  :tabList="tabListNoTitle"
                  :activeTabKey="noTitleKey"
@@ -199,4 +200,7 @@ img {
   line-height: 20px;
   display: inline-block;
 }
+  .el-card {
+    border: 1px solid #ffffff;
+  }
 </style>
