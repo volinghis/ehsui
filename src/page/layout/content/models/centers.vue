@@ -5,8 +5,7 @@
               :lg="24">
           <div class="account-center-avatarHolder">
             <div class="avatar">
-              <img src="https://s4.aconvert.com/convert/p3r68-cdx67/bm2et-j5hic.svg"/>
-              <!-- <img src='../../../../assets/Avatar.svg'/> -->
+              <img src='../../../../assets/Avatar.svg'/>
             </div>
             <div class="username">东恒测试</div>
             <div class="bio">海纳百川，有容乃大</div>
