@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <el-row :gutter="10">
+  <div class="container" style="width: 100%" max-height="$store.state.contentHeight">
+    <el-row >
       <el-col  :span="6" :md="24" :lg="6">
         <el-card shadow="hover">
           <template>
@@ -24,7 +24,6 @@
             </el-col>
           </el-row>
         </el-card>
-        <br>
         <el-card shadow="hover">
           <!-- <div slot="header" class="item-title" >
             <span>检修统计</span>
@@ -41,7 +40,6 @@
           </div> -->
           <task></task>
         </el-card>
-        <br>
         <el-card shadow="hover">
           <!-- <div slot="header" class="item-title" size="small">
             <span>故障原因占比</span>
@@ -50,8 +48,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <br>
-    <el-row :gutter="10">
+    <el-row>
       <el-col :span="6" :md="24" :lg="6">
         <el-card shadow="hover">
           <template>
@@ -73,7 +70,6 @@
           </div>
           <maintenanceRecord></maintenanceRecord>
         </el-card>
-        <br>
         <el-card shadow="hover">
           <div slot="header" class="item-title" size="small">
             <span class="mainTitle">动&nbsp;&nbsp;&nbsp;&nbsp;态</span>
@@ -88,7 +84,6 @@
           </div>
           <devices></devices>
         </el-card>
-        <br>
         <el-card shadow="hover">
           <div slot="header" class="item-title" size="small">
             <span class="mainTitle">热门关注</span>
@@ -129,7 +124,15 @@ export default {
 }
 </script>
 <style scoped>
-.el-card__header{
-  padding:8px;
-}
+  .el-card__header{
+    padding:8px;
+  }
+  .mainTitle{
+    font-size: large;
+    font-weight: bold;
+    color: #646669
+  }
+  .el-card {
+    border: 1px solid #ffffff;
+  }
 </style>
