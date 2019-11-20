@@ -41,19 +41,29 @@ export default new Vuex.Store({
       state.menuDatas = [
         { code: 'home', label: '首页', key: '1', path: '/', component: '/layout/content/portal', leaf: true },
         {
-          code: 'edmManager',
+          code: 'edmAccountManager',
           label: '设备管理',
           key: '2',
           path: '',
           leaf: false,
           children: [
-            { code: 'edmAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
-            { code: 'edmPartManager', label: '备件台帐', key: '22', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true }]
+            { code: 'edmAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true }
+          ]
+        },
+        {
+          code: 'edmPartLibraryManager',
+          label: '备件管理',
+          key: '3',
+          path: '',
+          leaf: false,
+          children: [
+            { code: 'edmPartManager', label: '备件台帐', key: '31', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true }
+          ]
         },
         {
           code: 'systemManager',
           label: '系统管理',
-          key: '3',
+          key: '4',
           path: '',
           leaf: false,
           children: [
