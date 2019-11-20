@@ -1,8 +1,8 @@
 <template>
     <!-- <el-card :bordered="false" > -->
-      <div style="width: 100%" max-height="$store.state.contentHeight">
-        <div class="table-page-search-wrapper">
-        <el-form :inline="true" :model="queryParam" class="demo-form-inline" size="small" label-position="left">
+      <div style="padding:0 24px;">
+        <div>
+        <el-form :inline="true" :model="queryParam" size="small" label-position="left">
             <el-row :gutter="48">
             <el-col :md="8" :sm="24">
                 <el-form-item label="备件编号：">
@@ -54,7 +54,7 @@
             <el-button type="primary" icon="el-icon-plus" style="float:left;margin-bottom: 5px;" size="small" @click="handleAdd()">新增</el-button>
         </div>
         <template>
-            <el-table :data="tableData" border>
+            <el-table :data="tableData">
                 <el-table-column fixed type="index" width="50"> </el-table-column>
                 <el-table-column fixed prop="type" label="图片" width="70">
                    <el-image style="width: 30px; height: 30px" :src="url" :fit="fit" :preview-src-list="srcList"></el-image>
