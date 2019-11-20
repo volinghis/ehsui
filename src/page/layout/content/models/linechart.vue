@@ -140,7 +140,7 @@ export default {
         x: 'center'
       },
       grid: {
-        top: '10%',
+        top: '15%',
         bottom: '25%',
         containLabel: true
       },
