@@ -3,7 +3,7 @@
     <template v-for="(items,index) in datas">
     <el-row  :key="index">
       <el-col :span="6">
-       <span >{{items.name}}</span>
+        <span >{{items.name}}</span>
       </el-col>
       <el-col :span="14">
          <el-progress :key="items.name"
@@ -13,13 +13,11 @@
                    :percentage="items.score"></el-progress>
       </el-col>
       <el-col :span="4">
-       <a href="#"><span>去补全</span></a>
+        <a href="#"><span style="color: #409EFF">去补全</span></a>
       </el-col>
     </el-row>
     </template>
-
   </div>
-
 </template>
 
 <script>
@@ -42,14 +40,13 @@ export default {
 }
 </script>
 <style scoped>
-
-.el-row{
-  margin-bottom: 20px;
-}
-.el-col{
-  padding-left: 10px;
-}
-.el-col：first-child {
-  float: right;
-}
+  .el-row{
+    margin-bottom: 20px;
+  }
+  .el-col{
+    padding-left: 10px;
+  }
+  .el-col：first-child {
+    float: right;
+  }
 </style>
