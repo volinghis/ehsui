@@ -1,72 +1,35 @@
 <template>
-  <!-- <el-popover
-    v-model="visible"
-    trigger="click"
-    placement="bottomRight"
-    overlayClassName="header-notice-wrapper"
-    :getPopupContainer="() => $refs.noticeRef.parentElement"
-    :autoAdjustOverflow="true"
-    :arrowPointAtCenter="true"
-    :overlayStyle="{ width: '300px', top: '50px' }"
-  > -->
-    <div>
-        <el-tabs  :spinning="loading">
-          <el-tab-pane tab="通知" key="1">
-            123
-          </el-tab-pane>
-          <el-tab-pane tab="消息" key="2">
-            123
-          </el-tab-pane>
-          <el-tab-pane tab="待办" key="3">
-            123
-          </el-tab-pane>
-        </el-tabs>
-      <span @click="fetchNotice" class="header-notice" ref="noticeRef">
-        <el-badge count="12">
-          <!-- <a-icon style="font-size: 16px; padding: 4px" type="bell" /> -->
-        </el-badge>
+  <el-popover placement="bottom-start" width="400" trigger="click" class="infomessage">
+    <el-tabs v-model="activeName" @tab-click="handleClick" stretch="stretch">
+      <el-tab-pane label="通知" name="first">通知</el-tab-pane>
+      <el-tab-pane label="消息" name="second">消息</el-tab-pane>
+      <el-tab-pane label="待办" name="third">待办</el-tab-pane>
+    </el-tabs>
+    <el-badge :value="12" slot="reference">
+      <span class="el-dropdown-link ">
+        <i class="el-icon-bell" ></i>
       </span>
-    </div>
-  <!-- </el-popover> -->
+    </el-badge>
+  </el-popover>
 </template>
-
 <script>
 export default {
-  name: 'HeaderNotice',
   data () {
     return {
-      loading: false,
-      visible: false
+      stretch: true,
+      activeName: 'first'
     }
   },
   methods: {
-    fetchNotice () {
-      if (!this.visible) {
-        this.loading = true
-        setTimeout(() => {
-          this.loading = false
-        }, 2000)
-      } else {
-        this.loading = false
-      }
-      this.visible = !this.visible
+    handleClick () {
+      console.log('hhhhh')
     }
   }
 }
 </script>
-
-<style lang="css">
-  .header-notice-wrapper {
-    top: 50px !important;
-  }
-</style>
 <style lang="less" scoped>
-  .header-notice{
-    display: inline-block;
-    transition: all 0.3s;
-
-    span {
-      vertical-align: initial;
-    }
+  .el-icon-bell{
+    color: #fff;
+    font-size: initial;
   }
 </style>

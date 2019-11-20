@@ -52,10 +52,12 @@
         </div>
         <div class="table-operator">
             <el-button type="primary" icon="el-icon-plus" style="float:left;margin-bottom: 5px;" size="small" @click="handleAdd()">新增</el-button>
+            <el-button type="primary" icon="el-icon-delete" style="float:left;margin-bottom: 5px;" size="small" @click="handleAdd()">删除</el-button>
         </div>
         <template>
-            <el-table :data="tableData">
+            <el-table :data="tableData" ref="multipleTable">
                 <el-table-column fixed type="index" width="50"> </el-table-column>
+                <el-table-column fixed type="selection" width="50"> </el-table-column>
                 <el-table-column fixed prop="type" label="图片" width="70">
                    <el-image style="width: 30px; height: 30px" :src="url" :fit="fit" :preview-src-list="srcList"></el-image>
                 </el-table-column>
@@ -74,7 +76,7 @@
                 <el-table-column prop="unit" label="单位" width="80"> </el-table-column>
                 <el-table-column prop="price" label="价格" width="80" sortable> </el-table-column>
                 <el-table-column prop="amount" label="数量" width="80" sortable> </el-table-column>
-                <el-table-column prop="warningValue" label="库存预警值" width="100"> </el-table-column>
+                <el-table-column prop="warningValue" label="库存预警值" width="80"> </el-table-column>
                 <el-table-column fixed="right" label="操作" width="150">
                 <template slot-scope="scope">
                     <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
@@ -87,9 +89,9 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page.sync="currentPage1"
+                :page-sizes="[10, 20, 50]"
                 :page-size="10"
-                background
-                layout="total,prev, pager, next"
+                layout="sizes,total,prev, pager, next"
                 :total="100">
             </el-pagination>
         </template>
