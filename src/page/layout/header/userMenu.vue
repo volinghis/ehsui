@@ -13,9 +13,9 @@
     </el-dropdown>
     <img class="avatarClass" fit="fill" :style="{height:(parseInt(GlobalCss.headerHeight)-20)+'px',borderRadius:'50%',
           width:(parseInt(GlobalCss.headerHeight)-20)+'px', marginTop:'12px',marginRight:'10px'}" src="../../../assets/Avatar.svg"/>
-    <el-dropdown>
+    <div class="el-dropdown">
       <headerNotice></headerNotice>
-    </el-dropdown>
+    </div>
     <el-tooltip class="item" effect="dark" content="使用文档" placement="bottom">
       <i class="el-icon-view" size="small"></i>
     </el-tooltip>
