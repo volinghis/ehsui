@@ -4,17 +4,19 @@
       :active-text-color="GlobalCss.menuActiveText"  @select="menuSelect">
     <template v-for="item in $store.state.menuDatas">
       <el-menu-item
-        v-if="item.leaf"
-        :key="item.code"
-        :index="item.code"
+        v-if="item.leaf&&!item.business"
+        :key="item.key"
+        :index="item.key"
       >{{ item.label }}</el-menu-item>
-      <el-submenu v-else  :key="item.code" :index="item.code">
+      <el-submenu v-else  :key="item.key" :index="item.key">
         <template slot="title">{{item.label}}</template>
+        <template  v-for="itemsub in item.children">
         <el-menu-item
-          v-for="itemsub in item.children"
-          :key="itemsub.code"
-          :index="itemsub.code"
+          v-if="itemsub.leaf&&!itemsub.business"
+          :key="itemsub.key"
+          :index="itemsub.key"
         >{{itemsub.label}}</el-menu-item>
+        </template>
       </el-submenu>
     </template>
   </el-menu>

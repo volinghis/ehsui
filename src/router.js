@@ -45,8 +45,8 @@ function addDynamicMenu (routes, md) {
       if (md[i].component && !md[i].children) {
         var router = {}
         router.path = md[i].path
-        router.name = md[i].code
-        router.meta = { title: md[i].label }
+        router.name = md[i].key
+        router.meta = { title: md[i].label, business: md[i].business }
         router.component = _import(md[i].component)
         routes.push(router)
       } else {
@@ -58,6 +58,9 @@ function addDynamicMenu (routes, md) {
 vueRouter.addRoutes(globalRoutes)
 vueRouter.afterEach(function (to, from) {
   Store.dispatch(GlobalVars.addTabsMethodName, to)
+  if (!from.meta.business) {
+    Store.dispatch(GlobalVars.setResourceMenuKeyMethod, to.name)
+  }
   NProgress.done()
 })
 vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由

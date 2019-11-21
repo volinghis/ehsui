@@ -8,9 +8,13 @@ export default new Vuex.Store({
   state: {
     contentHeight: 0,
     menuDatas: [],
-    selectedTabs: []
+    selectedTabs: [],
+    resourceMenuKey: ''
   },
   mutations: {
+    setResourceMenuKey (state, menukey) {
+      state.resourceMenuKey = menukey
+    },
     addTabs (state, route) {
       let isAdd = true
       for (var i = state.selectedTabs.length - 1; i >= 0; i--) {
@@ -67,7 +71,7 @@ export default new Vuex.Store({
           path: '',
           leaf: false,
           children: [
-            { code: 'systemManagerCenter', label: '个人中心', key: '31', path: '/account/setting/index', component: '/account/setting/index', leaf: true },
+            { code: 'systemManagerCenter', label: '个人中心', key: '31', path: '/account/setting/index', component: '/account/setting/index', leaf: true, business: true },
             { code: 'systemManagerOrg', label: '组织管理', key: '32', path: '/account/center/index', component: '/account/center/index', leaf: true }
           ] }
       ]
@@ -85,6 +89,9 @@ export default new Vuex.Store({
     },
     removeTabsMethod (context, name) {
       context.commit('removeTabs', name)
+    },
+    setResourceMenuKey (context, menukey) {
+      context.commit('setResourceMenuKey', menukey)
     }
   }
 })
