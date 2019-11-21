@@ -60,6 +60,7 @@ vueRouter.afterEach(function (to, from) {
   Store.dispatch(GlobalVars.addTabsMethodName, to)
   if (!from.meta.business) {
     Store.dispatch(GlobalVars.setResourceMenuKeyMethod, to.name)
+    console.log(to.name)
   }
   NProgress.done()
 })
