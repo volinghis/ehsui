@@ -27,7 +27,7 @@
                           :sm="24">
                     <el-form-item label="负责人:">
                       <el-input v-model="queryParam.deviceName"
-                                size="small"/>
+                                size="small" />
                     </el-form-item>
                   </el-col>
                   <el-col :md="8"
@@ -93,11 +93,21 @@
           <div class="table-list">
             <template>
               <el-table :data="tableData"
+                        border
                         style="width: 100%"
                         size="medium">
                 <el-table-column type="index"
                                  width="50"
                                  fixed></el-table-column>
+                                 <el-table-column
+      type="selection"
+      fixed
+      width="50">
+    </el-table-column>
+                <el-table-column fixed
+                                 prop="deviceNum"
+                                 label="设备编号"
+                                 width="150"></el-table-column>
                 <el-table-column fixed
                                  prop="deviceImg"
                                  label="设备图片"
@@ -108,10 +118,6 @@
                               :preview-src-list="[scope.row.deviceImg]"></el-image>
                   </template>
                 </el-table-column>
-                <el-table-column fixed
-                                 prop="deviceNum"
-                                 label="设备编号"
-                                 width="150"></el-table-column>
                 <el-table-column fixed
                                  prop="deviceName"
                                  label="设备名称"
@@ -182,30 +188,22 @@
               <!-- 编辑弹出框 -->
               <el-dialog title="设备新增"
                          :visible.sync="editVisible"
-                         width="30%">
-                <el-form ref="form"
-                         :model="form"
-                         label-width="70px">
-                  <el-form-item label="设备名称">
-                    <el-input v-model="form.name"></el-input>
-                  </el-form-item>
-                </el-form>
-                <span slot="footer"
-                      class="dialog-footer">
-                  <el-button @click="editVisible = false">取 消</el-button>
-                  <el-button type="primary"
-                             @click="saveEdit">确 定</el-button>
-                </span>
+                         :fullscreen="true">
+                <EamAccountPrintEdit></EamAccountPrintEdit>
               </el-dialog>
             </template>
-</div>
-</el-col>
-</el-row>
-</el-card>
-</div>
+          </div>
+        </el-col>
+      </el-row>
+    </el-card>
+  </div>
 </template>
 <script>
+import EamAccountPrintEdit from './edit.vue'
 export default {
+  components: {
+    EamAccountPrintEdit
+  },
   data () {
     return {
       // 高级搜索 展开/关闭
@@ -292,7 +290,7 @@ export default {
       }
     },
     handleViewClick (scope) {
-      this.$router.push({ name: 'details' })
+      this.$router.push('eam/eamAccountPrint/details')
     },
     handleEditClick (scope) {
       window.location.href = './edit'
@@ -320,7 +318,7 @@ export default {
 .operate {
   margin-bottom: 20px;
 }
-  .el-card {
-    border: 1px solid #ffffff;
-  }
+.el-card {
+  border: 1px solid #ffffff;
+}
 </style>
