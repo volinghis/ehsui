@@ -45,25 +45,33 @@ export default new Vuex.Store({
       state.menuDatas = [
         { code: 'home', label: '首页', key: '1', path: '/', component: '/layout/content/portal', leaf: true },
         {
-          code: 'edmAccountManager',
+          code: 'eamAccountManager',
           label: '设备管理',
           key: '2',
           path: '',
           leaf: false,
           children: [
-            { code: 'edmAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
-            { code: 'edmAccountPrintEdit', label: '设备编辑', key: '211', path: '/eam/eamAccountPrint/edit', component: '/eam/eamAccountPrint/edit', leaf: true, business: true },
-            { code: 'edmAccountPrintDetail', label: '设备详情', key: '212', path: '/eam/eamAccountPrint/details', component: '/eam/eamAccountPrint/details', leaf: true, business: true }
+            { code: 'eamAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
+            { code: 'eamAccountPrintEdit', label: '设备编辑', key: '211', path: '/eam/eamAccountPrint/edit', component: '/eam/eamAccountPrint/edit', leaf: true, business: true },
+            { code: 'eamAccountPrintDetail', label: '设备详情', key: '212', path: '/eam/eamAccountPrint/details', component: '/eam/eamAccountPrint/details', leaf: true, business: true },
+            { code: 'eamAccountPrintManager', label: '设备报废', key: '22', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
+            { code: 'eamAccountPrintManager', label: '设备变卖', key: '23', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
+            { code: 'eamAccountPrintManager', label: '设备转移', key: '24', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
+            { code: 'eamAccountPrintManager', label: '设备折价', key: '25', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true }
           ]
         },
         {
-          code: 'edmPartLibraryManager',
+          code: 'eamPartLibraryManager',
           label: '备件管理',
           key: '3',
           path: '',
           leaf: false,
           children: [
-            { code: 'edmPartManager', label: '备件台帐', key: '31', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true }
+            { code: 'eamPartManager', label: '备件台帐', key: '31', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManager', label: '入库管理', key: '32', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManager', label: '领用申请', key: '33', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManager', label: '出库管理', key: '34', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManagerEdit', label: '备件台帐编辑', key: '32', path: '/eam/eamPartLibrary/edit', component: '/eam/eamPartLibrary/edit', leaf: true, business: true }
           ]
         },
         {
