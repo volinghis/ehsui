@@ -51,7 +51,9 @@ export default new Vuex.Store({
           path: '',
           leaf: false,
           children: [
-            { code: 'edmAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true }
+            { code: 'edmAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
+            { code: 'edmAccountPrintEdit', label: '设备编辑', key: '211', path: '/eam/eamAccountPrint/edit', component: '/eam/eamAccountPrint/edit', leaf: true, business: true },
+            { code: 'edmAccountPrintDetail', label: '设备详情', key: '212', path: '/eam/eamAccountPrint/details', component: '/eam/eamAccountPrint/details', leaf: true, business: true }
           ]
         },
         {
@@ -71,8 +73,8 @@ export default new Vuex.Store({
           path: '',
           leaf: false,
           children: [
-            { code: 'systemManagerCenter', label: '个人中心', key: '31', path: '/account/setting/index', component: '/account/setting/index', leaf: true, business: true },
-            { code: 'systemManagerOrg', label: '组织管理', key: '32', path: '/account/center/index', component: '/account/center/index', leaf: true }
+            { code: 'userCenter', label: '个人设置', key: '41', path: '/account/setting/index', component: '/account/setting/index', leaf: true, business: true },
+            { code: 'userSetting', label: '个人中心', key: '42', path: '/account/center/index', component: '/account/center/index', leaf: true, business: true }
           ] }
       ]
     }
