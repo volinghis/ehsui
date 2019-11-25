@@ -10,5 +10,8 @@ export default {
   },
   mounted () {
     this.$store.dispatch(this.GlobalVars.computeWindowSizeMethodName)
+    window.onresize = () => {
+      this.$store.dispatch(this.GlobalVars.computeWindowSizeMethodName)
+    }
   }
 }
