@@ -9,7 +9,15 @@
                 <div class="loginbox">
                     <el-form ref="loginForm" :model="loginForm" label-width="80px">
                         <el-form-item label="账号：" prop="username">
-                         <el-input v-model="loginForm.username" ></el-input>
+                         <el-input v-model="loginForm.username" ><template slot="prepend"><i class="el-icon-user-solid"></i></template></el-input>
+                        </el-form-item>
+                        <el-form-item label="密码：" prop="password">
+                         <el-input v-model="loginForm.password" ><template slot="prepend"><i class="fa fa-key"></i></template></el-input>
+                        </el-form-item>
+                         <el-form-item >
+                             <el-button type="primary"  @click="login">登录</el-button>
+                              <el-checkbox v-model="remeberAccount">记住账号</el-checkbox>
+                              <el-link type="primary">忘记密码?</el-link>
                         </el-form-item>
                     </el-form>
                 </div>

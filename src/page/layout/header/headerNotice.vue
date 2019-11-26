@@ -27,7 +27,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .el-icon-bell{
     color: #fff;
     font-size: initial;

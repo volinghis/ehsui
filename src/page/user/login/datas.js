@@ -1,17 +1,22 @@
 export default {
   data () {
     return {
-      loginValue: '1',
+      remeberAccount: true,
       loginForm: {
-        username: '',
+        username: localStorage.getItem(this.GlobalVars.userLocal),
         password: '',
         captchCode: ''
       }
     }
   },
   methods: {
-    login () {
-      sessionStorage.setItem(this.GlobalVars.userToken, this.loginValue)
+    login  () {
+      if (this.remeberAccount) {
+        localStorage.setItem(this.GlobalVars.userLocal, this.loginForm.username)
+      } else {
+        localStorage.removeItem(this.GlobalVars.userLocal)
+      }
+      sessionStorage.setItem(this.GlobalVars.userToken, this.loginForm.username)
       location.href = '/'
     }
   },

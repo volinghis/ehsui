@@ -1,11 +1,13 @@
+import '@babel/polyfill'
 import Vue from 'vue'
 import App from './App.vue'
 import Router from './router'
 import Store from './store'
 import ECharts from 'vue-echarts/components/ECharts'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import './styles/element-variables.scss'
 import './styles/index.scss' // global css
+import './styles/font-awesome-4.7.0/scss/font-awesome.scss'
 import GlobalCss from './styles/variables.scss'
 import GlobalVars from './components/global/globalVars.js'
 import Ehsecharts from './components/theme/ehsecharts.project.json'
@@ -13,7 +15,7 @@ Vue.config.productionTip = false
 Vue.prototype.GlobalCss = GlobalCss
 Vue.prototype.GlobalVars = GlobalVars
 Vue.use(ElementUI)
-ECharts.registerTheme('ehsecharts', Ehsecharts)
+ECharts.registerTheme(GlobalVars.ehsecharts, Ehsecharts)
 Vue.component('chart', ECharts)
 const store = Store
 const router = Router

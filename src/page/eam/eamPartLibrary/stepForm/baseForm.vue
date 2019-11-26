@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .steps {
     max-width: 950px;
     margin: 16px auto;
