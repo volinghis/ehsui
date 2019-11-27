@@ -105,10 +105,8 @@ export default {
     nextStep (emaPartLibrary) {
       this.$refs.emaPartLibrary.validate((valid) => {
         if (valid) {
-          console.log('submit!')
           this.$emit('nextStep')
         } else {
-          console.log('error submit!!')
           return false
         }
       })

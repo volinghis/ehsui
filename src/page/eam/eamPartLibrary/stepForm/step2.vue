@@ -73,11 +73,9 @@ export default {
         if (valid) {
           that.timer = setTimeout(function () {
             that.loading = false
-            console.log('submit!')
             that.$emit('nextStep')
           }, 1200)
         } else {
-          console.log('error submit!!')
           that.loading = false
           return false
         }

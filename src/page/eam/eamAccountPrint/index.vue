@@ -299,7 +299,6 @@ export default {
       this.advanced = !this.advanced
     },
     handlePageChange () {
-      console.log()
     },
     // 新增操作
     handleAdd () {

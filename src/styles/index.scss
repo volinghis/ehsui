@@ -16,13 +16,16 @@ span{
 }
 body {
   height:100%;
+  width: 100%;
+  min-width: $bodyMinWidth !important;
+  min-height:$bodyMinHight !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   padding: 0 0 0 0px;
   margin: 0 0 0 0px;
-  overflow: hidden;
   text-rendering: optimizeLegibility;
   font-family:'微软雅黑';
+  overflow: hidden;
 }
 
 label {

@@ -1,8 +1,8 @@
  <template>
-  <el-container class="main-container">
-<el-header >
-  <ehsheader></ehsheader>
-</el-header>
+  <el-container >
+    <el-header >
+      <ehsheader></ehsheader>
+    </el-header>
   <el-container >
   <el-aside :style="{height:($store.state.contentHeight+parseInt(GlobalCss.footerHeight)+parseInt(GlobalCss.tabHeight))+'px'}"><siderbar ></siderbar></el-aside>
   <el-container >

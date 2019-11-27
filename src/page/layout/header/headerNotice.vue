@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     handleClick () {
-      console.log('hhhhh')
     }
   }
 }

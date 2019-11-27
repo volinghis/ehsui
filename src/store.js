@@ -43,7 +43,7 @@ export default new Vuex.Store({
     initMenuDatas (state) {
       // 测试-数据 typ[0上级菜单，1页面菜单，2页面功能]，这里是http请求后端接口获取数据路由数据。
       state.menuDatas = [
-        { code: 'home', label: '首页', key: '1', path: '/', component: '/layout/content/portal', leaf: true },
+        { code: 'home', label: '首页', key: '1', path: '/home', component: '/layout/content/portal', leaf: true },
         {
           code: 'eamAccountManager',
           label: '设备管理',
@@ -67,11 +67,11 @@ export default new Vuex.Store({
           path: '',
           leaf: false,
           children: [
-            { code: 'eamPartManager', label: '备件台帐', key: '31', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
-            { code: 'eamPartManager', label: '入库管理', key: '32', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
-            { code: 'eamPartManager', label: '领用申请', key: '33', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
-            { code: 'eamPartManager', label: '出库管理', key: '34', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
-            { code: 'eamPartManagerEdit', label: '备件台帐编辑', key: '32', path: '/eam/eamPartLibrary/edit', component: '/eam/eamPartLibrary/edit', leaf: true, business: true }
+            { code: 'eamPartManager', label: '备件台帐', key: '311', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManager', label: '入库管理', key: '322', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManager', label: '领用申请', key: '333', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManager', label: '出库管理', key: '344', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
+            { code: 'eamPartManagerEdit', label: '备件台帐编辑', key: '355', path: '/eam/eamPartLibrary/edit', component: '/eam/eamPartLibrary/edit', leaf: true, business: true }
           ]
         },
         {

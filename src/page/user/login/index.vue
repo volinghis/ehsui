@@ -26,7 +26,7 @@
 
          <div class="loginbm">
             <span>
-                适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器
+                适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE10及以下浏览器
                 <br>
                 Copyright © 2019 东恒鑫源软件开发有限公司版权所有
             </span>
