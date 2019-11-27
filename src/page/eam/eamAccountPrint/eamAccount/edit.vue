@@ -224,7 +224,6 @@ export default {
   },
   methods: {
     handleAvatarSuccess (res, file) {
-      console.log(file)
       this.imageUrl = URL.createObjectURL(file.raw)
     },
     submitForm (formName) {
@@ -232,7 +231,6 @@ export default {
         if (valid) {
           alert('submit!')
         } else {
-          console.log('error submit!!')
           return false
         }
       })
@@ -241,10 +239,8 @@ export default {
       this.$refs['form'].resetFields()
     },
     handleRemove (file, fileList) {
-      console.log(file, fileList)
     },
     handlePreview (file) {
-      console.log(file)
     },
     handleExceed (files, fileList) {
       this.$message.warning(
