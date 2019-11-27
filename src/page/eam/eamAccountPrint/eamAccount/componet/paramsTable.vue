@@ -1,23 +1,17 @@
 <template>
   <el-table :data="tableData"
+            size="medium"
             border
             style="width: 100%">
     <el-table-column prop="name"
-                     label="姓名">
+                     label="设备参数">
     </el-table-column>
-    <el-table-column prop="department"
-                     label="部门">
+    <el-table-column prop="value"
+                     label="参数值">
     </el-table-column>
-       <el-table-column
-        prop="serveTime"
-        label="担任时间"
-        width="180">
-      </el-table-column>
-       <el-table-column
-        prop="departureTime"
-        label="离任时间"
-        width="180">
-      </el-table-column>
+    <el-table-column prop="city"
+                     label="备注">
+    </el-table-column>
     <el-table-column fixed="right"
                      label="操作">
       <template slot-scope="scope">
@@ -33,7 +27,6 @@
 export default {
   methods: {
     handleClick (row) {
-      console.log(row)
     }
   },
 
@@ -41,19 +34,22 @@ export default {
     return {
       tableData: [{
         name: '王小虎',
-        department: '虎堂',
-        serveTime: '2016-05-02',
-        departureTime: '2019-05-02'
+        value: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
       }, {
         name: '王小龙',
-        department: '龙堂',
-        serveTime: '2016-05-02',
-        departureTime: '2019-05-02'
+        value: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1517 弄',
+        zip: 200333
       }, {
         name: '王小鼠',
-        department: '鼠堂',
-        serveTime: '2016-05-02',
-        departureTime: '2019-05-02'
+        value: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1519 弄',
+        zip: 200333
       }]
     }
   }
