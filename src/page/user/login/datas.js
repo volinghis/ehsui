@@ -23,7 +23,7 @@ export default {
   mounted () {
     var offset1 = 450
     var offset2 = 0
-    var mainwidth = document.body.offsetWidth
+    var mainwidth = document.documentElement.clientWidth
     setInterval(function flutter () {
       if (offset1 >= mainwidth) {
         offset1 = -580
@@ -39,10 +39,11 @@ export default {
 
     this.$store.dispatch(this.GlobalVars.computeWindowSizeMethodName)
     document.querySelector('.loginbox').style.position = 'absolute'
-    document.querySelector('.loginbox').style.left = ((document.body.offsetWidth - 692) / 2) + 'px'
+    document.querySelector('.loginbox').style.left = ((document.documentElement.clientWidth - 692) / 2) + 'px'
     window.onresize = () => {
       return (() => {
-        document.querySelector('.loginbox').style.left = ((document.body.offsetWidth - 692) / 2) + 'px'
+        mainwidth= document.documentElement.clientWidth
+        document.querySelector('.loginbox').style.left = ((document.documentElement.clientWidth - 692) / 2) + 'px'
       })()
     }
   }
