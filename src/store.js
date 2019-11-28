@@ -217,18 +217,27 @@ export default new Vuex.Store({
           code: 'eamBasicDataManager',
           label: '基础数据管理',
           key: '5',
-          path: '/eam/common/eamBasicData',
-          component: '/eam/common/eamBasicData',
-          leaf: true
-        },
-        {
-          code: 'eamInfoAdd',
-          label: '设备基础信息添加',
-          key: '51',
-          path: '/eam/common/eamInfoAdd',
-          component: '/eam/common/eamInfoAdd',
-          leaf: true,
-          business: false
+          path: '',
+          leaf: false,
+          children: [
+            {
+              code: 'eamInfoAdd',
+              label: '基础数据新增页',
+              key: '51',
+              path: '/eam/eamBasicData/eamInfoAdd',
+              component: '/eam/eamBasicData/eamInfoAdd',
+              leaf: true,
+              business: true
+            },
+            {
+              code: 'eamInfoAdd',
+              label: '基础数据库',
+              key: '52',
+              path: '/eam/eamBasicData/index',
+              component: '/eam/eamBasicData/index',
+              leaf: true
+            }
+          ]
         },
         {
           code: 'dataBase',

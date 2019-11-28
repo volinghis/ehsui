@@ -29,7 +29,7 @@
     </div>
     <div class="footer">
       <el-button type="primary">搜索</el-button>
-      <el-button type="primary">添加信息</el-button>
+      <el-button type="primary" @click="handAddClick">添加信息</el-button>
     </div>
   </div>
   </el-col>
@@ -41,6 +41,11 @@ export default {
     return {
       input: '',
       select: ''
+    }
+  },
+  methods: {
+    handAddClick () {
+      this.$router.push({ name: '51' })
     }
   }
 }
