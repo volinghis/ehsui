@@ -1,31 +1,13 @@
-
+.el-container{
+  overflow: hidden;
+}
 .el-header {
   height: $headerHeight !important;
-  background: #015cf3;
+  background: url('~@/assets/images/layout-topbg.svg') repeat-x;
   padding: 0 0 0 0px !important;
+  overflow: hidden;
+}
 
-}
-.tab-header{
-  padding: 0 0 0 0px;
-  height: $tabHeight !important;
-  background: $bodyBgColor !important;
-  overflow: hidden !important;
-}
-$gradientColor:#f4f7f7;
-.el-footer {
-  background: $bodyBgColor;
-  height:$footerHeight !important;
-  bottom: 0px !important;
-  text-align: center;
-  color: #999999;
-  vertical-align: middle !important;
-    background: -moz-linear-gradient(top,  $bodyBgColor 0%, $gradientColor 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$bodyBgColor), color-stop(100%,$gradientColor));
-    background: -webkit-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
-    background: -o-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
-    background: -ms-linear-gradient(top,  $bodyBgColor 0%,$gradientColor 100%);
-    background: linear-gradient(to bottom,  $bodyBgColor 0%,$gradientColor 100%);
-}
 
 .el-aside {
   width:$sideBarWidth !important;

@@ -24,7 +24,7 @@ const mainRoutes = {
 }
 
 const vueRouter = new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   scrollBehavior: () => ({ x: 0, y: 0 }),
   isAdd: false
