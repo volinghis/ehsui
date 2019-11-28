@@ -16,7 +16,7 @@ const _import = file => require('./page' + file + '.vue').default
 // 全局路由(无需嵌套)
 const globalRoutes = [
   { path: '/404', component: _import('/404'), name: '404', meta: { title: '404' } },
-  { path: '/user/login', component: _import('/user/login/index'), name: 'login', meta: { title: '登录' } }
+  { path: '/user/login', component: _import('/user/loginv2/index'), name: 'login', meta: { title: '登录' } }
 ]
 // 主入口路由(需嵌套整体布局页面)
 const mainRoutes = {
