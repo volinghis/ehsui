@@ -150,7 +150,8 @@ export default new Vuex.Store({
               key: '25',
               path: '/eam/common/eamList',
               component: '/eam/common/eamList',
-              leaf: true
+              leaf: true,
+              business: true
             },
             {
               code: 'eamAllocate',
