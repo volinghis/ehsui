@@ -35,24 +35,24 @@ export default {
     }
   },
   methods: {
-    nextStep () {
+    nextStep: function () {
       if (this.active < 4) {
         this.active += 1
       }
     },
-    prevStep () {
+    prevStep: function () {
       if (this.active > 0) {
         this.active -= 1
       }
     },
-    finish () {
+    finish: function () {
       this.active = 1
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .steps {
     max-width: 1000px;
     margin: 16px auto;

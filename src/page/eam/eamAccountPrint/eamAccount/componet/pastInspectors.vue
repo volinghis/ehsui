@@ -32,7 +32,7 @@
 <script>
 export default {
   methods: {
-    handleClick (row) {
+    handleClick: function (row) {
     }
   },
 

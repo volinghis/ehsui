@@ -135,7 +135,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page-header-wrapper-grid-content-main {
   width: 100%;
   height: 100%;

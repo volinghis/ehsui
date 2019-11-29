@@ -239,13 +239,13 @@ export default {
     }
   },
   methods: {
-    prevStep () {
+    prevStep: function () {
       this.$emit('prevStep')
     },
-    handleChange (value) {
+    handleChange: function (value) {
       console.log(value)
     },
-    nextStep (scrapStepForm) {
+    nextStep: function (scrapStepForm) {
       this.$refs.scrapStepForm.validate((valid) => {
         if (valid) {
           console.log('submit!')
@@ -260,7 +260,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .eamScrapStep3{
     width: 50%;
     position: relative;

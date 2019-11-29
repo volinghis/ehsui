@@ -25,7 +25,7 @@
     </div>
   </div>
 </template>
-<style scoped>
+<style  lang="scss" scoped>
 ul,
 ul li {
   list-style: none;

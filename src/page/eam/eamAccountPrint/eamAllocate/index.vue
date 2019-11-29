@@ -145,7 +145,7 @@ export default {
   mounted: function () {
   },
   methods: {
-    customColorMethod (percentage) {
+    customColorMethod: function (percentage) {
       if (percentage < 30) {
         return '#909399'
       } else if (percentage < 70) {
@@ -154,17 +154,17 @@ export default {
         return '#67c23a'
       }
     },
-    handleViewClick (scope) {
+    handleViewClick: function (scope) {
       // 详情查看
       this.$router.push({ name: '23' })
     },
-    handleEditClick (scope) {
+    handleEditClick: function (scope) {
       this.$router.push({ name: '22' })
     },
-    handlePageChange () {
+    handlePageChange: function () {
     },
     // 新增操作
-    handleallocate () {
+    handleallocate: function () {
       this.$router.push({ name: '241' })
     }
   }

@@ -50,7 +50,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .header {
   font-weight: 700;
   text-align: center;

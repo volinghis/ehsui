@@ -29,14 +29,17 @@
         <el-button type="primary"
                    size="small"
                    @click="handleScrap">报废申请</el-button>
+        <el-button type="primary"
+                   size="small"
+                   @click="handleDelete">删除</el-button>
       </div>
       <div class="table-list">
         <template>
           <el-table :data="tableData"
                     style="width: 100%"
                     border
-                    size="medium">
-            <!-- <el-table-column type="index" width="50"></el-table-column> -->
+                    size="medium"
+                    @select="onChange">
             <el-table-column type="selection"
                              width="50"> </el-table-column>
             <el-table-column prop="scrapNum"
@@ -58,9 +61,10 @@
             <el-table-column prop="status"
                              label="申请状态">
               <template slot-scope="scope">
-                  <div slot="reference">
-                    <el-tag size="medium"  :type="scope.row.status === '进行中' ? 'primary' : 'success'">{{ scope.row.status}}</el-tag>
-                  </div>
+                <div slot="reference">
+                  <el-tag size="medium"
+                          :type="scope.row.status === '进行中' ? 'primary' : 'success'">{{ scope.row.status}}</el-tag>
+                </div>
               </template>
 
             </el-table-column>
@@ -86,6 +90,7 @@ export default {
     return {
       queryParam: {},
       form: {},
+      selections: [],
       tableData: [
         {
           scrapNum: '2019100001',
@@ -143,7 +148,7 @@ export default {
   mounted: function () {
   },
   methods: {
-    customColorMethod (percentage) {
+    customColorMethod: function (percentage) {
       if (percentage < 30) {
         return '#909399'
       } else if (percentage < 70) {
@@ -152,17 +157,22 @@ export default {
         return '#67c23a'
       }
     },
-    handleViewClick (scope) {
-      // 详情查看
-      this.$router.push({ name: '23' })
+    handleDelete: function () {
+      var _this = this.selections
+      if (_this.length <= 0) {
+        this.$message({
+          message: '请选择一条记录',
+          type: 'warning'
+        })
+      }
     },
-    handleEditClick (scope) {
-      this.$router.push({ name: '22' })
+    onChange: function (row) {
+      this.selections = row
     },
-    handlePageChange () {
+    handlePageChange: function () {
     },
     // 新增操作
-    handleScrap () {
+    handleScrap: function () {
       this.$router.push({ name: '241' })
     }
   }

@@ -57,7 +57,7 @@ export default {
     }
   },
   methods: {
-    nextStep (scrapStepForm) {
+    nextStep: function (scrapStepForm) {
       this.$refs.scrapStepForm.validate((valid) => {
         if (valid) {
           this.$emit('nextStep')
@@ -66,7 +66,7 @@ export default {
         }
       })
     },
-    cancel () {
+    cancel: function () {
       this.$emit('finish')
       this.$router.push({ name: '24' })
     }
@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .table{
     width: 30%;
     position: relative;

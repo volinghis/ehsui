@@ -6,8 +6,8 @@
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item><router-link  :to="{name:'42'}"><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
-        <el-dropdown-item><router-link  :to="{name:'41'}"><i class="el-icon-setting"></i>个人设置</router-link></el-dropdown-item>
+        <el-dropdown-item><router-link  :to="{name:'72'}"><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
+        <el-dropdown-item><router-link  :to="{name:'71'}"><i class="el-icon-setting"></i>个人设置</router-link></el-dropdown-item>
         <el-dropdown-item><i class="el-icon-d-arrow-right"></i>安全退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>

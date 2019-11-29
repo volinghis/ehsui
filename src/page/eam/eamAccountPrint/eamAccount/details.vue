@@ -297,7 +297,7 @@ export default {
     }
   },
   methods: {
-    customColorMethod (percentage) {
+    customColorMethod: function (percentage) {
       if (percentage < 30) {
         return '#909399'
       } else if (percentage < 70) {
@@ -311,7 +311,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .item-title {
   text-align: left;
   font-weight: bold;

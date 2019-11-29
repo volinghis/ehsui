@@ -33,12 +33,12 @@
         <el-table-column prop="deviceName"
                          label="设备名称"></el-table-column>
         <el-table-column prop="installLocation"
-                         label="安装位置"></el-table-column>
-        <el-table-column prop="runDate"
-                         label="启用日期"></el-table-column>
-        <el-table-column prop="deviceStatus"
+                         label="类型"></el-table-column>
+        <el-table-column prop="deviceModel"
+                         label="型号"></el-table-column>
+        <el-table-column prop="brand"
                          width="100"
-                         label="设备状态"></el-table-column>
+                         label="品牌"></el-table-column>
         <el-table-column align="center"
                          width="160"
                          label="操作">
@@ -75,33 +75,33 @@ export default {
           deviceNum: '2019100001',
           deviceName: '锅炉',
           installLocation: '锅炉专业',
-          runDate: '2019-05-02',
+          deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          deviceStatus: '正常'
+          brand: '西安东恒'
         },
         {
           deviceNum: '2019100001',
           deviceName: '锅炉',
           installLocation: '锅炉专业',
-          runDate: '2019-05-02',
+          deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          deviceStatus: '正常'
+          brand: '西安东恒'
         },
         {
           deviceNum: '2019100001',
           deviceName: '锅炉',
           installLocation: '锅炉专业',
-          runDate: '2019-05-02',
+          deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          deviceStatus: '正常'
+          brand: '西安东恒'
         },
         {
           deviceNum: '2019100001',
           deviceName: '锅炉',
           installLocation: '锅炉专业',
-          runDate: '2019-05-02',
+          deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          deviceStatus: '正常'
+          brand: '西安东恒'
         }
       ]
     }
@@ -109,7 +109,7 @@ export default {
   mounted: function () {
   },
   methods: {
-    customColorMethod (percentage) {
+    customColorMethod: function (percentage) {
       if (percentage < 30) {
         return '#909399'
       } else if (percentage < 70) {
@@ -118,14 +118,14 @@ export default {
         return '#67c23a'
       }
     },
-    handlePageChange () {
+    handlePageChange: function () {
     },
-    handConfirmClick () {
+    handConfirmClick: function () {
     },
-    handleEditClick () {
+    handleEditClick: function () {
     }
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 </style>

@@ -23,15 +23,15 @@ export default {
     }
   },
   methods: {
-    finish () {
+    finish: function () {
       this.$emit('finish')
     },
-    over () {
+    over: function () {
       this.$emit('finish')
       this.$router.push({ name: '24' })
     }
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 </style>

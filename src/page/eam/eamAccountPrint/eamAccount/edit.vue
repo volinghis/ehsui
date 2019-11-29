@@ -223,10 +223,10 @@ export default {
     }
   },
   methods: {
-    handleAvatarSuccess (res, file) {
+    handleAvatarSuccess: function (res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
     },
-    submitForm (formName) {
+    submitForm: function (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert('submit!')
@@ -235,27 +235,27 @@ export default {
         }
       })
     },
-    resetForm (formName) {
+    resetForm: function (formName) {
       this.$refs['form'].resetFields()
     },
-    handleRemove (file, fileList) {
+    handleRemove: function (file, fileList) {
     },
-    handlePreview (file) {
+    handlePreview: function (file) {
     },
-    handleExceed (files, fileList) {
+    handleExceed: function (files, fileList) {
       this.$message.warning(
         `当前限制选择 3 个文件，本次选择了 ${
           files.length
         } 个文件，共选择了 ${files.length + fileList.length} 个文件`
       )
     },
-    beforeRemove (file, fileList) {
+    beforeRemove: function (file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
     }
   }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .item-block {
   margin-bottom: 22 px;
   span {

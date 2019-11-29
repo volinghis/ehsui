@@ -17,6 +17,10 @@
                          label="设备名称"> </el-table-column>
         <el-table-column prop="type"
                          label="设备类型"> </el-table-column>
+        <el-table-column prop="stock"
+                         label="库存"> </el-table-column>
+        <el-table-column prop="unit"
+                         label="单位"> </el-table-column>
       </el-table>
     </template>
     <div style="text-align:center;">
@@ -48,10 +52,10 @@ export default {
     EamList
   },
   methods: {
-    nextStep () {
+    nextStep: function () {
       this.$emit('nextStep')
     },
-    prevStep () {
+    prevStep: function () {
       this.$emit('prevStep')
     }
   },
@@ -71,17 +75,23 @@ export default {
         {
           code: 'FM-0001',
           name: '阀门',
-          type: '阀门'
+          type: '阀门',
+          stock: '100',
+          unit: '个'
         },
         {
           code: 'FM-0001',
           name: '阀门',
-          type: '阀门'
+          type: '阀门',
+          stock: '100',
+          unit: '个'
         },
         {
           code: 'FM-0001',
           name: '阀门',
-          type: '阀门'
+          type: '阀门',
+          stock: '100',
+          unit: '个'
         }
       ]
     }
@@ -89,7 +99,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .stepFormText {
   margin-bottom: 24px;
 
@@ -99,6 +109,6 @@ export default {
   }
 }
 /deep/.el-dialog__footer {
-    text-align: center;
+  text-align: center;
 }
 </style>
