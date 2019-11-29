@@ -7,6 +7,7 @@ const userLocal = 'USER_ACCOUNT'
 const servletContextPath = ''
 const setResourceMenuKeyMethod = 'setResourceMenuKey'
 const ehsecharts = 'ehsecharts'
+const setBreadcrumbItemsMethod = 'setBreadcrumbItems'
 export default {
   computeWindowSizeMethodName,
   servletContextPath,
@@ -16,5 +17,6 @@ export default {
   initMenuDatasMethodName,
   setResourceMenuKeyMethod,
   userLocal,
-  ehsecharts
+  ehsecharts,
+  setBreadcrumbItemsMethod
 }

@@ -3,6 +3,7 @@
     <el-container >
     <el-header ><ehsheader></ehsheader></el-header>
     <el-container>
+      <el-aside><siderbar></siderbar></el-aside>
       <el-main><router-view></router-view></el-main>
     </el-container>
   </el-container></div>

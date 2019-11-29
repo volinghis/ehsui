@@ -1,37 +1,31 @@
 <template>
-    <div class="logingPanel" >
-        <div id="cloud1" class="cloud"></div>
-        <div id="cloud2" class="cloud"></div>
-        <div class="loginbody">
-
-        <div class="systemlogo"></div>
-
-                <div class="loginbox">
-                    <el-form ref="loginForm" :model="loginForm" label-width="80px">
-                        <el-form-item label="账号：" prop="username">
-                         <el-input v-model="loginForm.username" ><template slot="prepend"><i class="el-icon-user-solid"></i></template></el-input>
+<div>
+    <div class="logingPanel"></div>
+    <div class="loginBody"><el-row><el-col :span="12">
+      <p><i class="fa fa-paper-plane-o fa-5x"></i></p>
+       <p>
+        <span >发电企业数据服务系统</span><br>
+         <span >Power generation Enterprise Data Service System</span>
+        </p>
+    </el-col><el-col :span="12">
+        <p><span>用户登录 / </span><span>USER LOGIN</span></p>
+        <p>{{result.message}}</p>
+                    <el-form ref="loginForm" :model="loginForm" >
+                        <el-form-item  prop="username">
+                         <el-input v-model="loginForm.username" placeholder="请输入账号admin"><template slot="prepend"><i class="el-icon-user-solid"></i></template></el-input>
                         </el-form-item>
-                        <el-form-item label="密码：" prop="password">
-                         <el-input v-model="loginForm.password" ><template slot="prepend"><i class="fa fa-key"></i></template></el-input>
+                        <el-form-item  prop="password">
+                         <el-input v-model="loginForm.password" placeholder="请输入密码admin"><template slot="prepend"><i class="fa fa-key"></i></template></el-input>
                         </el-form-item>
                          <el-form-item >
-                             <el-button type="primary"  @click="login">登录</el-button>
-                              <el-checkbox v-model="remeberAccount">记住账号</el-checkbox>
+                             <el-button type="primary"  @click="login" long>登录</el-button>
+                              <el-checkbox v-model="remeberAccount" >记住账号</el-checkbox>
                               <el-link type="primary">忘记密码?</el-link>
                         </el-form-item>
                     </el-form>
-                </div>
-
-        </div>
-
-         <div class="loginbm">
-            <span>
-                适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE10及以下浏览器
-                <br>
-                Copyright © 2019 东恒鑫源软件开发有限公司版权所有
-            </span>
-         </div>
-    </div>
+        </el-col></el-row></div>
+    <div class="footerBody"><p><span>Copyright © DongHengSoft, All Rights Reserved.<br>西安东恒鑫源软件开发有限公司</span></p></div>
+</div>
 </template>
 <script>
 import datas from './datas'
