@@ -170,47 +170,22 @@ export default new Vuex.Store({
           path: '',
           leaf: false,
           children: [
-            {
-              code: 'eamPartManager',
-              label: '备件台帐',
-              key: '31',
-              path: '/eam/eamPartLibrary/index',
-              component: '/eam/eamPartLibrary/index',
-              leaf: true
-            },
-            {
-              code: 'eamPartManager',
-              label: '入库管理',
-              key: '32',
-              path: '/eam/eamPartLibrary/index',
-              component: '/eam/eamPartLibrary/index',
-              leaf: true
-            },
-            {
-              code: 'eamPartManager',
-              label: '领用申请',
-              key: '33',
-              path: '/eam/eamPartLibrary/index',
-              component: '/eam/eamPartLibrary/index',
-              leaf: true
-            },
-            {
-              code: 'eamPartManager',
-              label: '出库管理',
-              key: '34',
-              path: '/eam/eamPartLibrary/index',
-              component: '/eam/eamPartLibrary/index',
-              leaf: true
-            },
-            {
-              code: 'eamPartManagerEdit',
-              label: '备件台帐编辑',
-              key: '32',
-              path: '/eam/eamPartLibrary/edit',
-              component: '/eam/eamPartLibrary/edit',
-              leaf: true,
-              business: true
-            }
+            { code: 'partsAccount', label: '备件台帐', key: '31', path: '/eam/eamPartLibrary/partsAccount/index', component: '/eam/eamPartLibrary/partsAccount/index', leaf: true },
+            { code: 'partsAccountDetails', label: '备件台帐详情页', key: '311', path: '/eam/eamPartLibrary/partsAccount/component/details/index', component: '/eam/eamPartLibrary/partsAccount/component/details/index', leaf: true, business: true },
+            { code: 'partsAccountEdit', label: '备件台帐编辑页', key: '312', path: '/eam/eamPartLibrary/partsAccount/component/edit/index', component: '/eam/eamPartLibrary/partsAccount/component/edit/index', leaf: true, business: true },
+            { code: 'enterWarehouse', label: '入库管理', key: '32', path: '/eam/eamPartLibrary/enterWarehouse/index', component: '/eam/eamPartLibrary/enterWarehouse/index', leaf: true },
+            { code: 'enterWarehouseEdit', label: '新增入库', key: '321', path: '/eam/eamPartLibrary/enterWarehouse/component/edit/index', component: '/eam/eamPartLibrary/enterWarehouse/component/edit/index', leaf: true, business: true },
+            { code: 'enterWarehouseParam', label: '入库参数', key: '3211', path: '/eam/eamPartLibrary/enterWarehouse/component/paramsTable/index', component: '/eam/eamPartLibrary/enterWarehouse/component/paramsTable/index', leaf: true, business: true },
+            { code: 'applyForUse', label: '领用申请', key: '33', path: '/eam/eamPartLibrary/applyForUse/index', component: '/eam/eamPartLibrary/applyForUse/index', leaf: true },
+            { code: 'stepForm', label: '申请流程', key: '331', path: '/eam/eamPartLibrary/applyForUse/component/stepForm/baseForm/index', component: '/eam/eamPartLibrary/applyForUse/component/stepForm/baseForm/index', leaf: true, business: true },
+            { code: 'partStepOne', label: '申请流程1', key: '3311', path: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepOne/index', component: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepOne/index', leaf: true, business: true },
+            { code: 'partStepTwo', label: '申请流程2', key: '3312', path: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepTwo/index', component: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepTwo/index', leaf: true, business: true },
+            { code: 'partStepThree', label: '申请流程3', key: '3313', path: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepThree/index', component: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepThree/index', leaf: true, business: true },
+            { code: 'partStepFour', label: '申请流程4', key: '3314', path: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepFour/index', component: '/eam/eamPartLibrary/applyForUse/component/stepForm/stepFour/index', leaf: true, business: true },
+            { code: 'applyDetails', label: '领用详情', key: '332', path: '/eam/eamPartLibrary/applyForUse/component/details/index', component: '/eam/eamPartLibrary/applyForUse/component/details/index', leaf: true, business: true },
+            { code: 'outWarehouse', label: '出库管理', key: '34', path: '/eam/eamPartLibrary/outWarehouse/index', component: '/eam/eamPartLibrary/outWarehouse/index', leaf: true },
+            { code: 'outWarehouseEdit', label: '新增出库', key: '341', path: '/eam/eamPartLibrary/outWarehouse/component/edit/index', component: '/eam/eamPartLibrary/outWarehouse/component/edit/index', leaf: true, business: true },
+            { code: 'outWarehouseParam', label: '出库参数', key: '3411', path: '/eam/eamPartLibrary/outWarehouse/component/paramsTable/index', component: '/eam/eamPartLibrary/outWarehouse/component/paramsTable/index', leaf: true, business: true }
           ]
         },
         {
