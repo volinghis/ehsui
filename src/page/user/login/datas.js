@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-    initLayout(){
+    initLayout () {
       document.querySelector('.loginBody').style.left = ((document.querySelector('.logingPanel').offsetWidth - 840) / 2) + 'px'
       document.querySelector('.loginBody').style.top = ((document.querySelector('.logingPanel').offsetHeight - 450) / 2) + 'px'
       document.querySelector('.footerBody').style.right = ((document.querySelector('.logingPanel').offsetWidth - 840) / 2) + 'px'

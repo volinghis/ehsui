@@ -38,15 +38,14 @@ export default new Vuex.Store({
       Router.push({ name: state.selectedTabs[c - 1].name })
     },
     resize (state) {
-
       let ccHeight = document.body.offsetHeight >= parseInt(globalCss.bodyMinHight) ? document.body.offsetHeight : parseInt(globalCss.bodyMinHight)
-      state.contentHeight = (ccHeight - parseInt(globalCss.headerHeight)- parseInt(globalCss.tabHeight))
+      state.contentHeight = (ccHeight - parseInt(globalCss.headerHeight) - parseInt(globalCss.tabHeight))
     },
     initMenuDatas (state) {
       // 测试-数据 typ[0上级菜单，1页面菜单，2页面功能]，这里是http请求后端接口获取数据路由数据。
       state.menuDatas = [
 
-        { code: 'home', label: '首页', key: 'home', path: '/home', component: '/layout/content/portal', leaf: true,icon:'fa-home' },
+        { code: 'home', label: '首页', key: 'home', path: '/home', component: '/layout/content/portal', leaf: true, icon: 'fa-home' },
 
         {
           code: 'eamAccountManager',
@@ -54,7 +53,7 @@ export default new Vuex.Store({
           key: '2',
           path: '',
           leaf: false,
-          icon:'fa-cubes',
+          icon: 'fa-cubes',
           children: [
             {
               code: 'eamAccountPrintManager',
@@ -160,7 +159,7 @@ export default new Vuex.Store({
           label: '备件管理',
           key: '3',
           path: '',
-          icon:'fa-ticket',
+          icon: 'fa-ticket',
           leaf: false,
           children: [
 
@@ -186,7 +185,7 @@ export default new Vuex.Store({
           code: 'eamBasicDataManager',
           label: '基础数据管理',
           key: '5',
-          icon:'flag-o',
+          icon: 'fa-bookmark-o',
           path: '',
           leaf: false,
           children: [
@@ -213,7 +212,7 @@ export default new Vuex.Store({
           code: 'dataBase',
           label: '资料库',
           key: '6',
-          icon:'fa-folder-o',
+          icon: 'fa-folder-o',
           path: '',
           leaf: false,
           children: [
@@ -234,7 +233,7 @@ export default new Vuex.Store({
           label: '系统管理',
           key: '7',
           path: '',
-          icon:'fa-cog',
+          icon: 'fa-cog',
           leaf: false,
           children: [
             {
@@ -244,7 +243,7 @@ export default new Vuex.Store({
               path: '/account/setting/index',
               component: '/account/setting/index',
               leaf: true,
-              business: true
+              business: false
             },
             {
               code: 'userSetting',
@@ -253,7 +252,7 @@ export default new Vuex.Store({
               path: '/account/center/index',
               component: '/account/center/index',
               leaf: true,
-              business: true
+              business: false
             }
           ]
         }
