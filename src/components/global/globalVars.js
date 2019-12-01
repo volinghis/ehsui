@@ -2,9 +2,12 @@ const computeWindowSizeMethodName = 'resizeWindowMethod'
 const initMenuDatasMethodName = 'initMenuDatasMethod'
 const addTabsMethodName = 'addTabsMethod'
 const removeTabsMethodName = 'removeTabsMethod'
-const userToken = 'userToken'
+const userToken = 'USER_TOKEN'
+const userLocal = 'USER_ACCOUNT'
 const servletContextPath = ''
 const setResourceMenuKeyMethod = 'setResourceMenuKey'
+const ehsecharts = 'ehsecharts'
+const setBreadcrumbItemsMethod = 'setBreadcrumbItems'
 export default {
   computeWindowSizeMethodName,
   servletContextPath,
@@ -12,5 +15,8 @@ export default {
   addTabsMethodName,
   removeTabsMethodName,
   initMenuDatasMethodName,
-  setResourceMenuKeyMethod
+  setResourceMenuKeyMethod,
+  userLocal,
+  ehsecharts,
+  setBreadcrumbItemsMethod
 }

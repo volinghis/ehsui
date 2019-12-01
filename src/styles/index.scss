@@ -6,7 +6,7 @@
 
 
 span{
-  font-size: 12px;
+  font-size: $fontSize;
 }
 // .el-card__body{
 //   background-color: $bodyBgColor !important;
@@ -16,12 +16,16 @@ span{
 }
 body {
   height:100%;
+  width: 100%;
+  min-width: $bodyMinWidth !important;
+  min-height:$bodyMinHight !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   padding: 0 0 0 0px;
   margin: 0 0 0 0px;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family: '微软雅黑 ', '微软雅黑 Regular', '微软雅黑';
+  overflow: hidden;
 }
 
 label {
@@ -76,12 +80,12 @@ div:focus {
   padding: 20px;
 }
 ::-webkit-scrollbar {/*滚动条整体样式*/
-  width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
-  height: 10px;
+  width: 7px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 14px;
 }
 ::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
   border-radius: 10px;
-  background:$menuBgColor;
+  background:#c1c1c1;
 }
 ::-webkit-scrollbar-track {/*滚动条里面轨道*/
   border-radius: 10px;

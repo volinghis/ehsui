@@ -12,6 +12,7 @@ export default new Vuex.Store({
     resourceMenuKey: ''
   },
   mutations: {
+
     setResourceMenuKey (state, menukey) {
       state.resourceMenuKey = menukey
     },
@@ -37,33 +38,23 @@ export default new Vuex.Store({
       Router.push({ name: state.selectedTabs[c - 1].name })
     },
     resize (state) {
-      let ccHeight =
-        document.body.offsetHeight >= parseInt(globalCss.bodyMinHight)
-          ? document.body.offsetHeight
-          : parseInt(globalCss.bodyMinHight)
-      state.contentHeight =
-        ccHeight -
-        parseInt(globalCss.headerHeight) -
-        parseInt(globalCss.footerHeight) -
-        parseInt(globalCss.tabHeight)
+
+      let ccHeight = document.body.offsetHeight >= parseInt(globalCss.bodyMinHight) ? document.body.offsetHeight : parseInt(globalCss.bodyMinHight)
+      state.contentHeight = (ccHeight - parseInt(globalCss.headerHeight)- parseInt(globalCss.tabHeight))
     },
     initMenuDatas (state) {
       // 测试-数据 typ[0上级菜单，1页面菜单，2页面功能]，这里是http请求后端接口获取数据路由数据。
       state.menuDatas = [
-        {
-          code: 'home',
-          label: '首页',
-          key: '1',
-          path: '/',
-          component: '/layout/content/portal',
-          leaf: true
-        },
+
+        { code: 'home', label: '首页', key: 'home', path: '/home', component: '/layout/content/portal', leaf: true,icon:'fa-home' },
+
         {
           code: 'eamAccountManager',
           label: '设备管理',
           key: '2',
           path: '',
           leaf: false,
+          icon:'fa-cubes',
           children: [
             {
               code: 'eamAccountPrintManager',
@@ -161,6 +152,7 @@ export default new Vuex.Store({
               component: '/eam/eamAccountPrint/eamAllocate/index',
               leaf: true
             }
+
           ]
         },
         {
@@ -168,8 +160,10 @@ export default new Vuex.Store({
           label: '备件管理',
           key: '3',
           path: '',
+          icon:'fa-ticket',
           leaf: false,
           children: [
+
             { code: 'partsAccount', label: '备件台帐', key: '31', path: '/eam/eamPartLibrary/partsAccount/index', component: '/eam/eamPartLibrary/partsAccount/index', leaf: true },
             { code: 'partsAccountDetails', label: '备件台帐详情页', key: '311', path: '/eam/eamPartLibrary/partsAccount/component/details/index', component: '/eam/eamPartLibrary/partsAccount/component/details/index', leaf: true, business: true },
             { code: 'partsAccountEdit', label: '备件台帐编辑页', key: '312', path: '/eam/eamPartLibrary/partsAccount/component/edit/index', component: '/eam/eamPartLibrary/partsAccount/component/edit/index', leaf: true, business: true },
@@ -192,6 +186,7 @@ export default new Vuex.Store({
           code: 'eamBasicDataManager',
           label: '基础数据管理',
           key: '5',
+          icon:'flag-o',
           path: '',
           leaf: false,
           children: [
@@ -218,6 +213,7 @@ export default new Vuex.Store({
           code: 'dataBase',
           label: '资料库',
           key: '6',
+          icon:'fa-folder-o',
           path: '',
           leaf: false,
           children: [
@@ -230,6 +226,7 @@ export default new Vuex.Store({
               leaf: true,
               business: false
             }
+
           ]
         },
         {
@@ -237,6 +234,7 @@ export default new Vuex.Store({
           label: '系统管理',
           key: '7',
           path: '',
+          icon:'fa-cog',
           leaf: false,
           children: [
             {
@@ -259,6 +257,7 @@ export default new Vuex.Store({
             }
           ]
         }
+
       ]
     }
   },
@@ -278,5 +277,6 @@ export default new Vuex.Store({
     setResourceMenuKey (context, menukey) {
       context.commit('setResourceMenuKey', menukey)
     }
+
   }
 })

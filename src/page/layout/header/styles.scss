@@ -1,0 +1,55 @@
+li {
+  width: 100px;
+  background: $menuBgColor;
+  color: $menuText;
+  float: left;
+  list-style-type:none;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 10px;
+
+}
+
+li ul {
+  margin-top: 5px;
+  display: none;
+  li{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+}
+nav{
+  position:absolute ;
+  z-index: 1;
+}
+@mixin active-li-style {
+  background-color: #1A6CF3;
+}
+li:hover{
+  @include active-li-style();
+}
+.li-active{
+  @include active-li-style();
+}
+
+li:hover ul {
+  margin-left: -40px;
+  display: block;
+  
+}
+
+.topleft {
+  float: left;
+}
+.topright {
+  color: $menuText;
+  float: right;
+  text-align: right;
+  span{
+    cursor: pointer;
+    margin-left: 10px !important;
+  }
+  .fa-user{
+    margin-top: 10px !important;
+  }
+}

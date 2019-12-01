@@ -295,8 +295,7 @@ export default {
     },
     handleClick: function (tab, event) {
     },
-    handleSizeChange: function (val) {
-      console.log(`每页 ${val} 条`)
+    handlePageChange () {
     },
     handleCurrentChange: function (val) {
       console.log(`当前页: ${val}`)

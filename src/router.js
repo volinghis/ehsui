@@ -24,14 +24,14 @@ const mainRoutes = {
 }
 
 const vueRouter = new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   scrollBehavior: () => ({ x: 0, y: 0 }),
   isAdd: false
 })
 // 判断当前是否全局路由
 function isGlobalRoutes (to) {
-  for (let i in globalRoutes) {
+  for (var i in globalRoutes) {
     if (globalRoutes[i].path === to.path) {
       return true
     }

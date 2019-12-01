@@ -26,7 +26,8 @@
 <script>
 export default {
   methods: {
-    handleClick: function (row) {
+
+    handleClick (row) {
     }
   },
 
