@@ -1,20 +1,22 @@
 <template>
-<div>
     <el-container >
-    <el-header ><ehsheader></ehsheader></el-header>
+        <el-header ><ehsheader></ehsheader></el-header>
     <el-container>
-      <el-main><router-view></router-view></el-main>
+        <el-header class="tabpanel"><el-breadcrumb separator=">">
+          <el-breadcrumb-item >当前位置</el-breadcrumb-item>
+          <el-breadcrumb-item>{{this.$router.currentRoute.meta.title}}</el-breadcrumb-item>
+        </el-breadcrumb>
+        </el-header>
+        <el-main :style="{height:this.$store.state.clientHeight}"><router-view></router-view></el-main>
     </el-container>
-  </el-container></div>
+  </el-container>
 
 </template>
 <script>
 
 import container from './datas'
-import siderbar from '../siderbar/index'
 import ehsheader from '../header/index'
 container.components = {
-  'siderbar': siderbar,
   'ehsheader': ehsheader
 }
 export default container

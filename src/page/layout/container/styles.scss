@@ -1,25 +1,18 @@
-.el-container{
-  overflow: hidden;
-}
-.el-header {
+.el-header{
   height: $headerHeight !important;
-  background: url('~@/assets/images/layout-topbg.svg') repeat-x;
-  padding: 0 0 0 0px !important;
   overflow: hidden;
+  background-color: $menuBgColor;
 }
-
+.el-main{
+  padding: 0px;
+  overflow: auto !important;
+}
+.tabpanel{
+  overflow: hidden;
+  background-color: white;
+  height: $tabHeight !important;
+}
 .el-breadcrumb{
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.el-aside {
-  width:$sideBarWidth !important;
-  background: $menuBgColor;
-}
-.el-main {
-  padding: 0 0 0 0px;
-  background: $bodyBgColor;
+  margin-top: ($tabHeight - $fontSize)/2;
+  margin-left: 20px;
 }
