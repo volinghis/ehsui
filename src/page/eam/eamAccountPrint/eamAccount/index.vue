@@ -38,7 +38,7 @@
                   <el-form-item label="启用日期:">
                     <el-date-picker v-model="queryParam.date"
                                     size="small"
-                                    style="width:215px;"
+                                    style="width:100%;"
                                     placeholder="请输入启用日期" />
                   </el-form-item>
                 </el-col>
@@ -49,8 +49,9 @@
                         :xs="24">
                   <el-form-item label="使用状态:">
                     <el-select v-model="queryParam.useStatus"
+                               clearable
+                               style="width:100%"
                                size="small"
-                               style="width:215px;"
                                placeholder="请选择">
                       <el-option value="0"
                                  label="全部"></el-option>

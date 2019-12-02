@@ -7,7 +7,7 @@
         </el-form-item>
         <el-form-item label="申请部门：" prop="name">
            <template>
-            <el-select v-model="scrapStepForm.dept" placeholder="请选择">
+            <el-select v-model="scrapStepForm.dept" placeholder="请选择" style="width:100%;z">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </template>
