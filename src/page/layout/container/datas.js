@@ -1,12 +1,14 @@
 
 export default {
   methods: {
-    resetPaddingStyle () {
+
+    resetPaddingStyle(){
       let boWidth = 0
-      if (document.body.offsetWidth > parseInt(this.GlobalCss.serviceMaxWidth)) {
-        boWidth = (document.body.offsetWidth - parseInt(this.GlobalCss.serviceMaxWidth)) / 2
+      if (document.body.offsetWidth>parseInt(this.GlobalCss.serviceMaxWidth)) {
+        boWidth = (document.body.offsetWidth-parseInt(this.GlobalCss.serviceMaxWidth)) / 2
+        boWidth = boWidth < 10 ? 10 : boWidth
       } else {
-        boWidth = 20
+        boWidth = 10
       }
       let header = document.querySelectorAll('.el-header')
       if (header) {

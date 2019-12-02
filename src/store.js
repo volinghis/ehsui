@@ -151,7 +151,6 @@ export default new Vuex.Store({
               component: '/eam/eamAccountPrint/eamAllocate/index',
               leaf: true
             }
-
           ]
         },
         {
@@ -232,8 +231,8 @@ export default new Vuex.Store({
           code: 'systemManager',
           label: '系统管理',
           key: '7',
-          path: '',
           icon: 'fa-cog',
+          path: '',
           leaf: false,
           children: [
             {
