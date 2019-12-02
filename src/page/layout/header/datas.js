@@ -2,7 +2,7 @@ export default {
   mounted () {},
   methods: {
     logout () {
-      sessionStorage.removeItem(this.GlobalVars.userToken);
+      sessionStorage.removeItem(this.GlobalVars.userToken)
       this.$router.push({ name: 'login' })
     },
     menuSelect (index, leaf, e) {
