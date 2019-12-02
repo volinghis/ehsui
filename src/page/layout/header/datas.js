@@ -1,5 +1,12 @@
 export default {
-  mounted () {},
+  data () {
+    return {
+      sessionUser: {}
+    }
+  },
+  mounted () {
+    this.sessionUser = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
+  },
   methods: {
     logout () {
       sessionStorage.removeItem(this.GlobalVars.userToken)
