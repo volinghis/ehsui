@@ -39,21 +39,21 @@ export default new Vuex.Store({
     },
     resize (state) {
       let ccHeight = document.body.offsetHeight >= parseInt(globalCss.bodyMinHight) ? document.body.offsetHeight : parseInt(globalCss.bodyMinHight)
-      state.contentHeight = (ccHeight - parseInt(globalCss.headerHeight)- parseInt(globalCss.tabHeight))
+      state.contentHeight = (ccHeight - parseInt(globalCss.headerHeight) - parseInt(globalCss.tabHeight))
     },
     initMenuDatas (state) {
       // 测试-数据 typ[0上级菜单，1页面菜单，2页面功能]，这里是http请求后端接口获取数据路由数据。
       state.menuDatas = [
-        { code: 'home', label: '首页', key: 'home', path: '/home', component: '/layout/content/portal', leaf: true,icon:'fa-home' },
+        { code: 'home', label: '首页', key: 'home', path: '/home', component: '/layout/content/portal', leaf: true, icon: 'fa-home' },
         {
           code: 'eamAccountManager',
           label: '设备管理',
           key: '2',
           path: '',
           leaf: false,
-          icon:'fa-cubes',
+          icon: 'fa-cubes',
           children: [
-            { code: 'eamAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true,icon:'fa-hdd-o' },
+            { code: 'eamAccountPrintManager', label: '设备台帐', key: '21', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true, icon: 'fa-hdd-o' },
             { code: 'eamAccountPrintEdit', label: '设备编辑', key: '211', path: '/eam/eamAccountPrint/edit', component: '/eam/eamAccountPrint/edit', leaf: true, business: true },
             { code: 'eamAccountPrintDetail', label: '设备详情', key: '212', path: '/eam/eamAccountPrint/details', component: '/eam/eamAccountPrint/details', leaf: true, business: true },
             { code: 'eamAccountPrintManager', label: '设备报废', key: '22', path: '/eam/eamAccountPrint/index', component: '/eam/eamAccountPrint/index', leaf: true },
@@ -67,7 +67,7 @@ export default new Vuex.Store({
           label: '备件管理',
           key: '3',
           path: '',
-          icon:'fa-ticket',
+          icon: 'fa-ticket',
           leaf: false,
           children: [
             { code: 'eamPartManager', label: '备件台帐', key: '311', path: '/eam/eamPartLibrary/index', component: '/eam/eamPartLibrary/index', leaf: true },
@@ -81,7 +81,7 @@ export default new Vuex.Store({
           code: 'systemManager',
           label: '系统管理',
           key: '4',
-          icon:'fa-cog',
+          icon: 'fa-cog',
           path: '',
           leaf: false,
           children: [
