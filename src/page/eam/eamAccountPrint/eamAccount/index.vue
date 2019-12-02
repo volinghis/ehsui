@@ -38,7 +38,7 @@
                   <el-form-item label="启用日期:">
                     <el-date-picker v-model="queryParam.date"
                                     size="small"
-                                    style="width:320px;"
+                                    style="width:215px;"
                                     placeholder="请输入启用日期" />
                   </el-form-item>
                 </el-col>
@@ -50,7 +50,7 @@
                   <el-form-item label="使用状态:">
                     <el-select v-model="queryParam.useStatus"
                                size="small"
-                               style="width:320px;"
+                               style="width:215px;"
                                placeholder="请选择">
                       <el-option value="0"
                                  label="全部"></el-option>
@@ -295,7 +295,7 @@ export default {
     },
     handleClick: function (tab, event) {
     },
-    handlePageChange () {
+    handleSizeChange: function () {
     },
     handleCurrentChange: function (val) {
       console.log(`当前页: ${val}`)
