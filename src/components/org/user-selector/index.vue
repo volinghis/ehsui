@@ -15,8 +15,8 @@
     :props="defaultProps"
     >
 <template slot-scope="{ node, data }">
-  <span class="dataIcon"><i class="fa fa-home"></i></span>
-    <span class="dataLabel">{{ data.label }}</span>
+  <span class="el-cascader-data-ehs-icon el-cascader-ehs-data-org" v-if="data.org"><i  class="fa fa-home"></i></span><span v-else class="el-cascader-data-ehs-icon"><i  class="fa fa-user"></i></span>
+    <span class="el-cascader-ehs-data-label">{{ data.label }}</span>
   </template>
     </el-cascader>
 </template>

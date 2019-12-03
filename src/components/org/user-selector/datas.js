@@ -45,9 +45,13 @@ export default {
       options: [{
         value: 'zhinan',
         label: 'MISS组织',
+        disabled: 'disabled',
+        org: true,
         children: [{
           value: 'shejiyuanze',
           label: '行政部',
+          disabled: 'disabled',
+          org: true,
           children: [{
             value: 'yizhi',
             label: '人力'
@@ -64,6 +68,8 @@ export default {
         }, {
           value: 'daohang',
           label: '财务部',
+          disabled: 'disabled',
+          org: true,
           children: [{
             value: 'cexiangdaohang',
             label: '报销'
