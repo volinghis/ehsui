@@ -2,32 +2,66 @@ export default {
   data () {
     return {
       remeberAccount: true,
+      loading: false,
       result: { message: '' },
       loginForm: {
-        username: (localStorage.getItem(this.GlobalVars.userLocal)) ? localStorage.getItem(this.GlobalVars.userLocal) : '',
+        account: localStorage.getItem(this.GlobalVars.userLocal)
+          ? localStorage.getItem(this.GlobalVars.userLocal)
+          : '',
         password: '',
+        username: '欧阳姗姗',
         captchCode: ''
+      },
+      rules: {
+        account: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
+        ]
       }
     }
   },
   methods: {
     initLayout () {
-      document.querySelector('.loginBody').style.left = ((document.querySelector('.logingPanel').offsetWidth - 840) / 2) + 'px'
-      document.querySelector('.loginBody').style.top = ((document.querySelector('.logingPanel').offsetHeight - 450) / 2) + 'px'
-      document.querySelector('.footerBody').style.right = ((document.querySelector('.logingPanel').offsetWidth - 840) / 2) + 'px'
+      document.querySelector('.loginBody').style.left =
+        (document.querySelector('.logingPanel').offsetWidth - 840) / 2 + 'px'
+      document.querySelector('.loginBody').style.top =
+        (document.querySelector('.logingPanel').offsetHeight - 450) / 2 + 'px'
+      document.querySelector('.footerBody').style.right =
+        (document.querySelector('.logingPanel').offsetWidth - 840) / 2 + 'px'
     },
-    login  () {
-      if (this.loginForm.username !== this.loginForm.password) {
-        this.result.message = '用户名密码错误！'
-        return
-      }
-      if (this.remeberAccount) {
-        localStorage.setItem(this.GlobalVars.userLocal, this.loginForm.username)
-      } else {
-        localStorage.removeItem(this.GlobalVars.userLocal)
-      }
-      sessionStorage.setItem(this.GlobalVars.userToken, this.loginForm.username)
-      this.$router.push({ name: 'home' })
+    login () {
+      this.result.message = ''
+      this.$refs['loginForm'].validate(valid => {
+        if (valid) {
+          this.loading = true
+          if (
+            this.loginForm.account !== 'ehstest' ||
+            this.loginForm.account !== this.loginForm.password
+          ) {
+            this.result.message = '用户名密码错误！'
+            this.loading = false
+            return
+          }
+          if (this.remeberAccount) {
+            localStorage.setItem(
+              this.GlobalVars.userLocal,
+              this.loginForm.account
+            )
+          } else {
+            localStorage.removeItem(this.GlobalVars.userLocal)
+          }
+          var sessionUser = { username: this.loginForm.username, account: this.loginForm.account }
+          sessionStorage.setItem(
+            this.GlobalVars.userToken,
+            JSON.stringify(sessionUser)
+          )
+          this.$router.push({ name: 'home' })
+        }
+      })
     }
   },
   mounted () {
@@ -38,5 +72,4 @@ export default {
       })()
     }
   }
-
 }
