@@ -6,7 +6,7 @@
 
 
 span{
-  font-size: $fontSize;
+  @include font-styles;
 }
 // .el-card__body{
 //   background-color: $bodyBgColor !important;
@@ -24,8 +24,8 @@ body {
   padding: 0 0 0 0px;
   margin: 0 0 0 0px;
   text-rendering: optimizeLegibility;
-  font-family: '微软雅黑 ', '微软雅黑 Regular', '微软雅黑';
   overflow: hidden;
+  @include font-styles;
 }
 
 label {

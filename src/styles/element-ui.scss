@@ -1,5 +1,25 @@
 // cover some element-ui styles
-
+.el-form-item__label{
+  @include font-styles;
+}
+.el-table {
+  th{
+    .cell{
+      @include font-styles;
+      color: black;
+      font-weight: 500;
+    }
+  }
+  .cell{
+  @include font-styles;
+  }
+}
+.el-pager{
+  .number{
+    @include font-styles;
+    font-weight: 500;
+  }
+}
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
   font-weight: 400 !important;

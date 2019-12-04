@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Axios from 'axios'
 
-import Store from './store'
-import GlobalVars from './components/global/globalVars.js'
+import Store from '@/configs/store'
+import GlobalVars from '@components/global/globalVars.js'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 Vue.use(Router)
@@ -12,7 +13,7 @@ Router.prototype.push = function push (location) {
   return routerPush.call(this, location).catch(error => error)
 }
 
-const _import = file => require('./page' + file + '.vue').default
+const _import = file => require('@/page' + file + '.vue').default
 // 全局路由(无需嵌套)
 const globalRoutes = [
   { path: '/404', component: _import('/404'), name: '404', meta: { title: '404' } },
@@ -77,16 +78,18 @@ vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
     if (vueRouter.options.isAdd || isGlobalRoutes(to)) { // 判断是否已经添加动态路由,或者当前为全局路由的时候。 直接访问
       next()
     } else {
-      Store.dispatch(GlobalVars.initMenuDatasMethodName)
-      var routes = []
-      addDynamicMenu(routes, Store.state.menuDatas)
-      mainRoutes.children = routes
-      vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
-        mainRoutes,
-        { path: '*', redirect: { name: '404' } }
-      ])
-      vueRouter.options.isAdd = true
-      next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
+      Axios.get(GlobalVars.globalServiceServlet + '/auth/menu/menuDatas').then(function (res) {
+        Store.state.menuDatas = res.data
+        var routes = []
+        addDynamicMenu(routes, Store.state.menuDatas)
+        mainRoutes.children = routes
+        vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
+          mainRoutes,
+          { path: '*', redirect: { name: '404' } }
+        ])
+        vueRouter.options.isAdd = true
+        next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
+      })
     }
   }
 })

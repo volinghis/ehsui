@@ -1,5 +1,4 @@
 const computeWindowSizeMethodName = 'resizeWindowMethod'
-const initMenuDatasMethodName = 'initMenuDatasMethod'
 const addTabsMethodName = 'addTabsMethod'
 const removeTabsMethodName = 'removeTabsMethod'
 const userToken = 'USER_TOKEN'
@@ -8,15 +7,18 @@ const servletContextPath = ''
 const setResourceMenuKeyMethod = 'setResourceMenuKey'
 const ehsecharts = 'ehsecharts'
 const setBreadcrumbItemsMethod = 'setBreadcrumbItems'
+const globalServiceServlet = ''
+const eamServiceServlet = ''
 export default {
   computeWindowSizeMethodName,
   servletContextPath,
   userToken,
   addTabsMethodName,
   removeTabsMethodName,
-  initMenuDatasMethodName,
   setResourceMenuKeyMethod,
   userLocal,
   ehsecharts,
-  setBreadcrumbItemsMethod
+  setBreadcrumbItemsMethod,
+  globalServiceServlet,
+  eamServiceServlet
 }
