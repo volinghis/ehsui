@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import EamList from '../../../common/eamList'
+import EamList from '../../../components/eamList'
 export default {
   name: 'partStepTwo',
   components: {

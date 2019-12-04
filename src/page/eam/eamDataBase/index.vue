@@ -9,7 +9,7 @@
             <el-form-item label="资料类别:">
               <el-select v-model="queryParam.useStatus"
                          size="small"
-                         style="width:300px;"
+                         style="width:100%;"
                          placeholder="请选择">
                 <el-option value="0"
                            label="说明书"></el-option>
@@ -82,6 +82,7 @@
                             :src="scope.row.deviceImg"
                             :preview-src-list="[scope.row.deviceImg]"></el-image>
                 </template>
+                <!-- <i class="fa fa-file-excel-o fa-3x" style="color:#1cd4d4"></i> -->
               </el-table-column>
               <el-table-column prop="fileName"
                                label="文件名称"></el-table-column>
@@ -101,15 +102,15 @@
                                width="180"
                                label="操作">
                 <template slot-scope="scope">
-                  <el-button @click="handleViewClick(scope.row)"
-                             type="primary"
-                             icon="el-icon-camera"
-                             size="mini">预览</el-button>
-                  <el-button type="success"
-                             icon="el-icon-download"
-                             @click="handleDownLoadClick(scope.row)"
-                             size="mini">下载</el-button>
-                </template>
+  <el-button @click="handleViewClick(scope.row)"
+             type="primary"
+             icon="el-icon-camera"
+             size="mini">预览</el-button>
+  <el-button type="success"
+             icon="el-icon-download"
+             @click="handleDownLoadClick(scope.row)"
+             size="mini">下载</el-button>
+</template>
               </el-table-column>
             </el-table>
             <div class="pagination"
@@ -280,6 +281,7 @@ export default {
   mounted: function () {
     var h = document.querySelector('.searchCol').offsetHeight
     this.mainHeight = this.$store.state.contentHeight - h - 6
+    console.log(this.$store.state.contentHeight)
   },
   methods: {
     handleViewClick: function (scope) {
@@ -306,22 +308,22 @@ export default {
 .searchCol {
   margin-bottom: 5px;
 }
-@mixin setColor($color){
+@mixin setColor($color) {
   width: 10px;
   height: 10px;
-  background-color:$color;
+  background-color: $color;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   display: inline-block;
 }
-.first-level{
-  @include setColor(#000080)
+.first-level {
+  @include setColor(#000080);
 }
-.second-level{
-  @include setColor(#9e23ea)
+.second-level {
+  @include setColor(#9e23ea);
 }
-.third-level{
-  @include setColor(#1cd4d4)
+.third-level {
+  @include setColor(#1cd4d4);
 }
 </style>

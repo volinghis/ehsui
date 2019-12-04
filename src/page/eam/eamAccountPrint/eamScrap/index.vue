@@ -59,10 +59,11 @@
             <el-table-column prop="scrapReason"
                              label="报废原因"></el-table-column>
             <el-table-column prop="status"
-                             label="申请状态">
+                             label="申请状态"
+                             align="center">
               <template slot-scope="scope">
                 <div slot="reference">
-                  <el-tag size="medium"
+                  <el-tag size="small"
                           :type="scope.row.status === '进行中' ? 'primary' : 'success'">{{ scope.row.status}}</el-tag>
                 </div>
               </template>

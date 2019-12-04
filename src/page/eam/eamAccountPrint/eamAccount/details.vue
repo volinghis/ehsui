@@ -1,331 +1,240 @@
 <template>
-  <div class="container">
-    <el-row :gutter="20">
-      <el-col :md="24"
-              :lg="6">
-        <el-card shadow="hover">
-          <div slot="header"
-               class="devDetailsTitle item-title"
-               size="small">
-            <span><i class="el-icon-s-tools">设备详情</i></span>
-            <el-button style="float: right; padding: 3px 0"
-                       type="text">编辑</el-button>
+  <div style="padding:0px 20px;">
+    <el-form ref="form"
+             :model="form"
+             :rules="rules"
+             label-position="top"
+             label-width="80px">
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <div class="item-block">
+            <div class="item-title">设备图片</div>
+            <el-image style="width: 150px; height: 150px"
+                      src="https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg"
+                      fit="fill"></el-image>
           </div>
-          <div class="accountPrints">
+          <!--检修质量标准-->
+          <div class="item-block">
+            <div class="item-title">检修质量标准</div>
+            <el-upload class="upload-demo"
+                       action="https://jsonplaceholder.typicode.com/posts/"
+                       :on-preview="handlePreview"
+                       :on-remove="handleRemove"
+                       :before-remove="beforeRemove"
+                       multiple
+                       :limit="3"
+                       :on-exceed="handleExceed"
+                       :file-list="fileList">
+              <el-button size="mini"
+                         plain
+                         type="primary"
+                         icon="el-icon-upload">上传文件</el-button>
+            </el-upload>
+          </div>
+          <!--设备说明书-->
+          <div class="item-block">
+            <div class="item-title">设备说明书</div>
+            <el-upload class="upload-demo"
+                       action="https://jsonplaceholder.typicode.com/posts/"
+                       :on-preview="handlePreview"
+                       :on-remove="handleRemove"
+                       :before-remove="beforeRemove"
+                       multiple
+                       :limit="3"
+                       :on-exceed="handleExceed"
+                       :file-list="fileList">
+              <el-button size="mini"
+                         plain
+                         type="primary"
+                         icon="el-icon-upload">上传文件</el-button>
+            </el-upload>
+          </div>
+          <!--设备操作手册-->
+          <div class="item-block">
+            <div class="item-title">设备操作手册</div>
+            <el-upload class="upload-demo"
+                       action="https://jsonplaceholder.typicode.com/posts/"
+                       :on-preview="handlePreview"
+                       :on-remove="handleRemove"
+                       :before-remove="beforeRemove"
+                       multiple
+                       :limit="3"
+                       :on-exceed="handleExceed"
+                       :file-list="fileList">
+              <el-button size="mini"
+                         plain
+                         type="primary"
+                         icon="el-icon-upload">上传文件</el-button>
+            </el-upload>
+          </div>
+
+          <div class="item-block">
+            <div class="item-title">资料完整度</div>
             <el-row>
-              <el-col>
-                <el-image style="width: 150px; height: 150px"
-                          src="https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg"
-                          fit="fill"
-                          :preview-src-list="srcList"></el-image>
-              </el-col>
-              <el-col>
-                <span>资料完整度：<el-progress :percentage="80"></el-progress></span>
-              </el-col>
-              <el-col>
-                <span>设备编号：101111111</span>
-              </el-col>
-              <el-col>
-                <span>设备名称：阀门</span>
-              </el-col>
-              <el-col>
-                <span>生产厂家：西安电气设备有限公司</span>
-              </el-col>
-              <el-col>
-                <span>供应商：东恒</span>
-              </el-col>
-              <el-col>
-                <span>设备状态：正常</span>
-              </el-col>
-              <el-col>
-                <span>规格型号：FM-SDS</span>
-              </el-col>
-              <el-col>
-                <span>采购价格：20万</span>
-              </el-col>
-              <el-col>
-                <span>采购时间：2019/10/5</span>
-              </el-col>
-              <el-col>
-                <span>启用日期：2019/11/4</span>
-              </el-col>
-              <el-col>
-                <span>安装位置：汽机专业</span>
-              </el-col>
-              <el-col>
-                <span>负责人：张三</span>
-              </el-col>
-              <el-col>
-                <span>备注：无</span>
-              </el-col>
+              <el-card>
+                <el-col :span="12">
+                  <el-progress type="circle"
+                               :percentage="75"
+                               :stroke-width="10"></el-progress>
+                </el-col>
+                <el-col :span="12">
+                  <p> 当前设备资料的完整度为75%，请尽快完善资料</p>
+                </el-col>
+              </el-card>
             </el-row>
           </div>
-        </el-card>
-      </el-col>
-      <el-col :md="24"
-              :lg="18">
-        <el-card style="margin-bottom:12px;"
-                 shadow="hover">
-          <div slot="header"
-               class="partTitle item-title">
-            <span><i class="el-icon-s-cooperation"></i>关联备件</span>
+        </el-col>
+        <el-col :span="18">
+           <div class="item-block right">
+            <div class="item-title">设备基本信息</div>
+            <div class="contents">
+              <el-row>
+                <el-col :span="12"
+                        v-for="(item, index) in eamInfos"
+                        :key="index">
+                  <span class="info-title">{{ item.title }}</span>:&nbsp;<span class="info-content">{{ item.content }}</span>
+                </el-col>
+             </el-row>
+            </div>
           </div>
-          <el-table :data="partData"
-                    style="width: 100%"
-                    :highlight-current-row="true">
-            <el-table-column type="index"
-                             width="50"
-                             fixed></el-table-column>
-            <el-table-column prop="deviceCode"
-                             label="备件编码"
-                             width="100"
-                             fixed></el-table-column>
-            <el-table-column prop="deviceName"
-                             label="备件名称"
-                             width="100"
-                             fixed></el-table-column>
-            <el-table-column prop="complete"
-                             label="资料完整度"
-                             width="150">
-              <template slot-scope="scope">
-                <el-progress :percentage="scope.row.complete"
-                             :color="customColorMethod"></el-progress>
-              </template>
-            </el-table-column>
-            <el-table-column prop="brand"
-                             label="品牌"></el-table-column>
-            <el-table-column prop="norm"
-                             label="规格"></el-table-column>
-            <el-table-column prop="warehouse"
-                             label="所在仓库"></el-table-column>
-            <el-table-column prop="price"
-                             label="价格"></el-table-column>
-            <el-table-column prop="amount"
-                             label="数量"></el-table-column>
-            <el-table-column prop="manufacturer"
-                             label="生产商"
-                             width="150"></el-table-column>
-            <el-table-column prop="supplier"
-                             label="供应商"></el-table-column>
-            <el-table-column prop="materialTypeName"
-                             label="物资类型"></el-table-column>
-            <el-table-column prop="labelCode"
-                             label="标签码"
-                             width="150"></el-table-column>
-            <el-table-column prop="warningValue"
-                             label="预警值"></el-table-column>
-          </el-table>
-        </el-card>
-
-        <el-row :gutter="10">
-          <el-col :md="24"
-                  :lg="14">
-            <el-card shadow="hover">
-              <div slot="header"
-                   class="repairTitle item-title">
-                <span><i class="el-icon-s-order"></i>检修记录</span>
-              </div>
-              <el-table :data="tableData"
-                        style="width: 100%">
-                <el-table-column prop="date"
-                                 label="检修日期"></el-table-column>
-                <el-table-column prop="name"
-                                 label="姓名"></el-table-column>
-                <el-table-column prop="address"
-                                 label="检修内容"
-                                 width="180"
-                                 :show-overflow-tooltip="true"></el-table-column>
-              </el-table>
-            </el-card>
-          </el-col>
-          <el-col :md="24"
-                  :lg="10">
-            <el-card shadow="hover">
-              <div slot="header"
-                   class="modifyTitle item-title">
-                <span><i class="el-icon-s-claim"></i>资料纠错/补全记录</span>
-              </div>
-              <el-table :data="modifyData"
-                        style="width: 100%">
-                <el-table-column prop="name"
-                                 label="修改人">
-                  <template slot-scope="scope">
-                    <a href="#"
-                       style="text-decoration:none;">{{ scope.row.name }}</a>
-                    <i class="el-icon-medal"></i>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="modifyContent"
-                                 label="修改内容"
-                                 width="180"></el-table-column>
-                <el-table-column prop="contribute"
-                                 label="贡献度"
-                                 width="180">
-                  <template slot-scope="scope">
-                    <el-rate v-model="scope.row.contribute"
-                             :allow-half="true"
-                             disabled
-                             show-score
-                             text-color="#ff9900"
-                             score-template="{value}"></el-rate>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </el-card>
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
+          <!--设备参数-->
+          <div class="item-block right">
+            <div class="item-title">设备主要参数</div>
+            <el-divider></el-divider>
+            <params-table></params-table>
+          </div>
+          <div class="item-block right">
+            <div class="item-title">定期工作标准</div>
+            <el-divider></el-divider>
+            <el-input type="textarea"
+                      :rows="5"
+                      maxlength="300"
+                      show-word-limit
+                      placeholder="请输入定期工作标准"
+                      v-model="form.textarea">
+            </el-input>
+          </div>
+          <!--历任点检员-->
+          <div class="item-block right">
+            <div class="item-title">历任点检员</div>
+            <el-divider></el-divider>
+            <past-inspectors></past-inspectors>
+          </div>
+        </el-col>
+      </el-row>
+      <el-form-item style="text-align: center;">
+        <el-button size="small"
+                   type="primary"
+                   @click="handleBack">返回</el-button>
+        <el-button size="small"
+                   @click="handlePrint">打印</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
+import ParamsTable from '../../components/paramsTable'
+import PastInspectors from '../../components/pastInspectors'
 export default {
+  name: 'eamAccountPrintEdit',
+  refWidth: 0,
+  components: {
+    paramsTable: ParamsTable,
+    pastInspectors: PastInspectors
+  },
   data () {
     return {
-      srcList: [
-        'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-        'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+      form: {
+        deviceName: '',
+        deviceNum: '',
+        deviceTree: '',
+        runDate: '',
+        factoryName: '',
+        person: '',
+        textarea: ''
+      },
+      rules: {
+        deviceName: [
+          { required: true, message: '请输入设备名称', trigger: 'blur' }
+        ],
+        deviceModel: [
+          { required: true, message: '请输入设备型号', trigger: 'change' }
+        ],
+        person: [
+          { required: true, message: '请输入创建人', trigger: 'change' }
+        ]
+      },
+      fileList: [
+        {
+          name: 'food.jpeg',
+          url:
+            'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+        },
+        {
+          name: 'food2.jpeg',
+          url:
+            'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+        }
       ],
-      partData: [{
-        deviceCode: '10000001',
-        deviceName: '阀门',
-        complete: 10,
-        brand: '川跃',
-        norm: 'FM',
-        warehouse: '一号仓库',
-        price: '0.2万',
-        amount: '5',
-        manufacturer: '西安电气设备公司',
-        supplier: '东恒',
-        materialTypeName: '生产设备',
-        labelCode: '20181002001',
-        warningValue: '1'
-      }, {
-        deviceCode: '10000001',
-        deviceName: '阀门',
-        complete: 50,
-        brand: '川跃',
-        norm: 'FM 15',
-        warehouse: '一号仓库',
-        price: '0.2万',
-        amount: '5',
-        manufacturer: '西安电气设备公司',
-        supplier: '东恒',
-        materialTypeName: '生产设备',
-        labelCode: '20181002001',
-        warningValue: '1'
-      }, {
-        deviceCode: '10000001',
-        deviceName: '阀门',
-        complete: 80,
-        brand: '川跃',
-        norm: 'FM',
-        warehouse: '一号仓库',
-        price: '0.2万',
-        amount: '5',
-        manufacturer: '西安电气设备公司',
-        supplier: '东恒',
-        materialTypeName: '生产设备',
-        labelCode: '20181002001',
-        warningValue: '1'
-      }, {
-        deviceCode: '10000001',
-        deviceName: '阀门',
-        complete: 100,
-        brand: '上海一恒',
-        norm: 'FM',
-        warehouse: '一号仓库',
-        price: '0.2万',
-        amount: '5',
-        manufacturer: '西安电气设备公司',
-        supplier: '东恒',
-        materialTypeName: '生产设备',
-        labelCode: '20181002001',
-        warningValue: '1'
-      }],
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1517 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1519 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1516 弄',
-        zip: 200333
-      }],
-      modifyData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        modifyContent: '2016-05-02 完善资料',
-        contribute: 4.5
-      }, {
-        date: '2016-05-04',
-        name: '王小龙',
-        modifyContent: '2016-05-02 纠错',
-        contribute: 2
-      }, {
-        date: '2016-05-01',
-        name: '王小鼠',
-        modifyContent: '2016-05-02 纠错',
-        contribute: 5
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        modifyContent: '2016-05-02 完善设备资料',
-        contribute: 3.7
-      }]
+      eamInfos: [
+        { title: '设备名称', content: '1号增压风机冷却油泵电机' },
+        { title: '设备编码', content: 'SB12457854' },
+        { title: '设备型号', content: '1LE0003-0DA32-1AA4 1.1KW*2P*B3' },
+        { title: '出厂编号', content: '1LE0003-0DA32-1AA4' },
+        { title: '生产厂家', content: 'SIEMENS/西门子' },
+        { title: '出厂日期', content: '2018-06-20 12:41:50' },
+        { title: '投运日期', content: '2019-01-20 13:41:50' },
+        { title: '创建人', content: '张工' }
+      ]
     }
   },
+  mounted: function () {
+  },
   methods: {
-    customColorMethod: function (percentage) {
-      if (percentage < 30) {
-        return '#909399'
-      } else if (percentage < 70) {
-        return '#e6a23c'
-      } else {
-        return '#67c23a'
-      }
+    handleAvatarSuccess: function (res, file) {
+
+    },
+    handlePrint: function () {
+    },
+    handleBack: function () {
+      this.$router.go(-1)
+    },
+    handleRemove (file, fileList) {
+    },
+    handlePreview (file) {
+    },
+    handleExceed: function (files, fileList) {
+      this.$message.warning(
+        `当前限制选择 3 个文件，本次选择了 ${
+          files.length
+        } 个文件，共选择了 ${files.length + fileList.length} 个文件`
+      )
+    },
+    beforeRemove: function (file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
     }
   }
 }
-
 </script>
-
 <style lang="scss" scoped>
-.item-title {
-  text-align: left;
-  font-weight: bold;
+.item-block {
+  .item-title {
+    font-size: 15px;
+    font-weight: 700;
+  }
 }
-.accountPrints {
-  margin-top: 15px;
-  margin-left: 15px;
-  font-size: 14px;
-  text-align: left;
-  line-height: 26px;
+.el-form--label-top .el-form-item__label {
+  padding: 0 0 0px;
 }
-
-.el-card__header {
-  background-color: whitesmoke;
-  padding: 10px 20px;
+.el-form-item {
+  margin-bottom: 10px;
+}
+.contents{
+  line-height: 30px;
+}
+.el-divider--horizontal{
+  margin:6px 0;
+  background-color: #2db7f5;
 }
 </style>

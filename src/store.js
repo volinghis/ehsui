@@ -135,15 +135,6 @@ export default new Vuex.Store({
               business: true
             },
             {
-              code: 'eamSelectManager',
-              label: '设备选择',
-              key: '25',
-              path: '/eam/common/eamList',
-              component: '/eam/common/eamList',
-              leaf: true,
-              business: true
-            },
-            {
               code: 'eamAllocate',
               label: '设备调拨',
               key: '26',

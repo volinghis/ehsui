@@ -21,11 +21,11 @@ export default {
         trigger: 'item',
         formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
-      legend: {
-        orient: 'vertical',
-        left: 'left',
-        data: ['外力破坏', '磨损', '损伤', '二次损伤', '操作不当', '润滑过多或过少', '老化']
-      },
+      // legend: {
+      //   orient: 'vertical',
+      //   left: 'left',
+      //   data: ['外力破坏', '磨损', '损伤', '二次损伤', '操作不当', '润滑过多或过少', '老化']
+      // },
       series: [
         {
           name: '故障来源',

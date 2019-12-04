@@ -4,7 +4,6 @@
       ref="form"
       :model="form"
       :rules="rules"
-      label-position="top"
       label-width="80px"
     >
       <el-row :gutter="20">
@@ -23,7 +22,7 @@
                 将图片拖到此处，或<em>点击上传</em>
               </div>
               <div class="el-upload__tip" slot="tip">
-                只能上传jpg/png文件，且不超过500kb
+                只能上传jpg/png文件，且不超过500
               </div>
             </el-upload>
           </div>
@@ -36,7 +35,7 @@
               :on-preview="handlePreview"
               :on-remove="handleRemove"
               :before-remove="beforeRemove"
-              multiple
+               multiple
               :limit="3"
               :on-exceed="handleExceed"
               :file-list="fileList"
@@ -116,7 +115,7 @@
                 <el-date-picker
                   v-model="form.leaveDate"
                   type="date"
-                   style="width:400px;"
+                  style="width:100%;"
                   placeholder="选择日期"
                 >
                 </el-date-picker>
@@ -133,7 +132,7 @@
                 <el-date-picker
                   v-model="form.runDate"
                   type="date"
-                  style="width:400px;"
+                  style="width:100%;"
                   placeholder="选择日期"
                 >
                 </el-date-picker>
@@ -178,10 +177,11 @@
 </template>
 
 <script>
-import ParamsTable from './componet/paramsTable.vue'
-import PastInspectors from './componet/pastInspectors.vue'
+import ParamsTable from '../../components/paramsTable'
+import PastInspectors from '../../components/pastInspectors'
 export default {
   name: 'eamAccountPrintEdit',
+  refWidth: 0,
   components: {
     paramsTable: ParamsTable,
     pastInspectors: PastInspectors
@@ -221,6 +221,10 @@ export default {
         }
       ]
     }
+  },
+  mounted: function () {
+    this.refWidth = document.querySelector('.el-upload__tip').offsetWidth
+    console.log()
   },
   methods: {
     handleAvatarSuccess: function (res, file) {
@@ -265,6 +269,9 @@ export default {
   .upload-demo {
     margin: 20px 0px;
   }
+}
+.el-upload-dragger{
+  width: 295px;
 }
 .el-form--label-top .el-form-item__label{
     padding:0 0 0px;

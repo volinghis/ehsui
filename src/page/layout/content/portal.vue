@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <el-row :gutter="10" style="margin-bottom:10px;">
-      <el-col :span="6" :md="24" :lg="6" class="heightCol">
+      <el-col :span="6" class="heightCol">
         <div>
-          <el-card shadow='hover' v-bind:style="styleRowHeiheht" style="margin-left:5px;">
+          <el-card shadow='hover' v-bind:style="{height:refHeight}">
             <centers></centers>
           </el-card>
         </div>
@@ -12,29 +12,29 @@
         <div>
           <el-row :gutter="10" style="margin-bottom:10px;">
             <el-col :span="8">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <account-doughnut></account-doughnut>
               </el-card>
             </el-col>
             <el-col :span="8">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <part-doughnut></part-doughnut>
               </el-card>
             </el-col>
             <el-col :span="8">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <task></task>
               </el-card>
             </el-col>
           </el-row>
           <el-row :gutter="10">
             <el-col :span="16">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <linechart></linechart>
               </el-card>
             </el-col>
             <el-col :span="8">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <charts></charts>
               </el-card>
             </el-col>
@@ -45,7 +45,7 @@
     <el-row :gutter="10">
       <el-col :span="6" class="elheight">
         <div >
-          <el-card shadow='hover' v-bind:style="styleRowHeiheht" style="margin-left:5px;">
+          <el-card shadow='hover' v-bind:style="{height:refHeight}" style="margin-left:5px;">
             <div slot="header" class="item-title" size="small" style="text-align:center;border-radius: 30px;">
               <el-button size="mini" round type="primary" >
                 <span style="weight:100px;font-size: large; font-weight: bold;">
@@ -61,7 +61,7 @@
         <div>
           <el-row :gutter="10" style="margin-bottom:10px;">
             <el-col :span="16">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <div slot="header" class="item-title" size="small">
                   <span class="mainTitle">新增检修记录</span>
                 </div>
@@ -69,7 +69,7 @@
               </el-card>
             </el-col>
             <el-col :span="8">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <div slot="header" class="item-title" size="small">
                   <span class="mainTitle">资料完整度</span>
                 </div>
@@ -79,7 +79,7 @@
           </el-row>
           <el-row :gutter="10">
             <el-col :span="16">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <div slot="header" class="item-title" size="small">
                   <span class="mainTitle">动&nbsp;&nbsp;&nbsp;&nbsp;态</span>
                 </div>
@@ -87,7 +87,7 @@
               </el-card>
             </el-col>
             <el-col :span="8">
-              <el-card shadow='hover' v-bind:style="styleColHeiheht">
+              <el-card shadow='hover' v-bind:style="{height:halfHeight}">
                 <div slot="header" class="item-title" size="small">
                   <span class="mainTitle">热门关注</span>
                   <a href="#"><span style="float:right;color:#409EFF">更多</span></a>
@@ -124,7 +124,9 @@ export default {
       },
       styleColHeiheht: {
         height: ''
-      }
+      },
+      refHeight: '',
+      halfHeight: ''
     }
   },
   components: {
@@ -141,9 +143,15 @@ export default {
     'ranking': ranking
   },
   mounted: function () {
-    var h = document.querySelector('.heightCol').offsetWidth
-    this.styleRowHeiheht.height = h * 2 + 10 + 'px'
-    this.styleColHeiheht.height = h + 'px'
+    // var h = document.querySelector('.heightCol').offsetWidth
+    // this.styleRowHeiheht.height = h * 2 + 10 + 'px'
+    // this.styleColHeiheht.height = h + 'px'
+    this.$nextTick(function () {
+      var _height = this.$store.state.contentHeight
+      this.refHeight = (_height - 10) + 'px'
+      this.halfHeight = (_height - 20) / 2 + 'px'
+      console.log(this.halfHeight)
+    })
   }
 }
 </script>

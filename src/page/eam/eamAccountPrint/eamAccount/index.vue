@@ -5,6 +5,7 @@
         <el-col :md="24">
           <div class="table-page-search-wrapper">
             <el-form label-position="right"
+                      size="small"
                      label-width="80px">
               <el-row :gutter="20">
                 <el-col :md="6"
@@ -12,7 +13,6 @@
                         :xs="24">
                   <el-form-item label="设备编号:">
                     <el-input v-model="queryParam.deviceNum"
-                              size="small"
                               ref="baseWidth" />
                   </el-form-item>
                 </el-col>
@@ -21,7 +21,7 @@
                         :xs="24">
                   <el-form-item label="设备名称:">
                     <el-input v-model="queryParam.deviceNum"
-                              size="small" />
+                             />
                   </el-form-item>
                 </el-col>
                 <el-col :md="6"
@@ -29,7 +29,7 @@
                         :xs="24">
                   <el-form-item label="负责人:">
                     <el-input v-model="queryParam.deviceName"
-                              size="small" />
+                               />
                   </el-form-item>
                 </el-col>
                 <el-col :md="6"
@@ -37,7 +37,6 @@
                         :xs="24">
                   <el-form-item label="启用日期:">
                     <el-date-picker v-model="queryParam.date"
-                                    size="small"
                                     style="width:100%;"
                                     placeholder="请输入启用日期" />
                   </el-form-item>
@@ -51,7 +50,6 @@
                     <el-select v-model="queryParam.useStatus"
                                clearable
                                style="width:100%"
-                               size="small"
                                placeholder="请选择">
                       <el-option value="0"
                                  label="全部"></el-option>
@@ -67,7 +65,7 @@
                         :xs="24">
                   <el-form-item label="生产厂家:">
                     <el-input v-model="queryParam.factoryName"
-                              size="small" />
+                               />
                   </el-form-item>
                 </el-col>
                 <el-col :md="6"
@@ -83,11 +81,26 @@
               </el-row>
             </el-form>
           </div>
+          <div class="operate">
+            <el-button type="primary"
+                        size="small"
+                       @click="handleAdd"
+                       icon="fa fa-plus pull-left">新增</el-button>
+            <el-button type="primary"
+            size="small"
+                       @click="handleDelete"
+                       icon="fa fa-trash-o pull-left">删除</el-button>
+            <el-button type="primary"
+            size="small"
+                       @click="handleExport"
+                       icon="fa fa-download pull-left">导出</el-button>
+          </div>
           <div class="table-list">
             <template>
               <el-table :data="tableData"
                         style="width: 100%"
-                        size="medium">
+                        border
+                        size="small">
                 <el-table-column type="index"
                                  width="50"
                                  fixed="left"></el-table-column>
@@ -156,10 +169,10 @@
                   <template slot-scope="scope">
                     <el-button @click="handleViewClick(scope.row)"
                                type="primary"
-                               size="mini">查看</el-button>
+                               :size="GlobalCss.buttonSize">查看</el-button>
                     <el-button type="warning"
                                @click="handleEditClick(scope.row)"
-                               size="mini">补全/纠错</el-button>
+                               :size="GlobalCss.buttonSize">编辑</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -195,7 +208,7 @@
   </div>
 </template>
 <script>
-import RepairRecord from './componet/repairRecord'
+import RepairRecord from '../../components/repairRecord'
 export default {
   components: {
     RepairRecord
@@ -289,10 +302,10 @@ export default {
     },
     handleViewClick: function (scope) {
       // 详情查看
-      this.$router.push({ name: '23' })
+      this.$router.push({ name: '23', params: { flag: 'view' } })
     },
     handleEditClick: function (scope) {
-      this.$router.push({ name: '22' })
+      this.$router.push({ name: '22', params: { flag: 'edit' } })
     },
     handleClick: function (tab, event) {
     },
@@ -301,11 +314,22 @@ export default {
     handleCurrentChange: function (val) {
       console.log(`当前页: ${val}`)
     },
-    // 保存编辑
-    saveEdit: function () {
-      this.editVisible = false
-      // this.$message.success(`修改第 ${this.idx + 1} 行成功`)
-      // this.$set(this.tableData, this.idx, this.form)
+    handleAdd () {
+      this.$router.push({ name: '22', params: { flag: 'edit' } })
+    },
+    handleExport () {
+      this.$message({
+        showClose: true,
+        message: '准备导出',
+        type: 'warning'
+      })
+    },
+    handleDelete () {
+      this.$message({
+        showClose: true,
+        message: '继续删除',
+        type: 'warning'
+      })
     }
   }
 }

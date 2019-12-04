@@ -1,6 +1,6 @@
 <template>
 <el-row type="flex" class="row-bg" justify="center">
-  <el-col :span="8" >
+  <el-col :span="12" >
   <div class="eamBasicData-wrapper" style="margin-top:30%;">
     <div class="header">设备基础信息数据库</div>
     <div class="container">

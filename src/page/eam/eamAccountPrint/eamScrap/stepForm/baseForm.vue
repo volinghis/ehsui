@@ -1,5 +1,5 @@
 <template>
-  <el-card :bordered="true" style="width:1300px;margin-left:220px;margin-top:100px;">
+  <el-card :bordered="true">
     <el-steps class="steps" :active="active" align-center finish-status="success">
       <el-step title="申请信息" />
       <el-step title="选择设备" />

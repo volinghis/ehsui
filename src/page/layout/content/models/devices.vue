@@ -2,17 +2,17 @@
   <div>
     <template v-for="(items,index) in datas">
     <el-row  :key="index">
-      <el-col :span="6">
+      <el-col :span="7">
         <span >{{items.name}}</span>
       </el-col>
-      <el-col :span="14">
+      <el-col :span="11">
          <el-progress :key="items.name"
                    :status="items.color"
                    :text-inside="true"
                    :stroke-width="16"
                    :percentage="items.score"></el-progress>
       </el-col>
-      <el-col :span="4">
+      <el-col :span="6">
         <a href="#"><span style="color: #409EFF">去补全</span></a>
       </el-col>
     </el-row>
