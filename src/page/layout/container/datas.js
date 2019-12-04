@@ -16,8 +16,8 @@ export default {
           header[i].style.paddingRight = boWidth + 'px'
         }
       }
-      document.querySelector('.el-main').style.paddingLeft = boWidth + 'px'
-      document.querySelector('.el-main').style.paddingRight = boWidth + 'px'
+      document.querySelector('.el-main').style.marginLeft = boWidth + 'px'
+      document.querySelector('.el-main').style.marginRight = boWidth + 'px'
     }
   },
   mounted () {
