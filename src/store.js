@@ -170,6 +170,24 @@ export default new Vuex.Store({
             { code: 'outWarehouseEdit', label: '新增出库', key: '341', path: '/eam/eamPartLibrary/outWarehouse/component/edit/index', component: '/eam/eamPartLibrary/outWarehouse/component/edit/index', leaf: true, business: true },
             { code: 'outWarehouseParam', label: '出库参数', key: '3411', path: '/eam/eamPartLibrary/outWarehouse/component/paramsTable/index', component: '/eam/eamPartLibrary/outWarehouse/component/paramsTable/index', leaf: true, business: true }
           ]
+        }, {
+          code: 'eamInspection',
+          label: '设备巡检',
+          key: '4',
+          icon: 'fa-bookmark-o',
+          path: '',
+          leaf: false,
+          children: [
+            {
+              code: 'eamInspectionTask',
+              label: '巡检任务',
+              key: '41',
+              path: '/eam/eamInspection/inspectionTask/index',
+              component: '/eam/eamInspection/inspectionTask/index',
+              leaf: true,
+              business: false
+            }
+          ]
         },
         {
           code: 'eamBasicDataManager',
