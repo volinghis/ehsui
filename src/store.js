@@ -53,7 +53,7 @@ export default new Vuex.Store({
           key: '2',
           path: '',
           leaf: false,
-          icon: 'fa-cubes',
+          icon: 'fa-gears',
           children: [
             {
               code: 'eamAccountPrintManager',
@@ -149,7 +149,7 @@ export default new Vuex.Store({
           label: '备件管理',
           key: '3',
           path: '',
-          icon: 'fa-ticket',
+          icon: 'fa-archive',
           leaf: false,
           children: [
 
@@ -174,7 +174,7 @@ export default new Vuex.Store({
           code: 'eamInspection',
           label: '设备巡检',
           key: '4',
-          icon: 'fa-bookmark-o',
+          icon: 'fa-wrench',
           path: '',
           leaf: false,
           children: [
@@ -182,6 +182,7 @@ export default new Vuex.Store({
               code: 'eamInspectionTask',
               label: '巡检任务',
               key: '41',
+              icon: 'fa-tasks',
               path: '/eam/eamInspection/inspectionTask/index',
               component: '/eam/eamInspection/inspectionTask/index',
               leaf: true,
