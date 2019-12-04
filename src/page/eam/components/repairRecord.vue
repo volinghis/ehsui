@@ -1,6 +1,8 @@
 <template>
   <div class="repair-record-container">
     <el-table :data="tableData"
+              border
+              size="small"
               style="width: 100%">
       <el-table-column type="index"
                        width="50"></el-table-column>
