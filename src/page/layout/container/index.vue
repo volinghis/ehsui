@@ -7,7 +7,7 @@
           <el-breadcrumb-item>{{this.$router.currentRoute.meta.title}}</el-breadcrumb-item>
         </el-breadcrumb>
         </el-header>
-        <el-main :style="{height:this.$store.state.clientHeight}"><router-view></router-view></el-main>
+        <el-main :style="{height:this.$store.state.contentHeight+'px'}"><router-view></router-view></el-main>
     </el-container>
   </el-container>
 
