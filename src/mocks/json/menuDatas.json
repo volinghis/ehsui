@@ -139,6 +139,25 @@
         "component": "/eam/eamInspection/inspectionTask/index",
         "leaf": true,
         "business": false
+      },
+      {
+        "code": "eamInspectionDetails",
+        "label": "巡检任务详情",
+        "key": "411",
+        "icon": "fa-tasks",
+        "path": "/eam/eamInspection/inspectionTask/component/details/index",
+        "component": "/eam/eamInspection/inspectionTask/component/details/index",
+        "leaf": true,
+        "business": true
+      },
+      {
+        "code": "eamInspectionParam",
+        "label": "设备列表",
+        "key": "412",
+        "path": "/eam/eamInspection/inspectionTask/component/paramsTable/index",
+        "component": "/eam/eamInspection/inspectionTask/component/paramsTable/index",
+        "leaf": true,
+        "business": true
       }
     ]
   },
