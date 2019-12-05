@@ -1,7 +1,7 @@
 [
   { "code": "home", "label": "首页", "key": "home", "path": "/home", "component": "/layout/content/portal", "leaf": true, "icon": "fa-home" },
   {
-    "code": "eamAccountManager",
+    "code": "eamLedgerManager",
     "label": "设备管理",
     "key": "2",
     "path": "",
@@ -9,28 +9,28 @@
     "icon": "fa-gears",
     "children": [
       {
-        "code": "eamAccountPrintManager",
+        "code": "eamLedgerManagerManager",
         "label": "设备台帐",
         "key": "21",
-        "path": "/eam/eamAccountPrint/eamAccount/index",
-        "component": "/eam/eamAccountPrint/eamAccount/index",
+        "path": "/eam/eamLedgerManager/eamLedger/index",
+        "component": "/eam/eamLedgerManager/eamLedger/index",
         "leaf": true
       },
       {
-        "code": "eamAccountPrintEdit",
+        "code": "eamLedgerManagerEdit",
         "label": "设备编辑",
         "key": "22",
-        "path": "/eam/eamAccountPrint/eamAccount/edit",
-        "component": "/eam/eamAccountPrint/eamAccount/edit",
+        "path": "/eam/eamLedgerManager/eamLedger/edit/index",
+        "component": "/eam/eamLedgerManager/eamLedger/edit/index",
         "leaf": true,
         "business": true
       },
       {
-        "code": "eamAccountPrintDetail",
+        "code": "eamLedgerManagerDetail",
         "label": "设备详情",
         "key": "23",
-        "path": "/eam/eamAccountPrint/eamAccount/details",
-        "component": "/eam/eamAccountPrint/eamAccount/details",
+        "path": "/eam/eamLedgerManager/eamLedger/details/index",
+        "component": "/eam/eamLedgerManager/eamLedger/details/index",
         "leaf": true,
         "business": true
       },
@@ -38,16 +38,16 @@
         "code": "eamScrapManager",
         "label": "设备报废",
         "key": "24",
-        "path": "/eam/eamAccountPrint/eamScrap/index",
-        "component": "/eam/eamAccountPrint/eamScrap/index",
+        "path": "/eam/eamLedgerManager/eamScrap/index",
+        "component": "/eam/eamLedgerManager/eamScrap/index",
         "leaf": true
       },
       {
         "code": "eamScrapBaseForm",
         "label": "报废步骤",
         "key": "241",
-        "path": "/eam/eamAccountPrint/eamScrap/stepForm/baseForm",
-        "component": "/eam/eamAccountPrint/eamScrap/stepForm/baseForm",
+        "path": "/eam/eamLedgerManager/eamScrap/stepForm/baseForm",
+        "component": "/eam/eamLedgerManager/eamScrap/stepForm/baseForm",
         "leaf": true,
         "business": true
       },
@@ -55,8 +55,8 @@
         "code": "eamScrapStep1",
         "label": "步骤一",
         "key": "2411",
-        "path": "/eam/eamAccountPrint/eamScrap/stepForm/step1",
-        "component": "/eam/eamAccountPrint/eamScrap/stepForm/step1",
+        "path": "/eam/eamLedgerManager/eamScrap/stepForm/step1",
+        "component": "/eam/eamLedgerManager/eamScrap/stepForm/step1",
         "leaf": true,
         "business": true
       },
@@ -64,8 +64,8 @@
         "code": "eamScrapStep2",
         "label": "步骤二",
         "key": "2412",
-        "path": "/eam/eamAccountPrint/eamScrap/stepForm/step2",
-        "component": "/eam/eamAccountPrint/eamScrap/stepForm/step2",
+        "path": "/eam/eamLedgerManager/eamScrap/stepForm/step2",
+        "component": "/eam/eamLedgerManager/eamScrap/stepForm/step2",
         "leaf": true,
         "business": true
       },
@@ -73,8 +73,8 @@
         "code": "eamScrapStep3",
         "label": "步骤三",
         "key": "2413",
-        "path": "/eam/eamAccountPrint/eamScrap/stepForm/step3",
-        "component": "/eam/eamAccountPrint/eamScrap/stepForm/step3",
+        "path": "/eam/eamLedgerManager/eamScrap/stepForm/step3",
+        "component": "/eam/eamLedgerManager/eamScrap/stepForm/step3",
         "leaf": true,
         "business": true
       },
@@ -82,8 +82,8 @@
         "code": "eamScrapStep4",
         "label": "步骤四",
         "key": "2414",
-        "path": "/eam/eamAccountPrint/eamScrap/stepForm/step4",
-        "component": "/eam/eamAccountPrint/eamScrap/stepForm/step4",
+        "path": "/eam/eamLedgerManager/eamScrap/stepForm/step4",
+        "component": "/eam/eamLedgerManager/eamScrap/stepForm/step4",
         "leaf": true,
         "business": true
       },
@@ -91,8 +91,8 @@
         "code": "eamAllocate",
         "label": "设备调拨",
         "key": "26",
-        "path": "/eam/eamAccountPrint/eamAllocate/index",
-        "component": "/eam/eamAccountPrint/eamAllocate/index",
+        "path": "/eam/eamLedgerManager/eamAllocate/index",
+        "component": "/eam/eamLedgerManager/eamAllocate/index",
         "leaf": true
       }
     ]
