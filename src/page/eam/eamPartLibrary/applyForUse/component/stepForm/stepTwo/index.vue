@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-divider content-position="left"><span style="font-size:xx-small;color:#409EFF;">备件信息</span></el-divider>
-    <el-form inline="inline" ref="form" :model="form" :rules="rules" label-position="right" label-width="90px" size="small">
+    <el-form inline="inline" ref="form" :model="form" :rules="rules" label-position="right" label-width="90px" :size="GlobalCss.buttonSize">
       <el-form-item label="备件名称:" prop="name">
         <el-input v-model="form.name" placeholder="请填写备件名称" ></el-input>
       </el-form-item>
@@ -17,18 +17,18 @@
     </el-form>
     <template>
       <el-table :data="tableData" border ref="multipleTable" class="tableHeight" :size="GlobalCss.controlSize">
-        <el-table-column type="selection"></el-table-column>
-        <el-table-column prop="code" label="备件编号"></el-table-column>
-        <el-table-column prop="name" label="备件名称"></el-table-column>
-        <el-table-column prop="type" label="备件类型"></el-table-column>
-        <el-table-column prop="model" label="备件型号"></el-table-column>
-        <el-table-column prop="norm" label="备件规格"></el-table-column>
+        <el-table-column type="selection" align="center"></el-table-column>
+        <el-table-column prop="code" label="备件编号" align="center"></el-table-column>
+        <el-table-column prop="name" label="备件名称" align="center"></el-table-column>
+        <el-table-column prop="type" label="备件类型" align="center"></el-table-column>
+        <el-table-column prop="model" label="备件型号" align="center"></el-table-column>
+        <el-table-column prop="norm" label="备件规格" align="center"></el-table-column>
       </el-table>
     </template>
     <el-divider></el-divider>
     <div style="text-align:center;">
-      <el-button @click="prevStep" style="margin:10px;">上一步</el-button>
-      <el-button type="primary" @click="nextStep(form)" style="margin:10px;">下一步</el-button>
+      <el-button @click="prevStep" style="margin:10px;" :size="GlobalCss.buttonSize">上一步</el-button>
+      <el-button type="primary" @click="nextStep(form)" style="margin:10px;" :size="GlobalCss.buttonSize">下一步</el-button>
     </div>
   </div>
 </template>

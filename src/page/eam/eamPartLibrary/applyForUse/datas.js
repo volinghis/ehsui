@@ -1,4 +1,8 @@
+import details from './component/details/index.vue'
 export default {
+  component: {
+    'details': details
+  },
   methods: {
     handleAdd: function () {
       this.$router.push({ name: '331' })

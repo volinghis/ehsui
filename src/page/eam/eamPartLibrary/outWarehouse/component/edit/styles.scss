@@ -1,11 +1,18 @@
+.item-block {
+  margin-bottom: 22 px;
+  margin:10px 0;
+  span {
+    font-size: 14px;
+  }
+}
 .el-form--label-top .el-form-item__label{
   padding:0 0 0px;
 }
 .el-form-item {
   margin-bottom: 10px;
 }
-.el-textarea {
-  padding:0 10px;
+.tableHeight{
+  margin-top: 10px;
 }
 .el-dialog__footer{
   text-align: center;
@@ -15,6 +22,6 @@
 }
 .formWidth {
   position: relative;
-  width: 70%;
-  left: 15%;
+  width: 80%;
+  left: 10%;
 }

@@ -4,13 +4,10 @@ export default {
       this.$router.push({ name: '341' })
     },
     handleClick: function (row) {
-      this.$router.push({ name: 'partDetails' })
+      this.$router.push({ name: '341' })
     },
     handleEdit: function (row) {
-      this.$router.push({ name: 'partEdit' })
-    },
-    toggleAdvanced: function () {
-      this.advanced = !this.advanced
+      this.$router.push({ name: '341' })
     },
     handleSizeChange: function (val) {
       this.$message({

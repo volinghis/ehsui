@@ -59,8 +59,8 @@ export default {
   }
   .cardStyle{
     position: relative;
-    width: 60%;
-    left: 20%;
+    width: 80%;
+    left: 10%;
     top:10%;
   }
 </style>

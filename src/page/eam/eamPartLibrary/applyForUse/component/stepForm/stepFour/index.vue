@@ -8,8 +8,8 @@
     </div><br>
     <el-divider></el-divider>
     <div>
-      <el-button type="primary" @click="finish">继续添加</el-button>
-      <el-button type="primary" @click="over">完成</el-button>
+      <el-button type="primary" @click="finish" :size="GlobalCss.buttonSize">继续添加</el-button>
+      <el-button type="primary" @click="over" :size="GlobalCss.buttonSize">完成</el-button>
     </div>
   </div>
 </template>

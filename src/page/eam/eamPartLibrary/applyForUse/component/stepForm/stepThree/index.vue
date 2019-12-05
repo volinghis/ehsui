@@ -2,28 +2,35 @@
   <div>
     <el-divider content-position="left"><span style="font-size:xx-small;color:#409EFF;">审批人信息</span></el-divider>
     <template>
-      <el-form :model="emaPartLibrary" :rules="rules" ref="emaPartLibrary" status-icon class="table" label-width="100px" size="small">
+      <el-form :model="emaPartLibrary" :rules="rules" ref="emaPartLibrary" status-icon class="table" label-width="100px" :size="GlobalCss.buttonSize">
         <el-form-item label="负责人：" prop="principal">
           <el-cascader v-model="emaPartLibrary.principal" :options="options" :props="{ expandTrigger: 'hover' }" @change="handleChange" filterable  placeholder="试试搜索：指南"></el-cascader>
+          <!-- <user  v-model="emaPartLibrary.principal"></user> -->
         </el-form-item>
         <el-form-item label="主管：" prop="generalManager">
           <el-cascader v-model="emaPartLibrary.generalManager" :options="options" :props="{ expandTrigger: 'hover' }" @change="handleChange" filterable  placeholder="试试搜索：指南"></el-cascader>
+          <!-- <user v-model="emaPartLibrary.generalManager"></user> -->
         </el-form-item>
         <el-form-item label="库管：" prop="warehouseManager">
           <el-cascader v-model="emaPartLibrary.warehouseManager" :options="options" :props="{ expandTrigger: 'hover' }" @change="handleChange" filterable  placeholder="试试搜索：指南"></el-cascader>
+          <!-- <user v-model="emaPartLibrary.warehouseManager" ></user> -->
         </el-form-item>
       </el-form>
     </template>
     <el-divider></el-divider>
     <div style="text-align:center;">
-      <el-button @click="prevStep" style="margin:10px;">上一步</el-button>
-      <el-button type="primary" @click="nextStep(emaPartLibrary)" style="margin:10px;">提交</el-button>
+      <el-button @click="prevStep" style="margin:10px;" :size="GlobalCss.buttonSize">上一步</el-button>
+      <el-button type="primary" @click="nextStep(emaPartLibrary)" style="margin:10px;" :size="GlobalCss.buttonSize">提交</el-button>
     </div>
   </div>
 </template>
 <script>
+// import user from '@components/org/user-selector/index.vue'
 export default {
   name: 'partStepOne',
+  components: {
+    // 'user': user
+  },
   data () {
     return {
       emaPartLibrary: {

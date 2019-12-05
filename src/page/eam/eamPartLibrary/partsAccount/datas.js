@@ -44,10 +44,7 @@ export default {
   data () {
     return {
       htable: ' ',
-      fit: 'cover',
-      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      srcList: ['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-      currentPage1: 1,
+      currentPage: 1,
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -61,19 +58,21 @@ export default {
         { color: '#6f7ad3', percentage: 100 }
       ],
       tableData: [{
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'FM-0001',
         name: '阀门',
         completion: 80,
         type: '阀门',
         model: '阀门',
         norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
+        brand: '上海市普陀牌阿萨大大大大',
         warehouse: '1号仓库',
         unit: '个',
         price: '100',
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -87,6 +86,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -100,6 +100,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -113,6 +114,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -126,6 +128,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -139,6 +142,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -152,6 +156,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -165,6 +170,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -178,6 +184,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0001',
         name: '锅炉',
         completion: 20,
@@ -191,6 +198,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'QYFM-0001',
         name: '气压阀门',
         completion: 60,
@@ -204,6 +212,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'FDJ-0001',
         name: '发电机',
         completion: 100,
@@ -217,6 +226,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'FM-0002',
         name: '阀门',
         completion: 70,
@@ -230,6 +240,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'FM-0002',
         name: '阀门',
         completion: 70,
@@ -243,6 +254,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'FM-0002',
         name: '阀门',
         completion: 70,
@@ -256,6 +268,7 @@ export default {
         amount: '56',
         warningValue: '10'
       }, {
+        deviceImg: 'https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg',
         code: 'GL-0002',
         name: '锅炉',
         completion: 90,

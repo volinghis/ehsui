@@ -10,9 +10,9 @@ export default {
     return {
       form: {
         deviceName: '',
-        deviceNum: '',
-        deviceTree: '',
-        runDate: '',
+        deviceCode: '',
+        materialCode: '',
+        materialType: '',
         factoryName: '',
         person: '',
         textarea: ''
@@ -22,10 +22,16 @@ export default {
           { required: true, message: '请输入设备名称', trigger: 'blur' }
         ],
         deviceModel: [
-          { required: true, message: '请输入设备型号', trigger: 'change' }
+          { required: true, message: '请输入设备型号', trigger: 'blur' }
+        ],
+        materialCode: [
+          { required: true, message: '请输入物资编码', trigger: 'blur' }
+        ],
+        materialType: [
+          { required: true, message: '请输入物资类别', trigger: 'blur' }
         ],
         person: [
-          { required: true, message: '请输入创建人', trigger: 'change' }
+          { required: true, message: '请输入创建人', trigger: 'blur' }
         ]
       },
       fileList: [
