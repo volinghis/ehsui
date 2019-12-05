@@ -1,21 +1,17 @@
 <template>
   <div class="table-wrapper">
     <div>
-      <el-form :inline="true"
-               label-width="80px">
+      <el-form :inline="true" label-width="80px" :size="GlobalCss.buttonSize">
         <el-form-item label="设备编号:">
-          <el-input v-model="queryParam.deviceNum"
-                    size="small" />
+          <el-input v-model="queryParam.deviceNum"/>
         </el-form-item>
         <el-form-item label="设备名称:">
-          <el-input v-model="queryParam.deviceNum"
-                    size="small" />
+          <el-input v-model="queryParam.deviceNum"/>
         </el-form-item>
-        <el-button type="primary"
-                   size="small"
+        <el-button type="primary" :size="GlobalCss.buttonSize"
                    @click="$refs.table.refresh(true)"
                    icon="el-icon-search">查询</el-button>
-        <el-button size="small"
+        <el-button :size="GlobalCss.buttonSize"
                    @click="() => (queryParam = {})">重置</el-button>
       </el-form>
     </div>
@@ -24,33 +20,20 @@
                 style="width: 100%"
                 border
                 :size="GlobalCss.controlSize">
-        <!-- <el-table-column type="index"
-                           width="50"></el-table-column> -->
         <el-table-column type="selection"
-                         width="50"> </el-table-column>
+                         width="50" align="center"> </el-table-column>
         <el-table-column prop="deviceNum"
-                         label="设备编号"></el-table-column>
+                         label="设备编号" align="center"></el-table-column>
         <el-table-column prop="deviceName"
-                         label="设备名称"></el-table-column>
+                         label="设备名称" align="center"></el-table-column>
         <el-table-column prop="installLocation"
-                         label="类型"></el-table-column>
+                         label="类型" align="center"></el-table-column>
         <el-table-column prop="deviceModel"
-                         label="型号"></el-table-column>
+                         label="型号" align="center"></el-table-column>
         <el-table-column prop="brand"
-                         width="100"
-                         label="品牌"></el-table-column>
-        <el-table-column align="center"
-                         width="160"
-                         label="操作">
-          <template slot-scope="scope">
-            <el-button @click="handleViewClick(scope.row)"
-                       type="primary"
-                       size="mini">查看</el-button>
-            <el-button type="warning"
-                       @click="handleEditClick(scope.row)"
-                       size="mini">编辑</el-button>
-          </template>
-        </el-table-column>
+                         label="品牌" align="center"></el-table-column>
+        <el-table-column prop="position"
+                         label="位置" align="center"></el-table-column>
       </el-table>
     </div>
     <div class="pagination"
@@ -60,7 +43,8 @@
                      :current-page="1"
                      :page-size="10"
                      :total="100"
-                     @current-change="handlePageChange"></el-pagination>
+                     @current-change="handlePageChange">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -77,7 +61,8 @@ export default {
           installLocation: '锅炉专业',
           deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          brand: '西安东恒'
+          brand: '西安东恒',
+          position: '一号机组'
         },
         {
           deviceNum: '2019100001',
@@ -85,7 +70,8 @@ export default {
           installLocation: '锅炉专业',
           deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          brand: '西安东恒'
+          brand: '西安东恒',
+          position: '一号机组'
         },
         {
           deviceNum: '2019100001',
@@ -93,7 +79,8 @@ export default {
           installLocation: '锅炉专业',
           deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          brand: '西安东恒'
+          brand: '西安东恒',
+          position: '一号机组'
         },
         {
           deviceNum: '2019100001',
@@ -101,7 +88,8 @@ export default {
           installLocation: '锅炉专业',
           deviceModel: '6314-2RS',
           purchaseTime: '2016-05-02',
-          brand: '西安东恒'
+          brand: '西安东恒',
+          position: '一号机组'
         }
       ]
     }
