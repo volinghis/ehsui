@@ -14,8 +14,9 @@
   </nav>
   </div>
     <div class="topright">
-      <i class='fa fa-user fa-2x'></i><span class="userFont">{{sessionUser.username}}({{sessionUser.account}})</span><br>
-      <span @click="logout()"><i class='fa fa-power-off fa-2x'></i></span></div>
+      <i class='fa fa-user fa-1x'></i><span class="userFont">{{sessionUser.username}}({{sessionUser.account}})</span>
+      <br>
+      <span @click="logout()"><i class='fa fa-power-off fa-3x'></i></span></div>
   </div>
 </template>
 <script>
