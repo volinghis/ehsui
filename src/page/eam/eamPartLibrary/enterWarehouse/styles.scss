@@ -14,6 +14,16 @@
 .pageHeight{
   text-align:right;
 }
-span.el-pagination__sizes {
-  margin-right: 30px !important;
+/deep/.el-pagination__sizes {
+  margin-right: 30px;
+}
+/deep/.el-input-group__append {
+  background-color: #409EFF;
+  border: 1px solid #409EFF;
+}
+/deep/.el-icon-search{
+  color: #ffffff;
+}
+.pageHeight{
+  margin-top: 5px;
 }

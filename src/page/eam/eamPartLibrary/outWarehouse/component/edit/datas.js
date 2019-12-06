@@ -1,7 +1,11 @@
-import paramsTable from '../paramsTable/index.vue'
+// import paramsTable from '../paramsTable/index.vue'
+import addPart from '../../../../components/addPart/index.vue'
+import tablePart from '../../../../components/tablePart/index.vue'
 export default {
   components: {
-    'paramsTable': paramsTable
+    // 'paramsTable': paramsTable,
+    'tablePart': tablePart,
+    'addPart': addPart
   },
   data () {
     return {

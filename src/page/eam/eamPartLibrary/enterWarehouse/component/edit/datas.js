@@ -1,7 +1,9 @@
-import paramsTable from '../paramsTable/index.vue'
+import tablePart from '../../../../components/tablePart/index.vue'
+import addPart from '../../../../components/addPart/index.vue'
 export default {
   components: {
-    'paramsTable': paramsTable
+    'tablePart': tablePart,
+    'addPart': addPart
   },
   data () {
     return {
@@ -18,11 +20,11 @@ export default {
         leaveFactoryDate: '',
         remark: ''
       },
-      partForm: {
-        name: '',
-        code: '',
-        type: ''
-      },
+      // partForm: {
+      //   name: '',
+      //   code: '',
+      //   type: ''
+      // },
       rules: {
         warehouseName: [
           { required: true, message: '请输入设备名称', trigger: 'blur' }
@@ -31,117 +33,117 @@ export default {
           { required: true, message: '请选择入库类型', trigger: 'blur' }
         ],
         supplier: [
-          { required: true, message: '请输入设备型号', trigger: 'blur' }
+          { required: true, message: '请输入供应商', trigger: 'blur' }
         ],
         principal: [
-          { required: true, message: '请输入经办人', trigger: 'change' }
+          { required: true, message: '请输入入库人', trigger: 'blur' }
         ]
-      },
-      tableData: [{
-        code: 'FM-0001',
-        name: '阀门',
-        completion: 80,
-        type: '阀门',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }, {
-        code: 'GL-0001',
-        name: '锅炉',
-        completion: 20,
-        type: '锅炉',
-        model: '阀门',
-        norm: 'FM_0001_01',
-        brand: '上海市普陀牌',
-        warehouse: '1号仓库',
-        unit: '个',
-        price: '100',
-        amount: '56',
-        warningValue: '10'
-      }]
+      }
+      // tableData: [{
+      //   code: 'FM-0001',
+      //   name: '阀门',
+      //   completion: 80,
+      //   type: '阀门',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }, {
+      //   code: 'GL-0001',
+      //   name: '锅炉',
+      //   completion: 20,
+      //   type: '锅炉',
+      //   model: '阀门',
+      //   norm: 'FM_0001_01',
+      //   brand: '上海市普陀牌',
+      //   warehouse: '1号仓库',
+      //   unit: '个',
+      //   price: '100',
+      //   amount: '56',
+      //   warningValue: '10'
+      // }]
     }
   },
   methods: {

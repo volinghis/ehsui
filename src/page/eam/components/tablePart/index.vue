@@ -25,35 +25,7 @@
       :total="100">
     </el-pagination>
     <el-drawer title="备件编辑" :visible.sync="drawer" :direction="direction" :before-close="handleClose">
-      <div style="margin-right:20px;">
-        <el-form :model="form" :rules="rules" :size="GlobalCss.buttonSize" ref="form" label-width="100px">
-          <el-form-item label="备件编号：">
-            <el-input v-model="form.code"></el-input>
-          </el-form-item>
-          <el-form-item label="备件名称：">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="备件型号：">
-            <el-input v-model="form.type"></el-input>
-          </el-form-item>
-          <el-form-item label="备件类型：">
-            <el-input v-model="form.type"></el-input>
-          </el-form-item>
-          <el-form-item label="数量：" prop="amount">
-            <el-input v-model="form.amount"></el-input>
-          </el-form-item>
-          <el-form-item label="单价：" prop="price">
-            <el-input v-model="form.price"></el-input>
-          </el-form-item>
-          <el-form-item label="单位：" prop="unit">
-            <el-input v-model="form.unit"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('form')">提交</el-button>
-            <el-button @click="handleClose">取消</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
+      <editPart></editPart>
     </el-drawer>
   </div>
 </template>

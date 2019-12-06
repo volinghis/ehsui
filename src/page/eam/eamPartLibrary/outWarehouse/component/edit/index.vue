@@ -19,7 +19,7 @@
               <el-input v-model="form.factoryName"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="8">z
             <el-form-item label="出库编码：" prop="warehouseCode">
               <el-input v-model="form.warehouseCode" placeholder="不用填写，系统自动生成"></el-input>
             </el-form-item>
@@ -33,13 +33,12 @@
             <el-input type="textarea" :autosize="{ minRows: 3, maxRows: 6}" placeholder="请输入内容" v-model="form.remark" maxlength="300" show-word-limit></el-input>
           </el-form-item>
         </el-row>
-        <el-row>
-            <el-button type="primary" icon="el-icon-plus" class="buttonHeight" :size="GlobalCss.buttonSize" @click="dialogVisible = true">添加备件</el-button>
-        </el-row>
       </div>
+      <el-button type="primary" icon="el-icon-plus" class="buttonHeight" :size="GlobalCss.buttonSize" @click="dialogVisible = true">添加备件</el-button>
       <!--添加备件-->
       <div class="tableHeight" :style="{height:tableHeight}">
-        <params-table></params-table>
+        <!-- <params-table></params-table> -->
+        <tablePart></tablePart>
       </div>
       <div style="text-align: center; padding:10px" class="submitHeight">
         <el-button type="primary" @click="submitForm('form')" :size="GlobalCss.buttonSize">提&nbsp;&nbsp;交</el-button>
@@ -48,38 +47,13 @@
     </el-form>
     <el-dialog title="添加备件" :visible.sync="dialogVisible" width="50%" :before-close="handleClose">
       <div style="text-align:center;">
-        <el-form :model="partForm" inline="inline" :size="GlobalCss.controlSize">
-          <el-row>
-            <el-form-item label="备件名称：" prop="name">
-              <el-input v-model="partForm.name"></el-input>
-            </el-form-item>
-            <el-form-item label="备件编号：" prop="code">
-              <el-input v-model="partForm.code"></el-input>
-            </el-form-item>
-            <el-form-item label="备件类型：" prop="type">
-              <el-input v-model="partForm.type"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="search('partForm')" style="margin-left: 15px;">搜索</el-button>
-            </el-form-item>
-          </el-row>
-          <template>
-            <el-table :data="tableData" border ref="multipleTable" :size="GlobalCss.controlSize">
-              <el-table-column type="selection" align="center"> </el-table-column>
-              <el-table-column prop="code" label="备件编号" align="center"> </el-table-column>
-              <el-table-column prop="name" label="备件名称" align="center"> </el-table-column>
-              <el-table-column prop="type" label="备件类型" align="center"> </el-table-column>
-              <el-table-column prop="model" label="备件型号" align="center"> </el-table-column>
-              <el-table-column prop="norm" label="备件规格" align="center"> </el-table-column>
-            </el-table>
-          </template>
-          <div style="margin: 10px;text-align:center;">
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="dialogVisible = false" :size="GlobalCss.buttonSize">取 消</el-button>
-              <el-button type="primary" @click="dialogVisible = false" :size="GlobalCss.buttonSize">确 定</el-button>
-            </span>
-          </div>
-        </el-form>
+        <addPart></addPart>
+        <div style="margin: 10px;text-align:center;">
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false" :size="GlobalCss.buttonSize">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false" :size="GlobalCss.buttonSize">确 定</el-button>
+          </span>
+        </div>
       </div>
     </el-dialog>
   </div>

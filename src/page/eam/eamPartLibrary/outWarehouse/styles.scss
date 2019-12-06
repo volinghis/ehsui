@@ -1,12 +1,6 @@
-.el-table th>.cell{
-  text-align: center;
+/deep/.el-pagination__sizes {
+  margin-right: 30px;
 }
-.el-table td div {
-  text-align: center;
-}
-/* .el-pagination{
-  padding: 5px 0px;
-} */
 .el-card__body{
   padding: 10px;
 }
@@ -16,4 +10,11 @@
 }
 .pageHeight{
   margin-top: 5px;
+}
+/deep/.el-input-group__append {
+  background-color: #409EFF;
+  border: 1px solid #409EFF;
+}
+/deep/.el-icon-search{
+  color: #ffffff;
 }

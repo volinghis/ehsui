@@ -12,7 +12,7 @@
              <span v-else>{{scope.row[item.prop]}}</span>
            </template>
          </el-table-column>
-         <el-table-column label="操作" width="170">
+         <el-table-column label="操作" width="170" align="center">
            <template slot-scope="scope">
               <span class="el-tag el-tag--success el-tag--mini" style="cursor: pointer;" @click.stop="saveRow(scope.row,scope.$index)">
                  <!-- {{scope.row.isSet?'保存':"修改"}} -->保存
@@ -28,7 +28,7 @@
        </el-table>
      </el-col>
      <el-col :span="24">
-       <div class="el-table-add-row" style="width: 100%;color:#409EFF" @click="add()"><span>+ 添加</span></div>
+       <div class="el-table-add-row" style="width: 100%;color:#409EFF" @click="add()"><span>+ 添加参数</span></div>
      </el-col>
    </el-row>
    <!-- <span>{{master_user.data}}</span> -->

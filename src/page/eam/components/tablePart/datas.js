@@ -1,4 +1,9 @@
+// import editPart from '../editPart/index.vue'
+import editPart from '../editPart/index.vue'
 export default {
+  components: {
+    'editPart': editPart
+  },
   mounted: function () {
     var hdiv = document.querySelector('.divHeight').offsetHeight
     var hsubmiit = document.querySelector('.submitHeight').offsetHeight
@@ -44,7 +49,7 @@ export default {
         .then(_ => {
           done()
         })
-        .catch(_ => {})
+        .catch(_ => { })
     },
     getSummaries: function (param) {
       const { columns, data } = param
@@ -78,28 +83,28 @@ export default {
       drawer: false,
       direction: 'rtl',
       currentPage: 1,
-      form: {
-        name: '',
-        code: '',
-        type: '',
-        price: '',
-        amount: '',
-        unit: ''
-      },
-      rules: {
-        price: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        unit: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        amount: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ]
-      },
+      // form: {
+      //   name: '',
+      //   code: '',
+      //   type: '',
+      //   price: '',
+      //   amount: '',
+      //   unit: ''
+      // },
+      // rules: {
+      //   price: [
+      //     { required: true, message: '请输入活动名称', trigger: 'blur' },
+      //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+      //   ],
+      //   unit: [
+      //     { required: true, message: '请输入活动名称', trigger: 'blur' },
+      //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+      //   ],
+      //   amount: [
+      //     { required: true, message: '请输入活动名称', trigger: 'blur' },
+      //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+      //   ]
+      // },
       tableData: [
         {
           id: '12987122',

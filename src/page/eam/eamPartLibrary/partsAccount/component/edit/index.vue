@@ -1,6 +1,6 @@
 <template>
   <div :style="{height:$store.state.contentHeight+'px',padding:'10px',background:'#fff'}" >
-    <el-card shadow="hover">
+    <el-card shadow="never">
     <el-form ref="form" :model="form" :rules="rules" inline="inline" label-position="right" label-width="80px" size="small">
       <el-row :gutter="20">
         <el-col :span="6" :sm="6" :xs="6">
@@ -136,10 +136,4 @@ export default datas
 </script>
 <style lang="scss" scoped>
 @import './styles.scss';
-</style>
-<style>
-.el-upload-dragger {
-  width: 290px;
-  height: 150px;
-}
 </style>
