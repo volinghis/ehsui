@@ -165,7 +165,7 @@
     "code": "eamBasicDataManager",
     "label": "基础数据管理",
     "key": "5",
-    "icon": "fa-bookmark-o",
+    "icon": "fa-database",
     "path": "",
     "leaf": false,
     "children": [
