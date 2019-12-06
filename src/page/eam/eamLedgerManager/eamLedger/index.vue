@@ -106,7 +106,8 @@
                                  align="center"
                                  width="100">
                   <template slot-scope="scope">
-                    <el-tag :type="scope.row.deviceStatus === '正常' ? 'primary' : 'success'"
+                    <el-tag
+                    :type="scope.row.deviceStatus === '正常' ? 'primary' : 'success'"
                             disable-transitions>{{scope.row.deviceStatus}}</el-tag>
                   </template>
                 </el-table-column>
@@ -144,7 +145,6 @@
                      style="text-align:right;margin-top:12px;">
                   <el-pagination background
                                  @size-change="handleSizeChange"
-                                 @current-change="handleCurrentChange"
                                  :current-page="currentPage"
                                  :page-size="pageSize"
                                  layout="total, prev, pager, next, jumper"
@@ -163,7 +163,7 @@
                @tab-click="handleClick">
         <el-tab-pane label="检修记录"
                      name="first">
-          <repair-record :currentRow="currentRow"></repair-record>
+          <repair-record :tableId="tableId"></repair-record>
         </el-tab-pane>
         <el-tab-pane label="关联备件"
                      name="second">关联备件</el-tab-pane>

@@ -14,7 +14,7 @@ export default {
       pageSize: 3,
       total: 0,
       tableData: [],
-      currentRow: null
+      tableId: ''
     }
   },
   mounted: function () {
@@ -49,7 +49,7 @@ export default {
     handleSizeChange: function () {
     },
     handleCurrentChange (val) {
-      this.currentRow = val
+      this.tableId = val.id
     },
     handleAdd () {
       this.$router.push({ name: '22', params: { flag: 'edit' } })

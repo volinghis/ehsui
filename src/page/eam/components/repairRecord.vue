@@ -2,7 +2,7 @@
   <div class="repair-record-container">
     <el-table :data="tableData"
               border
-              size="small"
+              size="mini"
               style="width: 100%">
       <el-table-column type="index"
                        width="50"></el-table-column>
@@ -30,28 +30,40 @@
 
 <script>
 export default {
+  props: ['tableId'],
+  created () {
+    this.initTable()
+  },
   data () {
     return {
       tableData: []
     }
   },
-  props: {
-    currentRow: Object
-  },
-  mounted: function () {
-    this.initTable()
+  watch: {
+    tableId: {
+      handler (val, oldVal) {
+        this.initTable()
+      }
+    }
   },
   methods: {
     initTable () {
-      // 获取关联设备参数
-      const { currentRow } = this
-      this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
-        if (currentRow !== null) {
-          console.log(currentRow)
-        } else {
+      // 获取关联设备参数(暂时mock)
+      if (this.tableId) {
+        this.tableData = []
+        this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
+          var temList = res.data
+          for (let index = 0; index < temList.length; index++) {
+            if (temList[index].refDevice === this.tableId) {
+              this.tableData.push(temList[index])
+            }
+          }
+        })
+      } else {
+        this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
           this.tableData = res.data
-        }
-      })
+        })
+      }
     }
   }
 }
