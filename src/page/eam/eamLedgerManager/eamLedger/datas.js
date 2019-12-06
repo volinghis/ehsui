@@ -13,7 +13,8 @@ export default {
       currentPage: 1,
       pageSize: 3,
       total: 0,
-      tableData: []
+      tableData: [],
+      currentRow: null
     }
   },
   mounted: function () {
@@ -47,8 +48,8 @@ export default {
     },
     handleSizeChange: function () {
     },
-    handleCurrentChange: function (val) {
-      console.log(`当前页: ${val}`)
+    handleCurrentChange (val) {
+      this.currentRow = val
     },
     handleAdd () {
       this.$router.push({ name: '22', params: { flag: 'edit' } })
@@ -84,7 +85,6 @@ export default {
     loadAll () {
       this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getSuggestions').then(res => {
         this.restaurants = res.data
-        console.log(res.data)
       })
     }
   }

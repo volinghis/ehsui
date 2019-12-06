@@ -44,7 +44,7 @@
       </el-col>
       <el-col :span="24">
         <div class="el-table-add-row"
-             style="width: 100%;color:#409EFF"
+             style="width: 100%;color:#409EFF;cursor:pointer;"
              @click="add()"><span>+ 添加设备参数</span></div>
       </el-col>
     </el-row>

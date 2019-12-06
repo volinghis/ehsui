@@ -68,7 +68,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.buttonSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -219,14 +219,14 @@
         </el-col>
       </el-row>
       <el-form-item style="text-align: center;">
-        <el-button size="small"
+        <el-button :size="GlobalCss.buttonSize"
                    type="warning"
                    @click="$router.go(-1)">返回</el-button>
-        <el-button size="small"
+        <el-button :size="GlobalCss.buttonSize"
                    type="primary"
                    @click="submitForm('form')">提交</el-button>
-        <el-button size="small"
-                   @click="resetForm('form')">重置</el-button>
+        <!-- <el-button size="small"
+                   @click="resetForm('form')">重置</el-button> -->
       </el-form-item>
     </el-form>
   </div>

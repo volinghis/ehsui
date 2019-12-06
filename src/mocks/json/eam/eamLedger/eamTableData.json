@@ -1,5 +1,6 @@
 [
-    {
+    { 
+      "id":"1001",
       "deviceImg": "https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg",
       "deviceNum": "2019100001",
       "deviceName": "锅炉",
@@ -16,6 +17,7 @@
       "deviceStatus": "正常"
     },
     {
+      "id":"1002",
       "deviceImg":
             "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
       "deviceNum": "2019100001",
@@ -33,6 +35,24 @@
       "deviceStatus": "正常"
     },
     {
+      "id":"1003",
+      "deviceImg": "https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg",
+      "deviceNum": "2019100001",
+      "deviceName": "汽机",
+      "complete": 50,
+      "factoryName": "上海辉腾设备公司",
+      "installLocation": "汽机专业",
+      "supplier": "西安宇辉",
+      "runDate": "2019-05-02",
+      "purchaseTime": "2016-05-02",
+      "warranty": "5年",
+      "repairFrequency": "1月",
+      "buyingPrice": "20万元",
+      "person": "张三丰",
+      "deviceStatus": "正常"
+    },
+    {
+      "id":"1004",
       "deviceImg": "https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg",
       "deviceNum": "2019100001",
       "deviceName": "锅炉",
@@ -49,28 +69,13 @@
       "deviceStatus": "正常"
     },
     {
+      "id":"1005",
       "deviceImg": "https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg",
       "deviceNum": "2019100001",
-      "deviceName": "锅炉",
+      "deviceName": "汽机",
       "complete": 50,
       "factoryName": "上海辉腾设备公司",
-      "installLocation": "锅炉专业",
-      "supplier": "西安宇辉",
-      "runDate": "2019-05-02",
-      "purchaseTime": "2016-05-02",
-      "warranty": "5年",
-      "repairFrequency": "1月",
-      "buyingPrice": "20万元",
-      "person": "张三丰",
-      "deviceStatus": "正常"
-    },
-    {
-      "deviceImg": "https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg",
-      "deviceNum": "2019100001",
-      "deviceName": "锅炉",
-      "complete": 50,
-      "factoryName": "上海辉腾设备公司",
-      "installLocation": "锅炉专业",
+      "installLocation": "汽机专业",
       "supplier": "西安宇辉",
       "runDate": "2019-05-02",
       "purchaseTime": "2016-05-02",

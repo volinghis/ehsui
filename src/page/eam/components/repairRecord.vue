@@ -32,35 +32,26 @@
 export default {
   data () {
     return {
-      tableData: [{
-        repairTime: '2016-05-02',
-        repairName: '2016第一次检修',
-        repairTeam: '热控一班',
-        repairNature: 'A级',
-        founder: '张三',
-        personLiable: '王小虎'
-      }, {
-        repairTime: '2016-05-02',
-        repairName: '2016第一次检修',
-        repairTeam: '热控一班',
-        repairNature: 'A级',
-        founder: '张三',
-        personLiable: '王小虎'
-      }, {
-        repairTime: '2016-05-02',
-        repairName: '2016第一次检修',
-        repairTeam: '热控一班',
-        repairNature: 'A级',
-        founder: '张三',
-        personLiable: '王小虎'
-      }, {
-        repairTime: '2016-05-02',
-        repairName: '2016第一次检修',
-        repairTeam: '热控一班',
-        repairNature: 'A级',
-        founder: '张三',
-        personLiable: '王小虎'
-      }]
+      tableData: []
+    }
+  },
+  props: {
+    currentRow: Object
+  },
+  mounted: function () {
+    this.initTable()
+  },
+  methods: {
+    initTable () {
+      // 获取关联设备参数
+      const { currentRow } = this
+      this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
+        if (currentRow !== null) {
+          console.log(currentRow)
+        } else {
+          this.tableData = res.data
+        }
+      })
     }
   }
 }
