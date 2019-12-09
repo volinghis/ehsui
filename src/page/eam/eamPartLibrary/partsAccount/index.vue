@@ -93,13 +93,13 @@
                          width="160"
                          align="center">
         </el-table-column>
-        <el-table-column prop="brand"
+        <el-table-column prop="ascriptionDevice"
                          label="归属设备"
                          width="120"
                          :show-overflow-tooltip="true"
                          align="center">
         </el-table-column>
-        <el-table-column prop="warehouse"
+        <el-table-column prop="materialCategory"
                          label="物资类别"
                          width="100"
                          align="center">
@@ -137,8 +137,8 @@
                          @size-change="handleSizeChange"
                          @current-change="handleCurrentChange"
                          :current-page.sync="currentPage"
-                         :page-sizes="[10, 20, 50]"
-                         :page-size="10"
+                         :page-sizes="[20]"
+                         :page-size="20"
                          layout="total, sizes, prev, pager, next, jumper"
                          :total="total">
           </el-pagination>

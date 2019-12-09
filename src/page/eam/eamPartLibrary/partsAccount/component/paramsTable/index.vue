@@ -2,7 +2,7 @@
 <div class="tableClass">
   <el-row>
      <el-col :span="24">
-       <el-table size="mini" :data="master_user.data" style="width: 100%" highlight-current-row>
+       <el-table size="mini" border :data="master_user.data" style="width: 100%" highlight-current-row>
          <el-table-column type="index" align="center"></el-table-column>
          <el-table-column v-for="(item,index) in master_user.columns" :label="item.label" :prop="item.prop" :width="item.width" :key="index" align="center">
            <template slot-scope="scope">
@@ -12,7 +12,7 @@
              <span v-else>{{scope.row[item.prop]}}</span>
            </template>
          </el-table-column>
-         <el-table-column label="操作" width="170" align="center">
+         <el-table-column label="操作" width="150" align="center">
            <template slot-scope="scope">
               <span class="el-tag el-tag--success el-tag--mini" style="cursor: pointer;" @click.stop="saveRow(scope.row,scope.$index)">
                  <!-- {{scope.row.isSet?'保存':"修改"}} -->保存

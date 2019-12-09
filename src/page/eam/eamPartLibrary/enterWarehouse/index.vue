@@ -71,7 +71,7 @@
                          label="入库类型"
                          width="100"
                          align="center"></el-table-column>
-        <el-table-column prop="model"
+        <el-table-column prop="supplier"
                          label="供应商"
                          width="120"
                          align="center"></el-table-column>
@@ -79,7 +79,7 @@
                          label="所在仓库"
                          width="100"
                          align="center"></el-table-column>
-        <el-table-column prop="unit"
+        <el-table-column prop="wareHousePerson"
                          label="入库人"
                          width="90"
                          align="center"></el-table-column>
@@ -110,7 +110,7 @@
                        :page-sizes="[10, 20, 50]"
                        :page-size="10"
                        layout="total, sizes, prev, pager, next, jumper"
-                       :total="100">
+                       :total="total">
         </el-pagination>
       </div>
     </template>

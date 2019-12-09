@@ -10,6 +10,9 @@
             <el-form-item label="领用部门：" prop="supplier">
               <el-input v-model="form.supplier"></el-input>
             </el-form-item>
+            <el-form-item label="创建时间：" prop="date">
+              <el-input v-model="form.date"></el-input>
+            </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="出库类型：" prop="inboundType">
@@ -18,8 +21,11 @@
             <el-form-item label="领用人：" prop="factoryName">
               <el-input v-model="form.factoryName"></el-input>
             </el-form-item>
+            <el-form-item label="创建人：" prop="person">
+              <el-input v-model="form.person" prefix-icon="el-icon-edit" placeholder="不用填写，系统自动生成"></el-input>
+            </el-form-item>
           </el-col>
-          <el-col :span="8">z
+          <el-col :span="8">
             <el-form-item label="出库编码：" prop="warehouseCode">
               <el-input v-model="form.warehouseCode" placeholder="不用填写，系统自动生成"></el-input>
             </el-form-item>

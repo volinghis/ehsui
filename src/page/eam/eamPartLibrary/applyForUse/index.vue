@@ -72,7 +72,12 @@
                          width="100"></el-table-column>
         <el-table-column prop="status"
                          align="center"
-                         label="申请状态"></el-table-column>
+                         label="申请状态">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.status === '申请中' ? 'danger' : 'success'"
+                    disable-transitions>{{scope.row.status}}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="remark"
                          align="center"
                          label="备注"
@@ -100,7 +105,7 @@
                        :page-sizes="[10, 20, 50]"
                        :page-size="10"
                        layout="total, sizes, prev, pager, next, jumper"
-                       :total="100">
+                       :total="total">
         </el-pagination>
       </div>
     </template>

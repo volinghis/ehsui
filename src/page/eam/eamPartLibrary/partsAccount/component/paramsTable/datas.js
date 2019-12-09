@@ -7,12 +7,12 @@ export default {
         columns: [{
           prop: 'paramName',
           label: '参数名称',
-          width: 150
+          width: 160
         },
         {
           prop: 'paramValue',
           label: '参数值',
-          width: 150
+          width: 160
         },
         {
           prop: 'date',

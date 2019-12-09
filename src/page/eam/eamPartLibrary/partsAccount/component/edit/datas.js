@@ -1,21 +1,27 @@
 import paramsTable from '../paramsTable/index.vue'
-import modifyRecord from '../modifyRecord/index.vue'
 export default {
-  name: 'eamAccountPrintEdit',
   components: {
-    'paramsTable': paramsTable,
-    'modifyRecord': modifyRecord
+    paramsTable
+  },
+  mounted () {
+    this.sessionUser = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
+    this.person = this.sessionUser.username
   },
   data () {
     return {
+      sessionUser: {},
+      person: '',
+      imageUrl: '',
       form: {
         deviceName: '',
         deviceCode: '',
+        deviceModel: '',
         materialCode: '',
         materialType: '',
         factoryName: '',
-        person: '',
-        textarea: ''
+        leaveCode: '',
+        leaveDate: '',
+        person: ''
       },
       rules: {
         deviceName: [
@@ -29,9 +35,6 @@ export default {
         ],
         materialType: [
           { required: true, message: '请输入物资类别', trigger: 'blur' }
-        ],
-        person: [
-          { required: true, message: '请输入创建人', trigger: 'blur' }
         ]
       },
       fileList: [
@@ -56,6 +59,10 @@ export default {
     submitForm: function (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+          // this.Axios.post(this.GlobalVars.globalServiceServlet + '/eam/eamPartsAccount/getList').then(res => {
+          //   console.info(this.formInline)
+          // })
+          console.info(this.form)
           alert('submit!')
         } else {
           console.log('error submit!!')
@@ -81,6 +88,17 @@ export default {
     },
     beforeRemove: function (file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
+    },
+    beforeAvatarUpload: function (file) {
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+      }
+      return isJPG && isLt2M
     }
   }
 }

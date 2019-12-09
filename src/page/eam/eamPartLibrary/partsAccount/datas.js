@@ -72,11 +72,7 @@ export default {
       htable: ' ',
       currentPage: 1,
       total: 0,
-      // 高级搜索 展开/关闭
-      advanced: false,
-      // 查询参数
       queryParam: {},
-      customColor: '#409eff',
       customColors: [
         { color: '#f56c6c', percentage: 20 },
         { color: '#e6a23c', percentage: 40 },

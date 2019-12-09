@@ -18,11 +18,11 @@
             <el-form-item label="入库类型：" prop="inboundType">
               <el-input v-model="form.inboundType"></el-input>
             </el-form-item>
-            <el-form-item label="入库人：" prop="principal">
-              <el-input v-model="form.principal"></el-input>
-            </el-form-item>
             <el-form-item label="出厂日期：" prop="leaveFactoryDate">
               <el-date-picker v-model="form.leaveFactoryDate" type="date" placeholder="请选择出厂日期" style="width:100%"></el-date-picker>
+            </el-form-item>
+            <el-form-item label="创建人：" prop="person">
+              <el-input v-model="form.person" placeholder="不用填写，系统自动生成"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -31,6 +31,9 @@
             </el-form-item>
             <el-form-item label="出厂编号：" prop="factoryCode">
               <el-input v-model="form.factoryCode"></el-input>
+            </el-form-item>
+            <el-form-item label="创建时间：" prop="date">
+              <el-input v-model="form.date" placeholder="不用填写，系统自动生成"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -43,8 +46,7 @@
       <el-button type="primary" icon="el-icon-plus" class="buttonHeight" :size="GlobalCss.buttonSize" @click="dialogVisible = true">添加备件</el-button>
       <!--备件表格-->
       <div class="tableHeight" :style="{height:tableHeight}">
-        <!-- <params-table></params-table> -->
-        <tablePart></tablePart>
+        <table-part></table-part>
       </div>
       <div style="text-align: center; padding:10px" class="submitHeight">
         <el-button type="primary" @click="submitForm('form')" :size="GlobalCss.buttonSize">提&nbsp;&nbsp;交</el-button>
@@ -53,7 +55,7 @@
     </el-form>
     <el-dialog title="添加备件" :visible.sync="dialogVisible" width="50%" :before-close="handleClose">
       <div style="text-align:center;">
-        <addPart></addPart>
+        <add-part></add-part>
         <div style="margin:10px;">
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false" :size="GlobalCss.buttonSize">取 消</el-button>
