@@ -11,7 +11,6 @@
           <el-table-column v-for="(item,index) in master_user.columns"
                            :label="item.label"
                            :prop="item.prop"
-                           :width="item.width"
                            :key="index"
                            align="center">
             <template slot-scope="scope">
@@ -60,23 +59,19 @@ export default {
         sel: null, // 选中行
         columns: [{
           prop: 'name',
-          label: '姓名',
-          width: 150
+          label: '姓名'
         },
         {
           prop: 'department',
-          label: '部门',
-          width: 150
+          label: '部门'
         },
         {
           prop: 'serveTime',
-          label: '担任时间',
-          width: 160
+          label: '担任时间'
         },
         {
           prop: 'departureTime',
-          label: '离任时间',
-          width: 160
+          label: '离任时间'
         },
         {
           prop: 'remark',

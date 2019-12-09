@@ -54,6 +54,10 @@
                                  align="center"
                                  label="设备名称"
                                  width="120"></el-table-column>
+                <el-table-column prop="deviceName"
+                                 align="center"
+                                 label="规格型号"
+                                 width="120"></el-table-column>
                 <el-table-column prop="complete"
                                  label="资料完整度"
                                  align="center"
@@ -75,6 +79,10 @@
                                  width="120"></el-table-column>
                 <el-table-column prop="installLocation"
                                  label="安装位置"
+                                 align="center"
+                                 width="120"></el-table-column>
+                <el-table-column prop="leaveDate"
+                                 label="出厂日期"
                                  align="center"
                                  width="120"></el-table-column>
                 <el-table-column prop="runDate"

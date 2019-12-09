@@ -1,14 +1,12 @@
 import ParamsTable from '../../../components/paramsTable'
 import PastInspectors from '../../../components/pastInspectors'
 import EamList from '../../../components/eamList'
-import userSelector from '@components/org/user-selector'
 export default {
   name: 'eamAccountPrintEdit',
   components: {
     ParamsTable,
     PastInspectors,
-    EamList,
-    userSelector
+    EamList
   },
   data () {
     return {
@@ -74,22 +72,20 @@ export default {
     }
   },
   mounted: function () {
+    const user = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
+    this.form.person = user.username
   },
   methods: {
     handleAvatarSuccess: function (res, file) {
-
     },
     submitForm: function (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('submit!')
+          console.log(this.$refs[formName].model)
         } else {
           return false
         }
       })
-    },
-    resetForm: function (formName) {
-      this.$refs['form'].resetFields()
     },
     handleRemove (file, fileList) {
     },

@@ -1,8 +1,7 @@
 import ParamsTable from '../../../components/paramsTable'
 import PastInspectors from '../../../components/pastInspectors'
 export default {
-  name: 'eamAccountPrintEdit',
-  refWidth: 0,
+  name: 'eamAccountPrintDetail',
   components: {
     paramsTable: ParamsTable,
     pastInspectors: PastInspectors
@@ -41,19 +40,11 @@ export default {
             'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
         }
       ],
-      eamInfos: [
-        { title: '设备名称', content: '1号增压风机冷却油泵电机' },
-        { title: '设备编码', content: 'SB12457854' },
-        { title: '设备型号', content: '1LE0003-0DA32-1AA4 1.1KW*2P*B3' },
-        { title: '出厂编号', content: '1LE0003-0DA32-1AA4' },
-        { title: '生产厂家', content: 'SIEMENS/西门子' },
-        { title: '出厂日期', content: '2018-06-20 12:41:50' },
-        { title: '投运日期', content: '2019-01-20 13:41:50' },
-        { title: '创建人', content: '张工' }
-      ]
+      eamInfos: {}
     }
   },
-  mounted: function () {
+  created: function () {
+    this.eamInfos = this.$route.params.data
   },
   methods: {
     handleAvatarSuccess: function (res, file) {

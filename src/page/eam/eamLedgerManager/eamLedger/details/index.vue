@@ -10,7 +10,7 @@
           <div class="item-block">
             <div class="item-title">设备图片</div>
             <el-image style="width: 150px; height: 150px"
-                      src="https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg"
+                      :src="eamInfos.deviceImg"
                       fit="fill"></el-image>
           </div>
           <!--检修质量标准-->
@@ -74,11 +74,11 @@
               <el-card>
                 <el-col :span="12">
                   <el-progress type="circle"
-                               :percentage="75"
+                               :percentage="eamInfos.complete"
                                :stroke-width="10"></el-progress>
                 </el-col>
                 <el-col :span="12">
-                  <p> 当前设备资料的完整度为75%，请尽快完善资料</p>
+                  <p> 当前设备资料的完整度为{{eamInfos.complete}}%，请尽快完善资料</p>
                 </el-col>
               </el-card>
             </el-row>
@@ -89,10 +89,29 @@
             <div class="item-title">设备基本信息</div>
             <div class="contents">
               <el-row>
-                <el-col :span="12"
-                        v-for="(item, index) in eamInfos"
-                        :key="index">
-                  <span class="info-title">{{ item.title }}</span>:&nbsp;<span class="info-content">{{ item.content }}</span>
+                <el-col :span="12">
+                  <span class="info-title">设备名称</span>:&nbsp;<span class="info-content">{{ eamInfos.deviceName }}</span>
+                   </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">设备编码</span>:&nbsp;<span class="info-content">{{ eamInfos.deviceNum }}</span>
+                  </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">设备型号</span>:&nbsp;<span class="info-content">{{ eamInfos.deviceModel }}</span>
+                  </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">出厂编号</span>:&nbsp;<span class="info-content">{{ eamInfos.leaveNum }}</span>
+                  </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">生产厂家</span>:&nbsp;<span class="info-content">{{ eamInfos.factoryName }}</span>
+                  </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">出厂日期</span>:&nbsp;<span class="info-content">{{ eamInfos.leaveDate }}</span>
+                  </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">投运日期</span>:&nbsp;<span class="info-content">{{ eamInfos.runDate }}</span>
+                  </el-col>
+                  <el-col :span="12">
+                  <span class="info-title">创建人:</span>:&nbsp;<span class="info-content">{{ eamInfos.person }}</span>
                 </el-col>
              </el-row>
             </div>

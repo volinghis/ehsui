@@ -131,17 +131,17 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="设备编码"
-                            prop="deviceName">
-                <el-input v-model="form.deviceName"
+                            prop="deviceNum">
+                <el-input v-model="form.deviceNum"
                           placeholder="不用填写，系统自动生成"></el-input>
               </el-form-item>
               <el-form-item label="出厂编号"
-                            prop="factoryName">
-                <el-input v-model="form.factoryName"></el-input>
+                            prop="leaveNum">
+                <el-input v-model="form.leaveNum"></el-input>
               </el-form-item>
               <el-form-item label="创建人"
                             prop="person">
-                <user-selector style="width:100%;" v-model="form.person" @change="handlechange"></user-selector>
+               <el-input v-model="form.person"></el-input>
               </el-form-item>
             </el-col>
           </el-row>

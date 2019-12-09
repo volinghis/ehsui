@@ -11,7 +11,7 @@ export default {
       restaurants: [],
       activeName: 'first',
       currentPage: 1,
-      pageSize: 3,
+      pageSize: 10,
       total: 0,
       tableData: [],
       tableId: ''
@@ -39,7 +39,8 @@ export default {
     },
     handleViewClick: function (scope) {
       // 详情查看
-      this.$router.push({ name: '23', params: { flag: 'view' } })
+      console.log(scope)
+      this.$router.push({ name: '23', params: { flag: 'view', data: scope } })
     },
     handleEditClick: function (scope) {
       this.$router.push({ name: '22', params: { flag: 'edit' } })

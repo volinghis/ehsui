@@ -3,12 +3,12 @@
     <el-row>
       <el-col :span="24">
         <el-table size="mini"
-                  :data="master_user.data"
+                  :data="eam_params.data"
                   style="width: 100%"
                   highlight-current-row>
           <el-table-column type="index"
                            align="center"></el-table-column>
-          <el-table-column v-for="(item,index) in master_user.columns"
+          <el-table-column v-for="(item,index) in eam_params.columns"
                            :label="item.label"
                            :prop="item.prop"
                            :width="item.width"
@@ -18,7 +18,7 @@
               <span v-if="scope.row.isSet">
                 <el-input size="mini"
                           placeholder="请输入内容"
-                          v-model="master_user.sel[item.prop]"></el-input>
+                          v-model="eam_params.sel[item.prop]"></el-input>
               </span>
               <span v-else>{{scope.row[item.prop]}}</span>
             </template>
@@ -27,15 +27,15 @@
                            width="170">
             <template slot-scope="scope">
               <el-button type="text"
-                         @click.stop="saveRow(scope.row,scope.$index)">
-                <!-- {{scope.row.isSet?'保存':"修改"}} -->保存
+                         @click.stop="saveRow(scope.row,scope.$index)" v-if="scope.row.isSet">保存
+               <!-- {{scope.row.isSet?'保存':"修改"}} -->
               </el-button>
               <el-button type="text"
                          @click="editRow(scope.row,scope.$index)">
                 编辑
               </el-button>
               <el-button type="text"
-                         @click="deleteRow(scope.$index,master_user.data)">
+                         @click="deleteRow(scope.$index,eam_params.data)">
                 删除
               </el-button>
             </template>
@@ -56,7 +56,7 @@ export default {
   name: '',
   data () {
     return {
-      master_user: {
+      eam_params: {
         sel: null, // 选中行
         columns: [{
           prop: 'paramName',
@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     add () {
-      for (let i of this.master_user.data) {
+      for (let i of this.eam_params.data) {
         if (i.isSet) return this.$message.warning('请先保存当前编辑项')
       }
       let j = {
@@ -94,21 +94,21 @@ export default {
         'remark': '',
         'isSet': true
       }
-      this.master_user.data.push(j)
-      this.master_user.sel = JSON.parse(JSON.stringify(j))
+      this.eam_params.data.push(j)
+      this.eam_params.sel = JSON.parse(JSON.stringify(j))
     },
     saveRow (row, index) { // 保存
-      let data = JSON.parse(JSON.stringify(this.master_user.sel))
+      let data = JSON.parse(JSON.stringify(this.eam_params.sel))
       for (let k in data) {
         row[k] = data[k] // 将sel里面的value赋值给这一行。ps(for....in..)的妙用，细心的同学发现这里我并没有循环对象row
       }
       row.isSet = false
     },
     editRow (row) { // 编辑
-      for (let i of this.master_user.data) {
+      for (let i of this.eam_params.data) {
         if (i.isSet) return this.$message.warning('请先保存当前编辑11项')
       }
-      this.master_user.sel = row
+      this.eam_params.sel = row
       row.isSet = true
     },
     deleteRow (index, rows) { // 删除
@@ -135,18 +135,4 @@ export default {
   margin-bottom: 10px;
   text-align: center;
 }
-// .el-table th>.cell{
-//   text-align: center;
-// }
-// .el-table td div {
-//   text-align: center;
-// }
-// .buttonAdd{
-//   float: left;
-//   margin-top: 10px;
-//   margin-bottom: 3px;
-// }
-// // .item-block span {
-// //   font-weight: bold;
-// // }
 </style>
