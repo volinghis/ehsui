@@ -48,16 +48,9 @@ export default {
   },
   methods: {
     initTable () {
-      // 获取关联设备参数(暂时mock)
       if (this.tableId) {
-        this.tableData = []
         this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
-          var temList = res.data
-          for (let index = 0; index < temList.length; index++) {
-            if (temList[index].refDevice === this.tableId) {
-              this.tableData.push(temList[index])
-            }
-          }
+          this.tableData = res.data.filter(data => data.refDevice === this.tableId)
         })
       } else {
         this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
