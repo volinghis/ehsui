@@ -14,8 +14,8 @@
       </el-form>
     </template>
     <div style="text-align:center;">
-      <el-button @click="prevStep" style="margin:10px;">上一步</el-button>
-      <el-button type="primary" @click="nextStep(scrapStepForm)" style="margin:10px;">下一步</el-button>
+      <el-button @click="prevStep" style="margin:10px;" :size="GlobalCss.buttonSize">上一步</el-button>
+      <el-button type="primary" @click="nextStep(scrapStepForm)" style="margin:10px;" :size="GlobalCss.buttonSize">下一步</el-button>
     </div>
   </div>
 </template>

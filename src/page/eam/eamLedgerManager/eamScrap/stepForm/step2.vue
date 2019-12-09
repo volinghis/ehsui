@@ -1,7 +1,7 @@
 <template>
   <div class="step-container">
     <el-button type="primary"
-               size="small"
+               :size="GlobalCss.buttonSize"
                icon="el-icon-plus"
                @click="dialogTableVisible = true">选择设备</el-button>
     <template>
@@ -25,9 +25,11 @@
     </template>
     <div style="text-align:center;">
       <el-button @click="prevStep"
+                 :size="GlobalCss.buttonSize"
                  style="margin:10px;">上一步</el-button>
       <el-button type="primary"
                  @click="nextStep()"
+                 :size="GlobalCss.buttonSize"
                  style="margin:10px;">下一步</el-button>
     </div>
     <!--设备选择弹窗-->

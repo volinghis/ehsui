@@ -17,20 +17,20 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
-                       size="small"
+                       :size="GlobalCss.buttonSize"
                        @click="$refs.table.refresh(true)"
                        icon="el-icon-search">查询</el-button>
-            <el-button size="small"
+            <el-button :size="GlobalCss.buttonSize"
                        @click="() => (queryParam = {})">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
       <div class="operate">
         <el-button type="primary"
-                   size="small"
+                  :size="GlobalCss.buttonSize"
                    @click="handleScrap">报废申请</el-button>
         <el-button type="primary"
-                   size="small"
+                   :size="GlobalCss.buttonSize"
                    @click="handleDelete">删除</el-button>
       </div>
       <div class="table-list">
@@ -63,7 +63,7 @@
                              align="center">
               <template slot-scope="scope">
                 <div slot="reference">
-                  <el-tag size="small"
+                  <el-tag :size="GlobalCss.buttonSize"
                           :type="scope.row.status === '进行中' ? 'primary' : 'success'">{{ scope.row.status}}</el-tag>
                 </div>
               </template>

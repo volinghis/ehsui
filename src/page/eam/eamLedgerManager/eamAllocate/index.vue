@@ -12,17 +12,17 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
-                       size="small"
+                       :size="GlobalCss.buttonSize"
                        @click="$refs.table.refresh(true)"
                        icon="el-icon-search">查询</el-button>
-            <el-button size="small"
+            <el-button :size="GlobalCss.buttonSize"
                        @click="() => (queryParam = {})">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
       <div class="operate">
         <el-button type="primary"
-                   size="small"
+                   :size="GlobalCss.buttonSize"
                    @click="handleallocate">调拨申请</el-button>
       </div>
       <div class="table-list">

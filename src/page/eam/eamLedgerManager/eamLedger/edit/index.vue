@@ -148,7 +148,7 @@
           <!--设备参数-->
           <div class="item-block right">
             <span>设备主要参数</span>
-            <params-table></params-table>
+            <params-table @getParamsTable="getParamsTable" @deleteParamsTable="deleteParamsTable"></params-table>
           </div>
 
           <!--历任点检员-->
@@ -173,7 +173,7 @@
                        icon="fa fa-plus pull-left"
                        @click="dialogTableVisible = true"
                        style="float:right;"
-                       :size="GlobalCss.controlSize">选择设备</el-button>
+                       :size="GlobalCss.buttonSize">选择设备</el-button>
             <el-table :data="tableData"
                       size="small"
                       style="width: 100%">
@@ -195,11 +195,11 @@
                   <el-button type="text"
                              @click="handleEditClick(scope.row)"
                              icon="el-icon-edit"
-                             :size="GlobalCss.controlSize">编辑</el-button>
+                             :size="GlobalCss.buttonSize">编辑</el-button>
                   <el-button @click="handleDeleteClick(scope.row)"
                              type="text"
                              icon="el-icon-delete"
-                             :size="GlobalCss.controlSize">删除</el-button>
+                             :size="GlobalCss.buttonSize">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>

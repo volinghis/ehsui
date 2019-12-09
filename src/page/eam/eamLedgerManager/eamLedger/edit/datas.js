@@ -11,6 +11,7 @@ export default {
   data () {
     return {
       dialogTableVisible: false,
+      paramsTableDatas: [],
       form: {
         deviceName: '',
         deviceNum: '',
@@ -78,10 +79,17 @@ export default {
   methods: {
     handleAvatarSuccess: function (res, file) {
     },
+    getParamsTable (data) {
+      this.paramsTableDatas.push(data)
+    },
+    deleteParamsTable (index) {
+      this.paramsTableDatas.splice(index, 1)
+    },
     submitForm: function (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           console.log(this.$refs[formName].model)
+          console.log(this.paramsTableDatas)
         } else {
           return false
         }

@@ -100,8 +100,14 @@ export default {
     saveRow (row, index) { // 保存
       let data = JSON.parse(JSON.stringify(this.eam_params.sel))
       for (let k in data) {
+        if (data[k] === '') { // 简单验证
+          this.$message.warning('不能保存空值或补充完整')
+          return
+        }
         row[k] = data[k] // 将sel里面的value赋值给这一行。ps(for....in..)的妙用，细心的同学发现这里我并没有循环对象row
       }
+      this.$emit('getParamsTable', data)
+
       row.isSet = false
     },
     editRow (row) { // 编辑
@@ -113,6 +119,7 @@ export default {
     },
     deleteRow (index, rows) { // 删除
       rows.splice(index, 1)
+      this.$emit('deleteParamsTable', index)
     }
   },
   components: {}

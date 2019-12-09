@@ -25,7 +25,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.buttonSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -43,7 +43,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.buttonSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -61,7 +61,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.buttonSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -142,10 +142,10 @@
         </el-col>
       </el-row>
       <el-form-item style="text-align: center;">
-        <el-button size="small"
+        <el-button :size="GlobalCss.buttonSize"
                    type="primary"
                    @click="handleBack">返回</el-button>
-        <el-button size="small"
+        <el-button :size="GlobalCss.buttonSize"
                    @click="handlePrint">打印</el-button>
       </el-form-item>
     </el-form>

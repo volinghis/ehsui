@@ -1,6 +1,6 @@
 <template>
   <div style="text-align:center;">
-    <el-form style="margin: 40px auto 0;">
+    <el-form style="margin: 40px auto 0;" :size="GlobalCss.buttonSize">
       <div style="max-width: 100%;" >
         <i class="el-icon-circle-check" style="color:#67C23A;font-size:58px;"></i><br><br><br>
         <span style="font-size:24px;">操作成功,申请已经进入审核中</span><br>
@@ -9,8 +9,8 @@
     </el-form>
     <el-divider></el-divider>
     <div>
-      <el-button type="primary" @click="finish">继续添加</el-button>
-      <el-button type="primary" @click="over">完成</el-button>
+      <el-button type="primary" @click="finish" :size="GlobalCss.buttonSize">继续添加</el-button>
+      <el-button type="primary" @click="over" :size="GlobalCss.buttonSize">完成</el-button>
     </div>
   </div>
 </template>

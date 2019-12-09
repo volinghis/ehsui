@@ -27,17 +27,17 @@
             </el-form-item>
             <el-form-item>
               <el-button type="primary"
-                         size="small"
+                         :size="GlobalCss.buttonSize"
                          @click="$refs.table.refresh(true)"
                          icon="el-icon-search">查询</el-button>
-              <el-button size="small"
+              <el-button :size="GlobalCss.buttonSize"
                          @click="() => (queryParam = {})">重置</el-button>
             </el-form-item>
           </el-form>
         </el-card>
       </el-col>
     </el-row>
-    <el-row :gutter="10">
+    <el-row >
       <el-col :span="6">
         <el-card shadow="hover"
                  :style="{height:mainHeight+'px'}">
@@ -64,7 +64,7 @@
           </div>
           <div class="operate">
             <el-button type="primary"
-                       size="small"
+                       :size="GlobalCss.buttonSize"
                        @click="dialogFormVisible=true"
                        icon="el-icon-plus">添加</el-button>
           </div>
@@ -102,15 +102,15 @@
                                width="180"
                                label="操作">
                 <template slot-scope="scope">
-  <el-button @click="handleViewClick(scope.row)"
-             type="primary"
-             icon="el-icon-camera"
-             size="mini">预览</el-button>
-  <el-button type="success"
-             icon="el-icon-download"
-             @click="handleDownLoadClick(scope.row)"
-             size="mini">下载</el-button>
-</template>
+                  <el-button @click="handleViewClick(scope.row)"
+                             type="primary"
+                             icon="el-icon-camera"
+                             :size="GlobalCss.buttonSize">预览</el-button>
+                  <el-button type="success"
+                             icon="el-icon-download"
+                             @click="handleDownLoadClick(scope.row)"
+                             :size="GlobalCss.buttonSize">下载</el-button>
+                </template>
               </el-table-column>
             </el-table>
             <div class="pagination"
@@ -157,9 +157,9 @@
                 </el-form>
                 <div slot="footer"
                      class="dialog-footer">
-                  <el-button @click="dialogFormVisible = false">取 消</el-button>
+                  <el-button @click="dialogFormVisible = false" :size="GlobalCss.buttonSize">取 消</el-button>
                   <el-button type="primary"
-                             @click="dialogFormVisible = false">确 定</el-button>
+                             @click="dialogFormVisible = false" :size="GlobalCss.buttonSize">确 定</el-button>
                 </div>
               </el-dialog>
             </div>
@@ -280,7 +280,7 @@ export default {
   },
   mounted: function () {
     var h = document.querySelector('.searchCol').offsetHeight
-    this.mainHeight = this.$store.state.contentHeight - h - 6
+    this.mainHeight = this.$store.state.contentHeight - h - 8
     console.log(this.$store.state.contentHeight)
   },
   methods: {
