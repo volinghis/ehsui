@@ -20,11 +20,12 @@ module.exports = {
     proxy: {
       '/ehs': {
         target: 'http://127.0.0.1:18087/ehs',
-        changeOrigin: true
-      },
-      pathRewrite: {
-        '^/ehs': '' // rewrite path
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ehs': '' // rewrite path
+        }
       }
+
     }
   },
   configureWebpack: config => {
