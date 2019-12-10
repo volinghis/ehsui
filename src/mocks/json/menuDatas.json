@@ -1,7 +1,7 @@
 [
   { "code": "home", "label": "首页", "key": "home", "path": "/home", "component": "/layout/content/portal", "leaf": true, "icon": "fa-home" },
   {
-    "code": "eamAccountManager",
+    "code": "eamAccountPrintManager",
     "label": "设备管理",
     "key": "2",
     "path": "",
@@ -40,7 +40,14 @@
     "path": "",
     "leaf": false,
     "children": [
-      { "code": "userCenter", "label": "个人设置", "key": "41", "path": "/account/setting/index", "component": "/account/setting/index", "leaf": true, "business": false },
-      { "code": "userSetting", "label": "个人中心", "key": "42", "path": "/account/center/index", "component": "/account/center/index", "leaf": true, "business": false }
+      { "code": "userManager", "label": "人员管理", "key": "40", "path": "", "leaf": false, "business": false,"children":[
+        { "code": "organization", "label": "组织管理", "key": "401", "path": "/system/userManager/organization/index", "component": "/system/userManager/organization/index", "leaf": true, "business": false },
+        { "code": "user", "label": "人员管理", "key": "402", "path": "/system/userManager/user/index", "component": "/system/userManager/user/index", "leaf": true, "business": false },
+        { "code": "userAuth", "label": "人员授权", "key": "403", "path": "/system/userManager/userAuth/index", "component": "/system/userManager/userAuth/index", "leaf": true, "business": false }
+      ]},
+      { "code": "userCenter", "label": "个人设置", "key": "41", "path": "/system/account/setting/index", "component": "/system/account/setting/index", "leaf": true, "business": true },
+      { "code": "useretting", "label": "个人中心", "key": "42", "path": "/system/account/center/index", "component": "/system/account/center/index", "leaf": true, "business": false },
+      { "code": "roleManager", "label": "角色管理", "key": "43", "path": "/system/roleManager/index", "component": "/system/roleManager/index", "leaf": true, "business": false },
+      { "code": "menuManager", "label": "菜单授权", "key": "44", "path": "/system/menuManager/index", "component": "/system/menuManager/index", "leaf": true, "business": false }
     ] }
 ]
