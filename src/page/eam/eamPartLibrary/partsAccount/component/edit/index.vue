@@ -6,8 +6,8 @@
                :rules="rules"
                inline="inline"
                label-position="right"
-               label-width="90px"
-               size="small">
+               label-width="80px"
+               :size="GlobalCss.controlSize">
         <el-row :gutter="20">
           <el-col :span="5"
                   :sm="5"
@@ -34,15 +34,18 @@
                   只能上传jpg/png文件，且不超过500kb
                 </div>
               </el-upload> -->
-              <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+              <el-upload class="avatar-uploader"
+                         action="https://jsonplaceholder.typicode.com/posts/"
+                         :show-file-list="false"
+                         :on-success="handleAvatarSuccess"
+                         :before-upload="beforeAvatarUpload">
+                <img v-if="imageUrl"
+                     :src="form.deviceImg"
+                     class="avatar">
+                <i v-else
+                   class="el-icon-plus avatar-uploader-icon"></i>
+                <div slot="tip"
+                     class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
               </el-upload>
             </div>
             <!--检修质量标准-->
@@ -57,7 +60,7 @@
                          :limit="3"
                          :on-exceed="handleExceed"
                          :file-list="fileList">
-                <el-button size="mini"
+                <el-button :size="GlobalCss.controlSize"
                            plain
                            type="primary"
                            icon="el-icon-upload">上传文件</el-button>
@@ -75,7 +78,7 @@
                          :limit="3"
                          :on-exceed="handleExceed"
                          :file-list="fileList">
-                <el-button size="mini"
+                <el-button :size="GlobalCss.controlSize"
                            plain
                            type="primary"
                            icon="el-icon-upload">上传文件</el-button>
@@ -93,7 +96,7 @@
                          :limit="3"
                          :on-exceed="handleExceed"
                          :file-list="fileList">
-                <el-button size="mini"
+                <el-button :size="GlobalCss.controlSize"
                            plain
                            type="primary"
                            icon="el-icon-upload">上传文件</el-button>
@@ -106,60 +109,83 @@
             <div class="item-block">
               <span>备件基本信息</span>
               <el-divider></el-divider>
-              <el-row :gutter="20">
-                <el-form-item label="备件名称："
-                              prop="deviceName">
-                  <el-input v-model="form.deviceName"
-                            prefix-icon="el-icon-edit"
-                            placeholder="请填写备件名称"></el-input>
-                </el-form-item>
-                <el-form-item label="备件编码："
-                              prop="deviceCode">
-                  <el-input v-model="form.deviceCode"
-                            prefix-icon="el-icon-edit"
-                            placeholder="不用填写，系统自动生成"></el-input>
-                </el-form-item>
-                <el-form-item label="备件型号："
-                              prop="deviceModel">
-                  <el-input v-model="form.deviceModel"
-                            prefix-icon="el-icon-edit"
-                            placeholder="请填写备件型号"></el-input>
-                </el-form-item>
-                <el-form-item label="生产厂家："
-                              prop="factoryName">
-                  <el-input v-model="form.factoryName"
-                            prefix-icon="el-icon-edit"
-                            placeholder="请输入生产厂家"></el-input>
-                </el-form-item>
-                <el-form-item label="出厂编号："
-                              prop="leaveCode">
-                  <el-input v-model="form.leaveCode"
-                            prefix-icon="el-icon-edit"
-                            placeholder="请输入生产编号"></el-input>
-                </el-form-item>
-                <el-form-item label="出厂日期："
-                              prop="leaveDate">
-                  <el-date-picker v-model="form.leaveDate"
-                                  type="date"
-                                  placeholder="选择日期"></el-date-picker>
-                </el-form-item>
-                <el-form-item label="物资编码："
-                              prop="materialCode">
-                  <el-input v-model="form.materialCode"
-                            prefix-icon="el-icon-edit"
-                            placeholder="请填写物资编码"></el-input>
-                </el-form-item>
-                <el-form-item label="物资类别："
-                              prop="materialType">
-                  <el-input v-model="form.materialType"
-                            placeholder="请填写物资类别"
-                            prefix-icon="el-icon-edit"></el-input>
-                </el-form-item>
-                <el-form-item label="创建人："
-                              prop="person">
-                  <el-input v-model="person"
-                            prefix-icon="el-icon-edit"></el-input>
-                </el-form-item>
+              <el-row :gutter="10">
+                <el-col :span="8">
+                  <el-form-item label="备件名称:"
+                                prop="name">
+                    <el-input v-model="form.name"
+                              prefix-icon="el-icon-edit"
+                              placeholder="请填写备件名称"></el-input>
+                  </el-form-item>
+                  <el-form-item label="物资编码:"
+                                prop="materialCode">
+                    <el-input v-model="form.materialCode"
+                              prefix-icon="el-icon-edit"
+                              placeholder="请填写物资编码"></el-input>
+                  </el-form-item>
+                  <el-form-item label="预警值:"
+                                prop="warningValue">
+                    <el-input v-model="form.warningValue"
+                              prefix-icon="el-icon-edit"></el-input>
+                  </el-form-item>
+                  <el-form-item label="数量:"
+                                prop="amount">
+                    <el-input v-model="form.amount"
+                              prefix-icon="el-icon-edit"></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                  <el-form-item label="备件编码:"
+                                prop="code">
+                    <el-input v-model="form.code"
+                              prefix-icon="el-icon-edit"
+                              placeholder="不用填写，系统自动生成"></el-input>
+                  </el-form-item>
+
+                  <el-form-item label="物资类别:"
+                                prop="materialCategory">
+                    <el-input v-model="form.materialCategory"
+                              placeholder="请填写物资类别"
+                              prefix-icon="el-icon-edit"></el-input>
+                  </el-form-item>
+                  <el-form-item label="生产厂家:"
+                                prop="factoryName">
+                    <el-input v-model="form.factoryName"
+                              prefix-icon="el-icon-edit"
+                              placeholder="请输入生产厂家"></el-input>
+                  </el-form-item>
+                   <el-form-item label="创建人:"
+                                prop="person">
+                    <el-input v-model="form.person"
+                              prefix-icon="el-icon-edit"></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                  <el-form-item label="规格型号:"
+                                prop="norm">
+                    <el-input v-model="form.norm"
+                              prefix-icon="el-icon-edit"
+                              placeholder="请填写备件型号"></el-input>
+                  </el-form-item>
+                  <el-form-item label="出厂编号:"
+                                prop="leaveCode">
+                    <el-input v-model="form.leaveCode"
+                              prefix-icon="el-icon-edit"
+                              placeholder="请输入生产编号"></el-input>
+                  </el-form-item>
+                  <el-form-item label="出厂日期:"
+                                prop="leaveDate">
+                    <el-date-picker v-model="form.leaveDate"
+                                    type="date"
+                                    style="width:100%;"
+                                    placeholder="选择日期"></el-date-picker>
+                  </el-form-item>
+                  <el-form-item label="创建时间:"
+                                prop="date">
+                    <el-input v-model="form.date"
+                              prefix-icon="el-icon-edit"></el-input>
+                  </el-form-item>
+                </el-col>
               </el-row>
             </div>
             <el-divider></el-divider>
@@ -184,7 +210,8 @@
                               :sm="8"
                               :xs="8">
                         <el-progress type="circle"
-                                     :percentage="75"
+                                     :color="customColors"
+                                     :percentage="form.complete"
                                      :stroke-width="7">
                         </el-progress>
                       </el-col>
@@ -192,7 +219,7 @@
                               :sm="16"
                               :xs="16"
                               style="padding-left: 50px;padding-right: 0px;">
-                        <span style="color:#606266;font-size: small;font-weight: normal;">当前设备资料的完整度为75%，请尽快完善资料</span>
+                        <span style="color:#606266;font-size: small;font-weight: normal;">当前设备资料的完整度为{{form.complete}}%，请尽快完善资料</span>
                       </el-col>
                     </el-row>
                   </el-card>
@@ -204,10 +231,10 @@
       </el-form>
       <el-divider></el-divider>
       <div style="text-align: center;">
-        <el-button size="small"
+        <el-button :size="GlobalCss.controlSize"
                    type="primary"
                    @click="submitForm('form')">提&nbsp;&nbsp;交</el-button>
-        <el-button size="small"
+        <el-button :size="GlobalCss.controlSize"
                    @click="resetForm('form')">重&nbsp;&nbsp;置</el-button>
       </div>
     </el-card>

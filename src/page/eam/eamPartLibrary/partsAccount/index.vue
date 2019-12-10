@@ -9,9 +9,9 @@
          style="margin: 0px 0px;">
       <div style="width:25%;float:left;">
         <el-autocomplete class="inline-input"
-                         size="small"
                          style="width:100%;"
                          v-model="state"
+                         :size="GlobalCss.controlSize"
                          :fetch-suggestions="querySearch"
                          placeholder="可搜索编号，名称，类型"
                          @select="handleSelect">
@@ -26,12 +26,12 @@
         <el-button type="primary"
                    icon="el-icon-plus"
                    class="buttonHeight"
-                   size="small"
+                   :size="GlobalCss.controlSize"
                    @click="handleAdd()">新增</el-button>
         <el-button type="success"
                    icon="el-icon-download"
                    class="buttonHeight"
-                   size="small"
+                   :size="GlobalCss.controlSize"
                    @click="exportExcel()">导出</el-button>
       </div>
     </div>
@@ -42,7 +42,7 @@
                 border
                 highlight-current-row
                 class="tableHeight"
-                @row-dblclick="handleClick"
+                @row-dblclick="view"
                 :max-height="htable"
                 :size="GlobalCss.buttonSize">
         <el-table-column fixed="left"
@@ -77,13 +77,13 @@
                          width="120"
                          align="center">
         </el-table-column>
-        <el-table-column prop="completion"
+        <el-table-column prop="complete"
                          label="资料完整度"
                          width="160"
                          sortable
                          align="center">
           <template slot-scope="scope">
-            <el-progress :percentage="scope.row.completion"
+            <el-progress :percentage="scope.row.complete"
                          :color="customColors"
                          align="center"></el-progress>
           </template>
@@ -123,7 +123,7 @@
             <el-button type="danger"
                        class="buttonHeight"
                        :size="GlobalCss.controlSize"
-                       @click="handleDelete()">删除</el-button>
+                       @click="handleDelete(scope.row, scope.$index)">删除</el-button>
             <el-button @click="handleEdit(scope.row)"
                        type="primary"
                        :size="GlobalCss.controlSize">编辑</el-button>
@@ -137,9 +137,8 @@
                          @size-change="handleSizeChange"
                          @current-change="handleCurrentChange"
                          :current-page.sync="currentPage"
-                         :page-sizes="[20]"
                          :page-size="20"
-                         layout="total, sizes, prev, pager, next, jumper"
+                         layout="total, prev, pager, next, jumper"
                          :total="total">
           </el-pagination>
         </div>

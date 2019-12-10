@@ -9,8 +9,8 @@
         <el-col :span="6">
           <div class="item-block">
             <div class="item-title">设备图片</div>
-            <el-image style="width: 150px; height: 150px"
-                      src="https://i.loli.net/2019/11/07/2STd8zUw6x5hWaM.jpg"
+            <el-image style="width: 170px; height: 170px"
+                      :src="eamItem.deviceImg"
                       fit="fill"></el-image>
           </div>
           <!--检修质量标准-->
@@ -25,7 +25,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.controlSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -43,7 +43,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.controlSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -61,7 +61,7 @@
                        :limit="3"
                        :on-exceed="handleExceed"
                        :file-list="fileList">
-              <el-button size="mini"
+              <el-button :size="GlobalCss.controlSize"
                          plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
@@ -69,17 +69,48 @@
           </div>
         </el-col>
         <el-col :span="18">
-           <div class="item-block right">
+          <div class="item-block right">
             <div class="item-title">备件基本信息</div>
             <el-divider></el-divider>
             <div class="contents">
               <el-row>
-                <el-col :span="12"
-                        v-for="(item, index) in eamInfos"
-                        :key="index">
-                  <span class="info-title">{{ item.title }}</span>:&nbsp;<span class="info-content">{{ item.content }}</span>
+                <el-col :span="8">
+                  <span class="info-title">备件名称</span>:&nbsp;<span class="info-content">{{ eamItem.name }}</span>
                 </el-col>
-             </el-row>
+                <el-col :span="8">
+                  <span class="info-title">备件编码</span>:&nbsp;<span class="info-content">{{ eamItem.code }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">规格型号</span>:&nbsp;<span class="info-content">{{ eamItem.norm }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">物资类型</span>:&nbsp;<span class="info-content">{{ eamItem.materialCategory }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">物资编码</span>:&nbsp;<span class="info-content">{{ eamItem.materialCode }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">生产厂家</span>:&nbsp;<span class="info-content">{{ eamItem.factoryName }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">出厂编号</span>:&nbsp;<span class="info-content">{{ eamItem.leaveCode }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">出厂日期</span>:&nbsp;<span class="info-content">{{ eamItem.leaveDate }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">数量</span>:&nbsp;<span class="info-content">{{ eamItem.amount }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">预警值</span>:&nbsp;<span class="info-content">{{ eamItem.warningValue }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">创建人</span>:&nbsp;<span class="info-content">{{ eamItem.person }}</span>
+                </el-col>
+                <el-col :span="8">
+                  <span class="info-title">创建时间</span>:&nbsp;<span class="info-content">{{ eamItem.date }}</span>
+                </el-col>
+              </el-row>
             </div>
           </div>
           <!--设备参数-->
@@ -100,12 +131,13 @@
               <el-card shadow="never">
                 <el-col :span="12">
                   <el-progress type="circle"
-                               :percentage="75"
+                               :color="customColors"
+                               :percentage="eamItem.complete"
                                :stroke-width="7">
                   </el-progress>
                 </el-col>
                 <el-col :span="12">
-                  <span>当前设备资料的完整度为75%，请尽快完善资料</span>
+                  <span>当前设备资料的完整度为{{eamItem.complete}}%，请尽快完善资料</span>
                 </el-col>
               </el-card>
             </el-row>
@@ -114,10 +146,10 @@
       </el-row>
       <el-divider></el-divider>
       <el-form-item style="text-align: center;">
-        <el-button size="small"
+        <el-button :size="GlobalCss.controlSize"
                    type="primary"
                    @click="handleBack">返回</el-button>
-        <el-button size="small"
+        <el-button :size="GlobalCss.controlSize"
                    @click="handlePrint">打印</el-button>
       </el-form-item>
     </el-form>
@@ -128,5 +160,5 @@ import datas from './datas'
 export default datas
 </script>
 <style lang="scss" scoped>
-@import './styles.scss';
+@import "./styles.scss";
 </style>

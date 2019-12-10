@@ -5,7 +5,7 @@
          style="margin: 0px 0px;">
       <div style="width:25%;float:left;">
         <el-autocomplete class="inline-input"
-                         size="small"
+                         :size="GlobalCss.controlSize"
                          style="width:100%;"
                          v-model="state"
                          :fetch-suggestions="querySearch"
@@ -22,12 +22,12 @@
         <el-button type="primary"
                    icon="el-icon-plus"
                    class="buttonHeight"
-                   size="small"
+                   :size="GlobalCss.controlSize"
                    @click="handleAdd()">新增</el-button>
         <el-button type="success"
                    icon="el-icon-download"
                    class="buttonHeight"
-                   size="small"
+                   :size="GlobalCss.controlSize"
                    @click="exportExcel()">导出</el-button>
       </div>
     </div>
@@ -109,7 +109,7 @@
                        :current-page.sync="currentPage"
                        :page-sizes="[10, 20, 50]"
                        :page-size="10"
-                       layout="total, sizes, prev, pager, next, jumper"
+                       layout="total, prev, pager, next, jumper"
                        :total="total">
         </el-pagination>
       </div>

@@ -3,17 +3,20 @@ export default {
     handleAdd: function () {
       this.$router.push({ name: '312' })
     },
-    handleDelete: function () {
-      this.$message({
-        message: '恭喜你，删除成功',
-        type: 'success'
-      })
+    handleDelete: function (row, index) {
+      this.$confirm('确定删除该数据?', '温馨提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$refs.multipleTable.removeRow(index)
+      }).catch(e => e)
     },
-    handleClick: function (row) {
-      this.$router.push({ name: '311' })
+    view: function (row) {
+      this.$router.push({ name: '311', params: { data: row } })
     },
     handleEdit: function (row) {
-      this.$router.push({ name: '312' })
+      this.$router.push({ name: '312', params: { data: row } })
     },
     exportExcel: function () {
       this.$message('正在导出，请稍等···')

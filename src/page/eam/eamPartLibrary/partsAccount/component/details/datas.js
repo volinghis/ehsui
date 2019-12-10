@@ -19,6 +19,13 @@ export default {
         person: '',
         textarea: ''
       },
+      customColors: [
+        { color: '#f56c6c', percentage: 20 },
+        { color: '#e6a23c', percentage: 40 },
+        { color: '#5cb87a', percentage: 60 },
+        { color: '#1989fa', percentage: 80 },
+        { color: '#6f7ad3', percentage: 100 }
+      ],
       rules: {
         deviceName: [
           { required: true, message: '请输入设备名称', trigger: 'blur' }
@@ -42,18 +49,11 @@ export default {
             'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
         }
       ],
-      eamInfos: [
-        { title: '备件名称', content: '1号增压风机冷却油泵电机' },
-        { title: '备件编码', content: 'SB12457854' },
-        { title: '备件型号', content: '1LE0003-0DA32-1AA4 1.1KW*2P*B3' },
-        { title: '出厂编号', content: '1LE0003-0DA32-1AA4' },
-        { title: '生产厂家', content: 'SIEMENS/西门子' },
-        { title: '出厂日期', content: '2018-06-20 12:41:50' },
-        { title: '创建人', content: '张工' }
-      ]
+      eamItem: {}
     }
   },
-  mounted: function () {
+  created: function () {
+    this.eamItem = this.$route.params.data
   },
   methods: {
     handleAvatarSuccess: function (res, file) {

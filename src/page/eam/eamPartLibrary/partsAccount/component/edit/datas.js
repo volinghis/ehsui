@@ -4,30 +4,43 @@ export default {
     paramsTable
   },
   mounted () {
-    this.sessionUser = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
-    this.person = this.sessionUser.username
+    const user = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
+    this.form = this.$route.params.data
+    this.form.person = user.username
   },
   data () {
     return {
-      sessionUser: {},
-      person: '',
+      eamItem: {},
       imageUrl: '',
       form: {
-        deviceName: '',
-        deviceCode: '',
-        deviceModel: '',
+        name: '',
+        code: '',
+        norm: '',
         materialCode: '',
-        materialType: '',
+        materialCategory: '',
         factoryName: '',
         leaveCode: '',
         leaveDate: '',
-        person: ''
+        amount: '',
+        warningValue: '',
+        person: '',
+        date: ''
       },
+      customColors: [
+        { color: '#f56c6c', percentage: 20 },
+        { color: '#e6a23c', percentage: 40 },
+        { color: '#5cb87a', percentage: 60 },
+        { color: '#1989fa', percentage: 80 },
+        { color: '#6f7ad3', percentage: 100 }
+      ],
       rules: {
-        deviceName: [
+        name: [
           { required: true, message: '请输入设备名称', trigger: 'blur' }
         ],
-        deviceModel: [
+        code: [
+          { required: true, message: '请输入设备名称', trigger: 'blur' }
+        ],
+        norm: [
           { required: true, message: '请输入设备型号', trigger: 'blur' }
         ],
         materialCode: [
@@ -62,7 +75,7 @@ export default {
           // this.Axios.post(this.GlobalVars.globalServiceServlet + '/eam/eamPartsAccount/getList').then(res => {
           //   console.info(this.formInline)
           // })
-          console.info(this.form)
+          console.info(this.$refs[formName].model)
           alert('submit!')
         } else {
           console.log('error submit!!')
