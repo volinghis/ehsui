@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Axios from 'axios'
+import Axios from './axios'
 
 import Store from '@/configs/store'
 import GlobalVars from '@components/global/globalVars.js'

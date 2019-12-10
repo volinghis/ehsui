@@ -65,6 +65,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.$axios)
     this.initLayout()
     window.onresize = () => {
       return (() => {
