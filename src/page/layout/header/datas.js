@@ -10,7 +10,11 @@ export default {
   methods: {
     logout () {
       sessionStorage.removeItem(this.GlobalVars.userToken)
-      this.$router.push({ name: 'login' })
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/login/doLogout').then(res => {
+        if (res.data.resultType === 'ok') {
+          this.$router.push({ name: 'login' })
+        }
+      })
     },
     menuSelect (index, leaf, e) {
       if (leaf) {

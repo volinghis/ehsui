@@ -9,13 +9,13 @@ export default {
           ? localStorage.getItem(this.GlobalVars.userLocal)
           : '',
         password: '',
-        username: '欧阳姗姗',
+        username: '',
         captchCode: ''
       },
       rules: {
         account: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
+          { min: 4, max: 18, message: '长度在 4 到 18 个字符', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
@@ -38,28 +38,30 @@ export default {
       this.$refs['loginForm'].validate(valid => {
         if (valid) {
           this.loading = true
-          if (
-            this.loginForm.account !== 'ehstest' ||
-            this.loginForm.account !== this.loginForm.password
-          ) {
-            this.result.message = '用户名密码错误！'
-            this.loading = false
-            return
-          }
-          if (this.remeberAccount) {
-            localStorage.setItem(
-              this.GlobalVars.userLocal,
-              this.loginForm.account
-            )
-          } else {
-            localStorage.removeItem(this.GlobalVars.userLocal)
-          }
-          var sessionUser = { username: this.loginForm.username, account: this.loginForm.account }
-          sessionStorage.setItem(
-            this.GlobalVars.userToken,
-            JSON.stringify(sessionUser)
-          )
-          this.$router.push({ name: 'home' })
+          this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/login/doLogin', this.loginForm)
+            .then(res => {
+              // 成功了, 更新数据(成功)
+              this.loading = false
+              console.log(res.data)
+              if (res.data.resultType === 'ok') {
+                // 数据存储
+                if (this.remeberAccount) {
+                  localStorage.setItem(
+                    this.GlobalVars.userLocal,
+                    this.loginForm.account
+                  )
+                } else {
+                  localStorage.removeItem(this.GlobalVars.userLocal)
+                }
+                var sessionUser = { username: this.loginForm.username, account: this.loginForm.account }
+                sessionStorage.setItem(
+                  this.GlobalVars.userToken,
+                  JSON.stringify(sessionUser)
+                )
+                this.$router.push({ name: 'home' })
+              }
+              this.result.message = res.data.message
+            })
         }
       })
     }
