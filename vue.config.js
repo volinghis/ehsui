@@ -29,9 +29,9 @@ module.exports = {
     }
   },
   configureWebpack: config => {
-    if (process.env.NODE_ENV !== 'production') {
-      config.entry.app = ['./src/mocks/index.js', './src/main.js']
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //   config.entry.app = ['./src/mocks/index.js', './src/main.js']
+    // }
     config.resolve.alias = {
       '@': resolve('./src'),
       '@components': resolve('./src/components')
