@@ -3,17 +3,17 @@ import Axios from 'axios'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import GlobalVars from '@components/global/globalVars.js'
+import Store from '@/configs/store'
 
 // 添加请求拦截器
 Axios.interceptors.request.use(function (config) {
   NProgress.start()
-  if (process.env.NODE_ENV === 'production') {
-    if (config.url.indexOf('?') > 0) {
-      config.url = config.url + '&tt=' + Math.random()
-    } else {
-      config.url = config.url + '?tt=' + Math.random()
-    }
+  if (config.url.indexOf('?') > 0) {
+    config.url = config.url + '&tt=' + Math.random()
+  } else {
+    config.url = config.url + '?tt=' + Math.random()
   }
+  config.url = config.url + '&resoureMenuKey=' + Store.state.resourceMenuKey
 
   // 在发送请求之前做些什么
   return config

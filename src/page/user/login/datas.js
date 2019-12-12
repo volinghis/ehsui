@@ -42,7 +42,6 @@ export default {
             .then(res => {
               // 成功了, 更新数据(成功)
               this.loading = false
-              console.log(res.data)
               if (res.data.resultType === 'ok') {
                 // 数据存储
                 if (this.remeberAccount) {
@@ -58,7 +57,7 @@ export default {
                   this.GlobalVars.userToken,
                   JSON.stringify(sessionUser)
                 )
-                this.$router.push({ name: 'home' })
+                this.$router.push({ name: 'index' })
               }
               this.result.message = res.data.message
             })
@@ -67,7 +66,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$axios)
     this.initLayout()
     window.onresize = () => {
       return (() => {
