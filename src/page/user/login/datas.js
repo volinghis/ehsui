@@ -5,11 +5,8 @@ export default {
       loading: false,
       result: { message: '' },
       loginForm: {
-        account: localStorage.getItem(this.GlobalVars.userLocal)
-          ? localStorage.getItem(this.GlobalVars.userLocal)
-          : '',
+        account: localStorage.getItem(this.GlobalVars.userLocal) ? localStorage.getItem(this.GlobalVars.userLocal) : '',
         password: '',
-        username: '',
         captchCode: ''
       },
       rules: {
@@ -34,32 +31,40 @@ export default {
         (document.querySelector('.logingPanel').offsetWidth - 840) / 2 + 'px'
     },
     login () {
-      this.result.message = ''
-      this.$refs['loginForm'].validate(valid => {
+      var current = this
+      current.result.message = ''
+      current.$refs['loginForm'].validate(valid => {
         if (valid) {
-          this.loading = true
-          this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/login/doLogin', this.loginForm)
+          current.loading = true
+
+          current.$axios.post(current.GlobalVars.globalServiceServlet + '/auth/login/doLogin', current.loginForm)
             .then(res => {
               // 成功了, 更新数据(成功)
-              this.loading = false
               if (res.data.resultType === 'ok') {
                 // 数据存储
-                if (this.remeberAccount) {
+                if (current.remeberAccount) {
                   localStorage.setItem(
-                    this.GlobalVars.userLocal,
-                    this.loginForm.account
+                    current.GlobalVars.userLocal,
+                    current.loginForm.account
                   )
                 } else {
-                  localStorage.removeItem(this.GlobalVars.userLocal)
+                  localStorage.removeItem(current.GlobalVars.userLocal)
                 }
-                var sessionUser = { username: this.loginForm.username, account: this.loginForm.account }
-                sessionStorage.setItem(
-                  this.GlobalVars.userToken,
-                  JSON.stringify(sessionUser)
-                )
-                this.$router.push({ name: 'index' })
+                current.$axios.get(current.GlobalVars.globalServiceServlet + '/base/user/getCurrentUser')
+                  .then(res => {
+                    sessionStorage.setItem(
+                      current.GlobalVars.userToken,
+                      JSON.stringify(res.data)
+                    )
+                    current.$router.push({ name: 'index' })
+                  })
+              } else {
+                current.result.message = res.data.message
               }
-              this.result.message = res.data.message
+            }).catch(function () {
+
+            }).then(function () {
+              current.loading = false
             })
         }
       })

@@ -31,7 +31,7 @@ Axios.interceptors.response.use(function (response) {
   NProgress.done()
   if (error.response.status === 901) {
     sessionStorage.removeItem(GlobalVars.userToken)
-    Vue.prototype.$router.push({ name: 'login' })
+    location.reload()
   } else {
     if (process.env.NODE_ENV === 'production') {
       Vue.prototype.$notify.error({
