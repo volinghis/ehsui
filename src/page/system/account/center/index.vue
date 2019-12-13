@@ -1,12 +1,12 @@
 <template>
   <div class="page-header-wrapper-grid-content-main">
-    <el-row :gutter="24">
-      <el-col :span="6">
+    <el-row :gutter="20">
+      <el-col :span="5">
         <el-card shadow="hover">
           <center></center>
         </el-card>
       </el-col>
-      <el-col :md="18">
+      <el-col :md="19">
         <el-card style="width:100%"
                  shadow="hover"
                  :bordered="false">
