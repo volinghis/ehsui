@@ -63,6 +63,7 @@ export default {
             type: 'success'
           })
           this.dialogFormVisible = false
+          this.$refs.roleForm.resetFields()
           this.initTable()
         } else {
           this.$message({
