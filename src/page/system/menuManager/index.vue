@@ -112,21 +112,16 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        var roleList = []
-        roleList.push(row)
-        const params = {
-          menuKey: this.currentMenuKey,
-          roleList: roleList
-        }
-        console.log(params)
-        this.$axios.post(this.GlobalVars.globalServiceServlet + 'auth/menu/deleteMenuRole', params)
+        var roleBeans = []
+        roleBeans.push({ roleType: 'ROLE', roleKey: row.key })
+        this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/menu/deleteMenuRole', { menuKey: this.currentMenuKey, roleList: roleBeans })
           .then((res) => {
             if (res.data.resultType === 'ok') {
               this.$message({
                 message: res.data.message,
                 type: 'success'
               })
-              this.initTable()
+              this.findRolesByMenu(this.currentMenuKey)
             }
           }).catch((error) => {
             console.log(error)
@@ -151,20 +146,25 @@ export default {
     },
     handleSubmit () {
       const roles = this.selectRoles
-      const key = this.currentMenuKey
+      console.log(roles)
+      var roleBeans = []
+      for (let i = 0; i < roles.length; i++) {
+        const e = roles[i]
+        roleBeans.push({ roleType: 'ROLE', roleKey: e.key })
+      }
       if (this.selectRoles.length <= 0) {
         this.$message({
           message: '请选择角色',
           type: 'warning'
         })
       } else {
-        this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/menu/saveMenuRole', { menuKey: key, roleList: roles }).then(res => {
+        this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/menu/saveMenuRole', { menuKey: this.currentMenuKey, roleList: roleBeans }).then(res => {
           if (res.data.resultType === 'ok') {
             this.$message({
               message: res.data.message,
               type: 'success'
             })
-            this.findRolesByMenu(key)
+            this.findRolesByMenu(this.currentMenuKey)
             this.dialogTableVisible = false
           } else {
             alert('失败')
@@ -176,7 +176,6 @@ export default {
     },
     handleSelect (data) {
       this.selectRoles = data
-      console.log(this.selectRoles)
     }
 
   }
