@@ -79,6 +79,7 @@ vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
   } else {
     if (vueRouter.options.isAdd || isGlobalRoutes(to)) { // 判断是否已经添加动态路由,或者当前为全局路由的时候。 直接访问
       if (to.name === 'index') {
+        Store.state.selectedTabs = []
         next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
       } else {
         next()
