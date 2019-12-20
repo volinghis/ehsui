@@ -1,30 +1,23 @@
 <template>
   <div class="role-table">
     <div class="search-wrapper">
-      <el-form ref="searchForm"
-               :model="form"
-               :inline="true">
-        <el-form-item>
-          <el-input type="text"
-                    :size="GlobalCss.buttonSize"
-                    v-model="form.query"
-                    placeholder="请输入角色编码或名称"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary"
-                     @click="initTable"
-                     :size="GlobalCss.buttonSize">查询</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
-    <div class="operation">
-      <el-button type="primary"
-                 icon="fa fa-plus pull-left"
-                 @click="dialogFormVisible = true"
-                 :size="GlobalCss.buttonSize">添加</el-button>
-      <el-button type="primary"
-                 icon="fa fa-download pull-left"
-                 :size="GlobalCss.buttonSize">导出</el-button>
+      <div style="float:left;">
+        <el-input :size="GlobalCss.controlSize"
+                  style="margin:5px 0px;"
+                  v-model="form.query"
+                  placeholder="请输入角色编码或名称">
+          <el-button slot="append"
+                     icon="el-icon-search"
+                     @click="initTable"></el-button>
+        </el-input>
+      </div>
+      <div class="operation"
+           style="float:right">
+        <el-button type="primary"
+                   icon="fa fa-plus pull-left"
+                   @click="handleRoleAdd"
+                   :size="GlobalCss.buttonSize">添加</el-button>
+      </div>
     </div>
     <div class="table-container">
       <el-table :data="tableData"
@@ -116,8 +109,8 @@
 </template>
 
 <script>
-import data from './data'
-export default data
+import datas from './datas'
+export default datas
 </script>
 <style lang="sass" scoped>
 @import './styles.scss'

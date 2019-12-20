@@ -21,8 +21,9 @@ export default {
   },
   methods: {
     initTree () {
-      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/menu/menuDatas').then(res => {
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/menu/menuDatas', { params: { menuAuth: true } }).then(res => {
         this.treeData = res.data
+        console.log(this.treeData)
       }).catch(error => {
         console.log(error)
       })

@@ -66,8 +66,8 @@
   </div>
 </template>
 <script>
-import data from './data'
-export default data
+import datas from './datas'
+export default datas
 </script>
 <style lang="scss" scoped>
 .operation {

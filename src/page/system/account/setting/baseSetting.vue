@@ -1,16 +1,31 @@
 <template>
   <div>
-    <el-form ref="form"
-             :model="form"
-             label-width="80px"
-             :rules="rules">
-      <p>
-        <span style="font-size: large;">个人资料</span></p>
-      <el-row>
-        <el-col :span="10">
-          <el-form-item label="昵称"
+    <el-row>
+      <el-col :span="14">
+        <el-divider content-position="left"><span style="color:#409EFF">基本信息</span></el-divider>
+        <el-form ref="form"
+                 :model="form"
+                 size="small"
+                 label-width="80px"
+                 :rules="rules">
+          <el-form-item label="账号"
+                        prop="account">
+            <el-input v-model="form.account"
+                      prefix-icon="el-icon-user"></el-input>
+          </el-form-item>
+          <el-form-item label="姓名"
                         prop="name">
             <el-input v-model="form.name"
+                      prefix-icon="el-icon-user"></el-input>
+          </el-form-item>
+          <el-form-item label="职务"
+                        prop="position">
+            <el-input v-model="form.position"
+                      prefix-icon="el-icon-user"></el-input>
+          </el-form-item>
+          <el-form-item label="部门"
+                        prop="department">
+            <el-input v-model="form.department"
                       prefix-icon="el-icon-user"></el-input>
           </el-form-item>
           <el-form-item label="邮箱"
@@ -25,68 +40,93 @@
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="居住地"
+          <!-- <el-form-item label="居住地"
                         prop="desc">
             <el-cascader placeholder="试试搜索：西安"
                          :options="options"
                          value="changan"
                          filterable>
             </el-cascader>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="联系电话"
                         prop="telephone">
             <el-input v-model="form.telephone"
                       prefix-icon="el-icon-phone-outline"></el-input>
           </el-form-item>
-          <el-form-item label="个人简介"
-                        prop="desc">
-            <el-input type="textarea"
-                      :autosize="{ minRows: 2, maxRows: 2}"
-                      v-model="form.desc"
-                      maxlength="100"
-                      show-word-limit> </el-input>
+          <el-divider content-position="left"><span style="color:#409EFF">辅助信息</span></el-divider>
+          <el-form-item label="员工工号"
+                        prop="jobNum">
+            <el-input v-model="form.jobNum"></el-input>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary"
-                       @click="onSubmit('form')">更新基本信息</el-button>
+          <el-form-item label="员工学历"
+                        prop="education">
+            <el-input v-model="form.education"></el-input>
           </el-form-item>
-        </el-col>
-        <el-col :span="14"
-                style="text-align:center;">
-          <el-upload class="avatar-uploader"
-                     action="https://jsonplaceholder.typicode.com/posts/"
-                     :show-file-list="false"
-                     :on-success="handleAvatarSuccess"
-                     :before-upload="beforeAvatarUpload">
-            <img v-if="imageUrl"
-                 :src="imageUrl"
-                 class="avatar">
-            <i v-else
-               class="el-icon-plus avatar-uploader-icon"></i>
-          </el-upload>
-        </el-col>
-      </el-row>
-    </el-form>
+          <el-form-item label="毕业院校"
+                        prop="graduatedSchool">
+            <el-input v-model="form.graduatedSchool"></el-input>
+          </el-form-item>
+          <el-form-item label="员工籍贯"
+                        prop="homeTown">
+            <el-input v-model="form.homeTown"></el-input>
+          </el-form-item>
+          <el-form-item label="员工专业"
+                        prop="profession">
+            <el-input v-model="form.profession"></el-input>
+          </el-form-item>
+          <el-form-item label="毕业时间"
+                        prop="graduatedDate">
+            <el-input v-model="form.graduatedDate"></el-input>
+          </el-form-item>
+        </el-form>
+      </el-col>
+
+      <el-col :span="10" style="text-align: center;">
+        <el-upload class="avatar-uploader"
+                   action="https://jsonplaceholder.typicode.com/posts/"
+                   :show-file-list="false"
+                   :on-success="handleAvatarSuccess"
+                   :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl"
+               :src="imageUrl"
+               class="avatar">
+          <i v-else
+             class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+      </el-col>
+
+    </el-row>
+    <div class="btn-group" style="text-align:center;">
+      <el-button type="primary"
+                 :size="GlobalCss.buttonSize"
+                 @click="onSubmit('form')">保存</el-button>
+      <el-button type="primary"
+                 :size="GlobalCss.buttonSize"
+                 @click="onSubmit('form')">重置</el-button>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      tabPosition: 'left',
       imageUrl: '',
-      dialogTableVisible: false,
-      dialogFormVisible: false,
       ruleForm: {
         pass: '',
         checkPass: ''
       },
-      form1: {
+      form: {
+        account: '',
         name: '',
-        region: '',
-        delivery: false,
-        type: [],
-        resource: '',
+        position: '',
+        department: '',
+        telephone: '',
+        jobNum: '',
+        education: '',
+        graduatedSchool: '',
+        homeTown: '',
+        profession: '',
+        graduatedDate: '',
         desc: ''
       },
       formLabelWidth: '80px',
@@ -111,16 +151,6 @@ export default {
           }]
         }]
       }],
-      form: {
-        name: '',
-        email: '',
-        telephone: '',
-        gender: '男',
-        region: '',
-        delivery: false,
-        type: [],
-        desc: ''
-      },
       rules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'blur' },
@@ -138,6 +168,8 @@ export default {
         ]
       }
     }
+  },
+  mounted () {
   },
   methods: {
     handleAvatarSuccess (res, file) {
@@ -186,3 +218,30 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+
+/deep/.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+/deep/.avatar-uploader .el-upload {
+  border: 1px dashed #8c939d;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+</style>

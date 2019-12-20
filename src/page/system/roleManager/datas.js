@@ -46,6 +46,10 @@ export default {
       this.form.page = val
       this.initTable()
     },
+    handleRoleAdd () { // 新增弹窗打开
+      this.dialogFormVisible = true
+      this.roleForm = {}
+    },
     onSubmit () {
       this.$refs.roleForm.validate((valid) => {
         if (valid) {
