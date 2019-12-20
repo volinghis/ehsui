@@ -2,90 +2,138 @@
   <div>
     <div>
       <div style="float:left;">
-        <el-input :size="GlobalCss.controlSize" style="margin:5px 0px;">
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
+        <el-form :model="form">
+          <el-input :size="GlobalCss.controlSize"
+                    v-model="form.query"
+                    placeholder="请输入工号或者名字"
+                    style="margin:5px 0px;">
+            <el-button slot="append"
+                       @click="initTable"
+                       icon="el-icon-search"></el-button>
+          </el-input>
+        </el-form>
       </div>
       <div style="float:right">
-        <el-button type="primary" :size="GlobalCss.controlSize" @click="dialogVisible = true">新 增</el-button>
+        <el-button type="primary"
+                   :size="GlobalCss.controlSize"
+                   @click="addUser">新 增</el-button>
       </div>
     </div>
     <el-table :data="tableData"
               border
               :size="GlobalCss.controlSize"
+              @row-dblclick="handleInfo"
               style="width: 100%">
       <el-table-column fixed
-                       prop="account"
-                       label="账号"
+                       prop="dataCode"
+                       label="工号"
                        align="center"
-                       width="80">
+                       width="100">
       </el-table-column>
       <el-table-column prop="name"
                        label="姓名"
                        align="center"
-                       width="80">
+                       width="100">
       </el-table-column>
       <el-table-column prop="position"
                        label="职务"
                        align="center"
-                       width="100">
+                       width="120">
       </el-table-column>
       <el-table-column prop="gender"
                        label="性别"
                        align="center"
-                       width="70">
+                       width="90">
+        <template slot-scope="scope">
+          <div slot="reference">
+            <el-tag size="small"
+                    v-if="scope.row.gender ==='男'">{{ scope.row.gender }}</el-tag>
+            <el-tag size="small"
+                    v-else
+                    type="danger">{{ scope.row.gender }}</el-tag>
+          </div>
+        </template>
       </el-table-column>
-      <el-table-column prop="email"
-                       label="邮箱"
+      <el-table-column prop="orgName"
+                       label="所属部门"
                        align="center"
                        width="150">
       </el-table-column>
-      <el-table-column prop="mobilePhone"
+      <el-table-column prop="telephone"
                        label="手机"
                        align="center"
-                       width="120">
+                       width="140">
       </el-table-column>
-      <el-table-column prop="enable"
-                       label="启用"
+      <el-table-column prop="position"
+                       label="职务"
                        align="center"
-                       width="80">
-        <template slot-scope="scope">
-          <el-switch v-model="scope.enable"
-                     active-color="#13ce66"
-                     inactive-color="#ff4949">
-          </el-switch>
-        </template>
+                       width="140">
+      </el-table-column>
+      <el-table-column prop="state"
+                       label="启用状态"
+                       align="center"
+                       width="100">
+        <!-- <template slot-scope="scope">
+          <el-tooltip :content="scope.row.state===0 ? '启用中':'停用中'"
+                      placement="left">
+            <el-switch @change="changeState($event,scope.row,scope.$index)"
+                       v-model="scope.row.state"
+                       active-color="#13ce66"
+                       inactive-color="#ff4949"
+                       :active-value="0"
+                       :inactive-value="1">
+            </el-switch>
+          </el-tooltip>
+        </template> -->
       </el-table-column>
       <el-table-column fixed="right"
                        label="操作"
                        align="center"
-                       width="100">
-        <template slot>
-          <el-button type="text"
+                       width="240">
+        <template slot-scope="scope">
+          <el-button type="warning"
                      :size="GlobalCss.controlSize"
-                     @click="dialogVisible = true">查看</el-button>
-          <el-button type="text"
+                     @click="authorizeUser(scope.row)"
+                     style="color:#E6A23C">授权</el-button>
+          <el-button type="primary"
                      :size="GlobalCss.controlSize"
-                     @click="dialogVisible = true">编辑</el-button>
+                     @click="editUser(scope.row)">编辑</el-button>
+          <el-button type="danger"
+                     :size="GlobalCss.controlSize"
+                     @click="handleDelete(scope.row)"
+                     style="color:#F56C6C">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="新增员工"
-                     :visible.sync="dialogVisible"
-                     width="40%"
-                     :before-close="handleClose">
-            <user-form></user-form>
-            <el-divider></el-divider>
-            <span slot="footer"
-                  class="dialog-footer">
-              <el-button @click="dialogVisible = false"
-                         :size="GlobalCss.controlSize">取 消</el-button>
-              <el-button type="primary"
-                         @click="dialogVisible = false"
-                         :size="GlobalCss.controlSize"
-                         style="margin-left:15px;">提 交</el-button>
-            </span>
-          </el-dialog>
+    <el-pagination @current-change="handleCurrentChange"
+                   style="float:right;"
+                   background
+                   :current-page.sync="form.page"
+                   :page-size="form.size"
+                   layout="total, prev, pager, next"
+                   :total="totalCount">
+    </el-pagination>
+    <el-dialog title="员工信息"
+               :visible.sync="dialogVisible"
+               :before-close="handleClose"
+               width="40%">
+      <user-form ref="addUserForm"
+                 class="userForm"
+                 :organName="organName"
+                 :organKey="organKey"
+                 :editUserForm="editUserForm"></user-form>
+      <el-divider></el-divider>
+      <span slot="footer"
+            v-show="userInfo"
+            class="dialog-footer">
+        <el-button @click="dialogVisible = false"
+                   :size="GlobalCss.controlSize">取 消</el-button>
+        <el-button type="primary"
+                   @click="onSubmit"
+                   :size="GlobalCss.controlSize"
+                   style="margin-left:15px;">提 交</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
