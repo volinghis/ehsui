@@ -1,18 +1,27 @@
-.el-header{
+.el-header:not(.tabHeader){
   height: $headerHeight !important;
   overflow: hidden;
-  background-color: $menuBgColor;
+  background: linear-gradient(90deg,#1d42ab,#2173dc,#1e93ff);
+  padding: 0 0 0 0px !important;
+
+}
+.tabHeader{
+  height: $tabHeight !important;
+  
 }
 .el-main{
   padding: 0px;
   overflow: auto !important;
+  padding: 0 0 0 0px !important;
+  padding-top: 10px !important;
 }
-.tabpanel{
-  overflow: hidden;
-  background-color: white;
-  height: $tabHeight !important;
+.el-aside{
+  overflow: auto;
+  width: $siderWidth !important;
+  background-color: $menuBgColor;
+  padding: 0 0 0 0px !important;
 }
-.el-breadcrumb{
-  margin-top: ($tabHeight - $fontSize)/2;
-  margin-left: 20px;
+.el-container {
+  padding: 0 0 0 0px !important;
+
 }

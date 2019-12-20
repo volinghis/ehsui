@@ -58,7 +58,9 @@ function addDynamicMenu (routes, md) {
 }
 vueRouter.addRoutes(globalRoutes)
 vueRouter.afterEach(function (to, from) {
-  Store.dispatch(GlobalVars.addTabsMethodName, to)
+  if (vueRouter.options.isAdd && !isGlobalRoutes(to)) {
+    Store.dispatch(GlobalVars.addTabsMethodName, to)
+  }
   NProgress.done()
 })
 vueRouter.beforeEach((to, from, next) => { // 添加动态(菜单)路由
