@@ -1,19 +1,15 @@
 <template>
   <div>
-
     <el-row :gutter="10">
       <el-col :span="6">
-        <el-card>
           <el-tree :data="treeData"
                    ref="tree"
                    :props="defaultProps"
                    default-expand-all
                    highlight-current
                    @node-click="handleNodeClick"></el-tree>
-        </el-card>
       </el-col>
       <el-col :span="18">
-        <el-card>
           <div class="container">
             <div class="operation">
               <el-button type="primary"
@@ -60,7 +56,6 @@
               </div>
             </el-dialog>
           </div>
-        </el-card>
       </el-col>
     </el-row>
   </div>

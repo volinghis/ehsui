@@ -2,36 +2,32 @@
   <div>
     <el-row>
       <el-col :span="14">
-        <el-divider content-position="left"><span style="color:#409EFF">基本信息</span></el-divider>
         <el-form ref="form"
                  :model="form"
-                 size="small"
+                 style="width:50%;"
+                 :size="GlobalCss.buttonSize"
                  label-width="80px"
                  :rules="rules">
+          <el-divider content-position="left"><span style="color:#409EFF">基本信息</span></el-divider>
           <el-form-item label="账号"
                         prop="account">
-            <el-input v-model="form.account"
-                      prefix-icon="el-icon-user"></el-input>
+            <el-input v-model="form.account"></el-input>
           </el-form-item>
           <el-form-item label="姓名"
                         prop="name">
-            <el-input v-model="form.name"
-                      prefix-icon="el-icon-user"></el-input>
+            <el-input v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item label="职务"
                         prop="position">
-            <el-input v-model="form.position"
-                      prefix-icon="el-icon-user"></el-input>
+            <el-input v-model="form.position"></el-input>
           </el-form-item>
           <el-form-item label="部门"
                         prop="department">
-            <el-input v-model="form.department"
-                      prefix-icon="el-icon-user"></el-input>
+            <el-input v-model="form.department"></el-input>
           </el-form-item>
           <el-form-item label="邮箱"
                         prop="email">
-            <el-input v-model="form.email"
-                      prefix-icon="el-icon-message"></el-input>
+            <el-input v-model="form.email"></el-input>
           </el-form-item>
           <el-form-item label="性别"
                         prop="gender">
@@ -40,18 +36,9 @@
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <!-- <el-form-item label="居住地"
-                        prop="desc">
-            <el-cascader placeholder="试试搜索：西安"
-                         :options="options"
-                         value="changan"
-                         filterable>
-            </el-cascader>
-          </el-form-item> -->
           <el-form-item label="联系电话"
                         prop="telephone">
-            <el-input v-model="form.telephone"
-                      prefix-icon="el-icon-phone-outline"></el-input>
+            <el-input v-model="form.telephone"></el-input>
           </el-form-item>
           <el-divider content-position="left"><span style="color:#409EFF">辅助信息</span></el-divider>
           <el-form-item label="员工工号"
@@ -81,7 +68,8 @@
         </el-form>
       </el-col>
 
-      <el-col :span="10" style="text-align: center;">
+      <el-col :span="10"
+              style="text-align: center;">
         <el-upload class="avatar-uploader"
                    action="https://jsonplaceholder.typicode.com/posts/"
                    :show-file-list="false"
@@ -96,7 +84,8 @@
       </el-col>
 
     </el-row>
-    <div class="btn-group" style="text-align:center;">
+    <div class="btn-group"
+         style="text-align:center;">
       <el-button type="primary"
                  :size="GlobalCss.buttonSize"
                  @click="onSubmit('form')">保存</el-button>
