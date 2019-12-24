@@ -8,7 +8,7 @@
                     placeholder="请输入工号或者名字"
                     style="margin:5px 0px;">
             <el-button slot="append"
-                       @click="initTable"
+                       @click="searchUser"
                        icon="el-icon-search"></el-button>
           </el-input>
         </el-form>
@@ -16,6 +16,7 @@
       <div style="float:right">
         <el-button type="primary"
                    :size="GlobalCss.controlSize"
+                   icon="fa fa-plus"
                    @click="addUser">新 增</el-button>
       </div>
     </div>
@@ -24,8 +25,11 @@
               :size="GlobalCss.controlSize"
               @row-dblclick="handleInfo"
               style="width: 100%">
-      <el-table-column fixed
-                       prop="dataCode"
+      <el-table-column type="index"
+      align="center"
+                       width="50">
+      </el-table-column>
+      <el-table-column prop="dataCode"
                        label="工号"
                        align="center"
                        width="100">
@@ -57,7 +61,7 @@
       <el-table-column prop="orgName"
                        label="所属部门"
                        align="center"
-                       width="150">
+                       width="120">
       </el-table-column>
       <el-table-column prop="telephone"
                        label="手机"
@@ -67,13 +71,13 @@
       <el-table-column prop="position"
                        label="职务"
                        align="center"
-                       width="140">
+                       width="124">
       </el-table-column>
       <el-table-column prop="state"
                        label="启用状态"
                        align="center"
                        width="100">
-        <!-- <template slot-scope="scope">
+        <template slot-scope="scope">
           <el-tooltip :content="scope.row.state===0 ? '启用中':'停用中'"
                       placement="left">
             <el-switch @change="changeState($event,scope.row,scope.$index)"
@@ -84,9 +88,9 @@
                        :inactive-value="1">
             </el-switch>
           </el-tooltip>
-        </template> -->
+        </template>
       </el-table-column>
-      <el-table-column fixed="right"
+      <el-table-column
                        label="操作"
                        align="center"
                        width="240">
@@ -134,6 +138,12 @@
                    style="margin-left:15px;">提 交</el-button>
       </span>
     </el-dialog>
+    <el-drawer title="用户授权"
+               :visible.sync="drawer"
+               size="40%">
+      <el-divider></el-divider>
+      <userAuth v-on:userKey="userKey" v-on:roleTable="roleTable"></userAuth>
+    </el-drawer>
   </div>
 </template>
 <script>

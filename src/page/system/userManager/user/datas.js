@@ -19,7 +19,9 @@ export default {
       organizationName: '',
       organizationChildren: 0,
       defaultExpandKeys: [],
+      searchParam: {},
       filterText: '',
+      totalCount: 0,
       treeData: [],
       treeProps: {
         children: 'children',
@@ -29,20 +31,13 @@ export default {
   },
   mounted () {
     this.initTreeData()
-    this.findOrgsByParentKey()
+    this.findUserByOrgKey()
   },
   methods: {
     filterNode (value, data) {
       if (!value) return true
       return data.label.indexOf(value) !== -1
     },
-    // getOrg: function (currentOrgKey, currentOrgName) {
-    //   this.organizationKey = currentOrgKey
-    //   this.organizationName = currentOrgName
-    // },
-    // userData: function (data) {
-    //   this.userTableData = data
-    // },
     initTreeData: function () {
       this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgManager/getAllForTree').then(res => {
         this.treeData = res.data
@@ -50,24 +45,31 @@ export default {
       })
     },
     handleNodeClick: function (data) {
-      console.log(data.children)
       this.organizationKey = data.id
       this.organizationName = data.label
       if (data.children !== null) {
         this.organizationChildren = data.children.length
+        this.$message({
+          message: '请点击子部门进行查看',
+          type: 'warning'
+        })
+      } else {
+        this.organizationChildren = 0
       }
-      this.findOrgsByParentKey(data.id)
+      this.findUserByOrgKey(data.id, this.searchParam)
       this.nodeParentKey = data.id
     },
-    findOrgsByParentKey: function (key) { // 查询组织下所有人员
-      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findUserByOrgKey', { params: { orgKey: key } }).then(res => {
-        this.userTableData = Object.keys(res.data)
-        console.log('111===' + this.userTableData)
-        console.log('222===' + res.data.totalCount)
+    findUserByOrgKey: function (key, formParams) { // 查询组织下所有人员
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findUserByOrgKey', { params: { orgKey: key, searchData: formParams } }).then(res => {
+        this.userTableData = res.data.dataList
         this.totalCount = res.data.totalCount
       }).catch(() => {
         this.$message.error('查询出错，请刷新重试！')
       })
+    },
+    getUserBySearch: function (organizationKey, form) {
+      this.searchParam = form
+      this.findUserByOrgKey(organizationKey, form)
     }
   }
 }

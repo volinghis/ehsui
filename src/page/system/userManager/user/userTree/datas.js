@@ -2,11 +2,18 @@ let id = 1
 export default {
   data () {
     return {
+      userData: {},
       treeData: [],
+      currentOrgKey: '',
+      currentOrgName: '',
       maxexpandId: 999, // 新增节点开始id
       non_maxexpandId: 1, // 新增节点开始id(不更改)
       isLoadingTree: true, // 是否加载节点树
-      setTree: this.data // 节点树数据
+      setTree: this.data, // 节点树数据
+      treeProps: {
+        children: 'children',
+        label: 'label'
+      }
     }
   },
   mounted () {
@@ -19,17 +26,30 @@ export default {
       })
     },
     handleNodeClick: function (data) {
-      if (data.children === undefined) {
-        console.log(data.id)
-      }
+      this.currentOrgKey = data.id
+      this.currentOrgName = data.label
+      this.$emit('getOrg', this.currentOrgKey, this.currentOrgName)
+      this.findUserByOrgKey(data.id)
+      // console.log('node======id===' + data.id)
+    },
+    findUserByOrgKey: function (key) { // 查询部门下所有人员
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findUserByOrgKey', { params: { orgKey: key } }).then(res => {
+        console.log(res.data)
+        this.userData = res.data
+        // console.log('userData===' + this.userData)
+        this.$emit('userTableData', this.userData)
+      }).catch(error => {
+        console.log(error)
+      })
     },
     NodeBlur (n, d) { // 输入框失焦
       if (n.isEdit) {
-        this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/organization/saveOrg', d).then(res => {
-          if (res.data.resultType === 'ok') {
-            this.$message.success('修改成功')
-          }
-        })
+        console.log(d)
+        // this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/organization/saveOrg', d).then(res => {
+        //   if (res.data.resultType === 'ok') {
+        //     this.$message.success('修改成功')
+        //   }
+        // })
         this.$set(n, 'isEdit', false)
       }
     },
@@ -52,6 +72,8 @@ export default {
       })
     },
     editNode (node, data) {
+      console.log(node)
+      console.log(data)
       if (!node.isEdit) { // 检测isEdit是否存在or是否为false
         this.$set(node, 'isEdit', true)
       }

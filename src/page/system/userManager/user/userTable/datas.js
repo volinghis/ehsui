@@ -1,12 +1,35 @@
 import userForm from '../userForm/index.vue'
+import userAuth from '../../userAuth/index.vue'
 export default {
+  data () {
+    return {
+      drawer: false,
+      userKey: '',
+      userInfo: '',
+      organName: '',
+      organKey: '',
+      dialogVisible: false,
+      tableData: [],
+      totalCount: 0,
+      editUserForm: {},
+      form: {
+        query: '',
+        page: 1,
+        size: 20
+      },
+      roleTableData: [],
+      roleTable: []
+    }
+  },
   components: {
-    userForm
+    userForm,
+    userAuth
   },
   props: {
     organizationKey: String,
     organizationName: String,
     organizationChildren: Number,
+    totals: Number,
     userDatas: Array
   },
   watch: {
@@ -17,30 +40,41 @@ export default {
         }
       },
       deep: true
+    },
+    organizationKey: function (newValue, oldValue) {
+      this.organizationKey = newValue
+    },
+    organizationName: function (newValue, oldValue) {
+      this.organizationName = newValue
+    },
+    organizationChildren: function (newValue, oldValue) {
+      this.organizationChildren = newValue
+    },
+    totals: function (newValue, oldValue) {
+      this.totalCount = newValue
     }
   },
   methods: {
     addUser: function () {
-      const node = this.organizationKey
-      const nodeName = this.organizationName
-      const nodeChild = this.organizationChildren
-      console.log('nodeChild===' + nodeChild)
       this.userInfo = true
-      if (node === '') {
+      if (this.organizationName === '') {
         this.$message({
           message: '请选择部门',
           type: 'warning'
         })
         return
-      } if (nodeChild > 0) {
+      } if (this.organizationChildren > 0) {
         this.$message({
           message: '请选择具体部门',
           type: 'warning'
         })
       } else {
-        console.log('打开-----')
-        this.organKey = node
-        this.organName = nodeName
+        if (this.$refs.addUserForm !== undefined) {
+          this.$refs.addUserForm.form = {}
+          this.$refs.addUserForm.form.gender = '男'
+        }
+        this.organKey = this.organizationKey
+        this.organName = this.organizationName
         this.dialogVisible = true
       }
     },
@@ -71,8 +105,15 @@ export default {
         this.tableData[index] = newData
       })
     },
-    authorizeUser: function () {
-      console.log('=========')
+    authorizeUser: function (row) {
+      console.log('=========' + row.key)
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findAllRolesByUserKey', { params: { userKey: row.key } }).then(res => {
+        this.roleTable = res.data
+        this.loading = false
+      }).catch(error => {
+        console.log(error)
+      })
+      this.drawer = true
     },
     handleInfo: function (row) {
       this.dialogVisible = true
@@ -113,21 +154,23 @@ export default {
       this.$confirm('确认关闭？')
         .then(_ => {
           done()
-          this.$refs.addUserForm.$refs.form.resetFields()
-          this.initTable()
+          // this.initTable()
+          this.searchUser()
         })
         .catch(_ => { })
     },
-    initTable: function () {
-      this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/getAllUser', this.form)
-        .then((res) => {
-          this.tableData = res.data.dataList
-          this.totalCount = res.data.totalCount
-        })
+    searchUser: function () {
+      // this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/getAllUser', this.form)
+      //   .then((res) => {
+      //     this.tableData = res.data.dataList
+      //     this.totalCount = res.data.totalCount
+      //   })
+      // this.tableData = this.userDatas
+      this.$emit('getUserBySearch', this.organizationKey, this.form)
     },
     handleCurrentChange (val) { // 页面跳转
       this.form.page = val
-      this.initTable()
+      this.searchUser(this.form.page)
     },
     handleDelete (row) {
       this.$confirm('此操作将删除该条记录及相关信息, 是否继续?', '提示', {
@@ -142,7 +185,8 @@ export default {
                 message: res.data.message,
                 type: 'success'
               })
-              this.initTable()
+              // this.initTable()
+              this.searchUser()
             }
           }).catch((error) => {
             console.log(error)
@@ -154,24 +198,8 @@ export default {
         })
       })
     }
-  },
-  mounted () {
-    this.initTable()
-  },
-  data () {
-    return {
-      userInfo: '',
-      organName: '',
-      organKey: '',
-      dialogVisible: false,
-      tableData: [],
-      totalCount: 0,
-      editUserForm: {},
-      form: {
-        query: '',
-        page: 1,
-        size: 20
-      }
-    }
   }
+  // mounted () {
+  //   this.initTable()
+  // },
 }

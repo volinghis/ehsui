@@ -4,6 +4,7 @@
              show-checkbox
              node-key="id"
              ref="tree"
+             :props="treeProps"
              default-expand-all
              @node-click="handleNodeClick"
              highlight-current

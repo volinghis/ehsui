@@ -80,7 +80,7 @@
         <el-form-item label="备注："
                       prop="remark">
           <el-input type="textarea"
-                    style="width:469px;"
+                    style="width:466px;"
                     v-model="form.remark"
                     placeholder="请输入内容"
                     maxlength="300"

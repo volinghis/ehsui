@@ -5,12 +5,13 @@ export default {
     editUserForm: Object
   },
   mounted () {
-    if (this.organName === '' && this.organKey === '') {
+    if (this.editUserForm.orgName !== this.orgName) {
       this.form = this.editUserForm
+    } else {
+      this.form.orgKey = this.organKey
+      this.form.orgName = this.organName
+      this.form.gender = '男'
     }
-    this.form.orgKey = this.organKey
-    this.form.orgName = this.organName
-    this.form.gender = '男'
   },
   watch: {
     organName (newValue, oldValue) {
@@ -32,7 +33,7 @@ export default {
     return {
       form: {
         name: '',
-        gender: '男',
+        gender: '',
         email: '',
         position: '',
         telephone: '',
