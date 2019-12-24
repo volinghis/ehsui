@@ -135,6 +135,15 @@ export default {
         console.log(error)
       })
     },
+    onSubmit () {
+      this.$refs.formLabelAlign.validate((valid) => {
+        if (valid) {
+          this.handleSubmit()
+        } else {
+          return false
+        }
+      })
+    },
     handleSubmit: function () {
       this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/organization/saveOrg', this.formLabelAlign).then(res => {
         console.log('parentKey====' + this.formLabelAlign.parentKey)

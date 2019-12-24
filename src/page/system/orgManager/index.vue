@@ -92,8 +92,8 @@
                 <el-button @click="handleReset"
                            :size="GlobalCss.buttonSize">取 消</el-button>
                 <el-button type="primary"
-                           @click="handleSubmit"
-                           :size="GlobalCss.buttonSize">确 定</el-button>
+                           @click="onSubmit"
+                           :size="GlobalCss.buttonSize">保 存</el-button>
               </div>
             </el-dialog>
           </div>
