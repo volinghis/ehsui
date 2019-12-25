@@ -1,74 +1,81 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="14">
+      <el-col :span="12">
         <el-form ref="form"
                  :model="form"
-                 style="width:50%;"
                  :size="GlobalCss.buttonSize"
-                 label-width="80px"
+                 label-width="100px"
                  :rules="rules">
-          <el-divider content-position="left"><span style="color:#409EFF">基本信息</span></el-divider>
-          <el-form-item label="账号"
+          <el-divider content-position="center"><span style="color:#409EFF">基本信息</span></el-divider>
+          <el-form-item label="账 号："
                         prop="account">
             <el-input v-model="form.account"></el-input>
           </el-form-item>
-          <el-form-item label="姓名"
+          <el-form-item label="姓 名："
                         prop="name">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
-          <el-form-item label="职务"
+          <el-form-item label="职 务："
                         prop="position">
             <el-input v-model="form.position"></el-input>
           </el-form-item>
-          <el-form-item label="部门"
+          <el-form-item label="部 门："
                         prop="department">
-            <el-input v-model="form.department"></el-input>
+            <OrgSelect style="width:100%;"></OrgSelect>
           </el-form-item>
-          <el-form-item label="邮箱"
+          <el-form-item label="邮 箱："
                         prop="email">
             <el-input v-model="form.email"></el-input>
           </el-form-item>
-          <el-form-item label="性别"
+          <el-form-item label="性 别："
                         prop="gender">
             <el-radio-group v-model="form.gender">
               <el-radio label="男"></el-radio>
               <el-radio label="女"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="联系电话"
+          <el-form-item label="联系电话："
                         prop="telephone">
             <el-input v-model="form.telephone"></el-input>
           </el-form-item>
-          <el-divider content-position="left"><span style="color:#409EFF">辅助信息</span></el-divider>
-          <el-form-item label="员工工号"
+          <el-divider content-position="center"><span style="color:#409EFF">辅助信息</span></el-divider>
+          <el-form-item label="员工工号："
                         prop="jobNum">
             <el-input v-model="form.jobNum"></el-input>
           </el-form-item>
-          <el-form-item label="员工学历"
+          <el-form-item label="员工学历："
                         prop="education">
             <el-input v-model="form.education"></el-input>
           </el-form-item>
-          <el-form-item label="毕业院校"
+          <el-form-item label="毕业院校："
                         prop="graduatedSchool">
             <el-input v-model="form.graduatedSchool"></el-input>
           </el-form-item>
-          <el-form-item label="员工籍贯"
+          <el-form-item label="员工籍贯："
                         prop="homeTown">
             <el-input v-model="form.homeTown"></el-input>
           </el-form-item>
-          <el-form-item label="员工专业"
+          <el-form-item label="员工专业："
                         prop="profession">
             <el-input v-model="form.profession"></el-input>
           </el-form-item>
-          <el-form-item label="毕业时间"
+          <el-form-item label="毕业时间："
                         prop="graduatedDate">
             <el-input v-model="form.graduatedDate"></el-input>
+          </el-form-item>
+          <el-form-item>
+             <el-button type="primary"
+                 :size="GlobalCss.buttonSize"
+                 @click="onSubmit('form')">保存</el-button>
+      <el-button type="primary"
+                 :size="GlobalCss.buttonSize"
+                 @click="onSubmit('form')">重置</el-button>
           </el-form-item>
         </el-form>
       </el-col>
 
-      <el-col :span="10"
+      <el-col :span="12"
               style="text-align: center;">
         <el-upload class="avatar-uploader"
                    action="https://jsonplaceholder.typicode.com/posts/"
@@ -85,18 +92,16 @@
 
     </el-row>
     <div class="btn-group"
-         style="text-align:center;">
-      <el-button type="primary"
-                 :size="GlobalCss.buttonSize"
-                 @click="onSubmit('form')">保存</el-button>
-      <el-button type="primary"
-                 :size="GlobalCss.buttonSize"
-                 @click="onSubmit('form')">重置</el-button>
+         style="margin-left:50px;">
     </div>
   </div>
 </template>
 <script>
+import OrgSelect from '@components/org/org-selector/index.vue'
 export default {
+  components: {
+    OrgSelect
+  },
   data () {
     return {
       imageUrl: '',
@@ -232,5 +237,8 @@ export default {
   width: 120px;
   height: 120px;
   display: block;
+}
+.el-divider {
+    background-color: #3a8ee6;
 }
 </style>

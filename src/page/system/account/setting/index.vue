@@ -8,7 +8,7 @@
                      name="first"></el-tab-pane>
         <el-tab-pane label="修改密码"
                      name="second">
-          <ResetPassword />
+          <ChangePassword />
         </el-tab-pane>
         <el-tab-pane label="消息管理"
                      name="third"></el-tab-pane>
@@ -23,7 +23,7 @@
 
 <script>
 import BaseSetting from './modules/baseSetting'
-import ResetPassword from './modules/resetPassword'
+import ChangePassword from './modules/changePassword'
 export default {
   data () {
     return {
@@ -32,7 +32,7 @@ export default {
   },
   components: {
     BaseSetting,
-    ResetPassword
+    ChangePassword
   },
   mounted () {
   },
