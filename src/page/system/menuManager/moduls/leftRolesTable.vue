@@ -75,10 +75,18 @@ export default {
     }
   },
   props: {
-    currentMenuKey: String
+    currentMenuKey: String,
+    dialogTableVisible: Boolean
   },
   mounted () {
     this.getLeftMenuRoles()
+  },
+  watch: {
+    dialogTableVisible (value) {
+      if (value) {
+        this.getLeftMenuRoles()
+      }
+    }
   },
   methods: {
     handleCurrentChange () {

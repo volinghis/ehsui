@@ -85,7 +85,7 @@ export default {
         const e = roles[i]
         roleBeans.push({ roleType: 'ROLE', roleKey: e.key })
       }
-      if (this.selectRoles.length <= 0) {
+      if (roles.length <= 0) {
         this.$message({
           message: '请选择角色',
           type: 'warning'
@@ -110,6 +110,5 @@ export default {
     handleSelect (data) {
       this.selectRoles = data
     }
-
   }
 }

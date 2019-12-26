@@ -9,6 +9,13 @@
           </div>
           <div class="username">东恒测试</div>
           <div class="bio">海纳百川，有容乃大</div>
+          <div class="rate-wrapper">
+            <el-rate v-model="value"
+                     :icon-classes="['el-icon-medal', 'el-icon-medal', 'el-icon-medal']"
+                     void-icon-class="el-icon-medal"
+                     :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+            </el-rate>
+          </div>
         </div>
         <div class="account-center-detail">
           <p>
@@ -31,10 +38,12 @@ export default {
   data () {
     return {
       inputVisible: false,
-      inputValue: ''
+      inputValue: '',
+      value: null
     }
   },
   methods: {
+
   }
 }
 </script>
@@ -44,7 +53,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-.account-center-detail{
+.account-center-detail {
   text-align: center;
 }
 .username {
@@ -63,7 +72,6 @@ export default {
   border-radius: 50%;
   overflow: hidden;
 }
-
 img {
   height: 100%;
   width: 100%;
@@ -71,5 +79,8 @@ img {
 .account-center-avatarHolder {
   text-align: center;
   margin-bottom: 24px;
+}
+.rate-wrapper{
+  margin-top: 10px;
 }
 </style>

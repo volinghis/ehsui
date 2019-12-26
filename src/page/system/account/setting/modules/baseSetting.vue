@@ -65,12 +65,12 @@
             <el-input v-model="form.graduatedDate"></el-input>
           </el-form-item>
           <el-form-item>
-             <el-button type="primary"
-                 :size="GlobalCss.buttonSize"
-                 @click="onSubmit('form')">保存</el-button>
-      <el-button type="primary"
-                 :size="GlobalCss.buttonSize"
-                 @click="onSubmit('form')">重置</el-button>
+            <el-button type="primary"
+                       :size="GlobalCss.buttonSize"
+                       @click="onSubmit('form')">保存</el-button>
+            <el-button type="primary"
+                       :size="GlobalCss.buttonSize"
+                       @click="onSubmit('form')">重置</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -164,13 +164,14 @@ export default {
     }
   },
   mounted () {
+    this.initForm()
   },
   methods: {
     handleAvatarSuccess (res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
     },
-    OnUpdate () {
-
+    initForm () {
+      console.log(localStorage.getItem(this.GlobalVars.userLocal))
     },
     onSubmit (formName) {
       this.$refs[formName].validate((valid) => {
@@ -239,6 +240,6 @@ export default {
   display: block;
 }
 .el-divider {
-    background-color: #3a8ee6;
+  background-color: #3a8ee6;
 }
 </style>
