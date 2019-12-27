@@ -2,7 +2,7 @@
 export default {
   props: {
     'disabled': Boolean,
-    'clearable': Boolean,
+    'clearable': { type: Boolean, default: true },
     'show-all-levels': { type: Boolean, default: false },
     'propOrgValue': String,
     'props': Object

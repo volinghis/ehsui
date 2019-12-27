@@ -1,11 +1,12 @@
 <template>
   <el-cascader
-    placeholder="请选择组织"
+    placeholder="请选择人员"
     ref="orgCasCader"
     :options="options" :size="GlobalCss.buttonSize" :disabled="disabled"
     :clearable="clearable"
     :show-all-levels="showAllLevels"
     transfer
+
     v-model="orgValue"
     @change="change"
     @blur="blur"

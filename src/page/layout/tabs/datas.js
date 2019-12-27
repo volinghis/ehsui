@@ -9,8 +9,7 @@ export default {
   },
   computed: {
     activeTab () {
-      const route = this.$route
-      return route.name
+      return this.$store.state.resourceMenuKey
     }
   }
 }

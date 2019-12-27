@@ -53,7 +53,12 @@ function addDynamicMenu (routes, md, type) {
     for (var i = 0; i < md.length; i++) {
       if (md[i].component && md[i].leaf && !md[i].children) {
         var router = {}
-        router.path = md[i].path
+
+        if (type === 'flow') {
+          router.path = md[i].path + '/:processInfo'
+        } else {
+          router.path = md[i].path
+        }
         router.name = type + md[i].key
         router.meta = { title: md[i].label, business: md[i].business }
         router.component = _import(md[i].component)
@@ -65,15 +70,10 @@ function addDynamicMenu (routes, md, type) {
   }
 }
 function toDoPage (from, to, next) {
-  if (isGlobalRoutes(to)) {
+  console.log(123)
+  console.log(vueRouter.query)
+  if (isGlobalRoutes(to) || vueRouter.options.isAdd) {
     next()
-  } else if (vueRouter.options.isAdd) {
-    if (to.name === 'index') {
-      Store.state.selectedTabs = []
-      next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
-    } else {
-      next()
-    }
   } else {
     Store.dispatch(GlobalVars.setResourceMenuKeyMethod, from.name)
     Axios.get(GlobalVars.globalServiceServlet + '/auth/menu/menuDatas').then(function (res) {
@@ -81,19 +81,23 @@ function toDoPage (from, to, next) {
       var routes = []
       addDynamicMenu(routes, Store.state.menuDatas, '')
       mainRoutes.children = routes
-
       var flows = []
       addDynamicMenu(flows, Store.state.menuDatas, 'flow')
       flowMainRoutes.children = flows
-      flowMainRoutes.children.push({ name: 'flowroleedit', meta: { business: true }, path: '/system/roleManager/roleEdit', component: _import('/system/roleManager/roleEdit') })
-      mainRoutes.children.push(flowMainRoutes)
+      flowMainRoutes.children.push({ name: 'flowroleedit', meta: { business: true }, path: '/flowSample/:processInfo', component: _import('/flow/sample/index') })
+      // mainRoutes.children.push(flowMainRoutes)
 
       vueRouter.addRoutes([// vue-routers2.2版本以上才支持。
         mainRoutes,
+        flowMainRoutes,
         { path: '*', redirect: { name: '404' } }
       ])
       vueRouter.options.isAdd = true
-      next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
+      if (to.name === 'index') {
+        next({ name: (mainRoutes.children.length > 0 ? mainRoutes.children[0].name : mainRoutes.name), replace: true })
+      } else {
+        next({ path: to.path, replace: true })
+      }
     })
   }
 }
