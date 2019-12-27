@@ -71,6 +71,8 @@ export default {
       } else {
         if (this.$refs.addUserForm !== undefined) {
           this.$refs.addUserForm.form = {}
+          this.$refs.addUserForm.form.orgKey = this.organizationKey
+          this.$refs.addUserForm.form.orgName = this.organizationName
           this.$refs.addUserForm.form.gender = '男'
         }
         this.organKey = this.organizationKey
@@ -85,17 +87,20 @@ export default {
     },
     // 当前状态：data,  d:当前数据对象, index:当前序号(数组下标)
     changeState: function (e, row, index) {
+      console.log(row.orgKey)
       this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/changeState', row).then(res => {
         if (res.data.state === 0) {
           this.$message({
             message: '已经切换到启用状态',
             type: 'success'
           })
+          this.$emit('findUserByOrgKey', row.orgKey)
         } else {
           this.$message({
             message: '已经切换到停用状态',
             type: 'warning'
           })
+          this.$emit('findUserByOrgKey', row.orgKey)
         }
         // TODO ：刷新列表数据
       }).catch(() => {
@@ -106,13 +111,15 @@ export default {
       })
     },
     authorizeUser: function (row) {
-      console.log('=========' + row.key)
-      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findAllRolesByUserKey', { params: { userKey: row.key } }).then(res => {
-        this.roleTable = res.data
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findUserRoles', { params: { userKey: row.key } }).then(res => {
+        if (res.data != null) {
+          this.roleTable = res.data
+        }
         this.loading = false
       }).catch(error => {
         console.log(error)
       })
+      this.userKey = row.key
       this.drawer = true
     },
     handleInfo: function (row) {
@@ -130,7 +137,7 @@ export default {
       })
     },
     handleSubmit: function () {
-      console.log(this.$refs.addUserForm.form)
+      // console.log(this.$refs.addUserForm.form)
       this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/saveOrgUser', this.$refs.addUserForm.form).then(res => {
         if (res.data.resultType === 'ok') {
           this.$message({
@@ -138,13 +145,14 @@ export default {
             type: 'success'
           })
           this.dialogVisible = false
-          this.initTable()
+          this.$emit('findUserByOrgKey', this.$refs.addUserForm.form.orgKey)
         } else {
           this.$message({
             message: res.data.message,
             type: 'info'
           })
           this.dialogVisible = false
+          this.$emit('findUserByOrgKey', this.$refs.addUserForm.form.orgKey)
         }
       }).catch((error) => {
         console.log(error)
@@ -154,7 +162,6 @@ export default {
       this.$confirm('确认关闭？')
         .then(_ => {
           done()
-          // this.initTable()
           this.searchUser()
         })
         .catch(_ => { })
@@ -166,6 +173,8 @@ export default {
       //     this.totalCount = res.data.totalCount
       //   })
       // this.tableData = this.userDatas
+      // console.log('organizationKey=========' + this.organizationKey)
+      // console.log('foemmmmmmmmmmmm=========' + this.form)
       this.$emit('getUserBySearch', this.organizationKey, this.form)
     },
     handleCurrentChange (val) { // 页面跳转
@@ -197,6 +206,12 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    authResult: function (val) {
+      console.log('authResult=====' + val)
+      if (val === false) {
+        this.drawer = false
+      }
     }
   }
   // mounted () {

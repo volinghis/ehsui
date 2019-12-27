@@ -1,51 +1,109 @@
-// import role from '../../menuManager/moduls/leftRolesTable.vue'
 export default {
-  components: {
-  },
-  props: {
-    userKey: String,
-    roleTable: Array
-  },
-  watch: {
-    userKey: function (newValue, oldValue) {
-      console.log('newUserKey====' + newValue)
-      this.userKey = newValue
-    },
-    roleTable: {
-      handler (newValue, oldValue) {
-        if (newValue) {
-          console.log('tableData====' + newValue)
-          this.tableData = newValue
-        }
-      },
-      deep: true
-    }
-  },
   data () {
     return {
       roleTableData: [],
-      drawer: false,
       innerDrawer: false,
       tableData: [],
       totalCount: 0,
       loading: true,
       multipleSelection: [],
-      form: {
+      searchForm: {
         query: '',
         page: 1,
         size: 20
       }
     }
   },
-  // mounted () {
-  //   this.initRoleTable()
-  // },
+  props: {
+    user_key: String,
+    roleTable: Array
+  },
+  watch: {
+    user_key: function (newValue, oldValue) {
+      this.user_key = newValue
+    },
+    roleTable: {
+      handler (newValue, oldValue) {
+        if (newValue) {
+          this.roleTableData = newValue
+        }
+      },
+      deep: true
+    }
+  },
+  mounted () {
+    this.initRoleTable()
+  },
   methods: {
-    handleRomoveAuth: function () {
+    handleRomoveAuth: function (row) {
+      this.$confirm('是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        console.log(this.$parent.drawer)
+        var roleBeans = []
+        roleBeans.push({ roleType: 'ROLE', roleKey: row.key })
+        this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/deleteUserRole', { userKey: this.user_key, roleList: roleBeans })
+          .then((res) => {
+            if (res.data.resultType === 'ok') {
+              this.$message({
+                message: res.data.message,
+                type: 'success'
+              })
+              this.innerDrawer = false
+              this.$emit('authResult', false)
+            }
+          }).catch((error) => {
+            console.log(error)
+          })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
+    authRole: function () {
+      this.innerDrawer = true
+      this.initRoleTable()
+    },
+    handleSubmit: function () {
 
     },
+    selectOver: function () {
+      const roles = this.multipleSelection
+      // console.log(roles)
+      var roleBeans = []
+      for (let i = 0; i < roles.length; i++) {
+        const e = roles[i]
+        roleBeans.push({ roleType: 'ROLE', roleKey: e.key })
+      }
+      if (roles.length <= 0) {
+        this.$message({
+          message: '请选择角色',
+          type: 'warning'
+        })
+      } else {
+        this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/saveUserRole', { userKey: this.user_key, roleList: roleBeans }).then(res => {
+          if (res.data.resultType === 'ok') {
+            this.$message({
+              message: res.data.message,
+              type: 'success'
+            })
+            this.innerDrawer = false
+            this.$emit('authResult', false)
+          } else {
+            this.$message.error(res.data.message)
+            this.$emit('authResult', false)
+          }
+        }).catch(error => {
+          this.$message.error(error)
+        })
+      }
+    },
     handleCloseDrawer (done) {
-      this.$confirm('还有未保存的工作哦确定关闭吗？')
+      this.$confirm('尚未保存，确定关闭吗？')
         .then(_ => {
           done()
         })
@@ -53,18 +111,17 @@ export default {
     },
     handleCurrentChange () {
     },
-    // initRoleTable () { // 获取所有待选角色
-    //   console.log('userkey============' + this.userKey)
-    //   // this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findAllRolesByUserKey', { params: { userKey: this.userKey } }).then(res => {
-    //   //   // this.tableData = res.data
-    //   //   this.loading = false
-    //   // }).catch(error => {
-    //   //   console.log(error)
-    //   // })
-    // },
+    initRoleTable () { // 获取所有待选角色
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findAllRolesByUserKey', { params: { userKey: this.user_key, query: this.searchForm } }).then(res => {
+        this.tableData = res.data.dataList
+        this.totalCount = res.data.totalCount
+        this.loading = false
+      }).catch(error => {
+        this.$message.error(error)
+      })
+    },
     handleSelectionChange (val) {
       this.multipleSelection = val
-      this.$emit('handleSelect', val)
     }
   }
 }

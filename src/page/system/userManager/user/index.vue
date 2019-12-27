@@ -2,7 +2,6 @@
   <div>
     <el-row>
       <el-col :span="6">
-        <!-- <userTree v-on:getOrg="getOrg" v-on:userTableData="userData"></userTree> -->
         <el-input placeholder="输入关键字进行查找"
                   :size="GlobalCss.buttonSize"
                   style="width: 100%"
@@ -24,6 +23,7 @@
       </el-col>
       <el-col :span="17">
         <userTable @getUserBySearch="getUserBySearch"
+                   @findUserByOrgKey="findUserByOrgKey"
                    :organizationKey="organizationKey"
                    :organizationName="organizationName"
                    :organizationChildren="organizationChildren"

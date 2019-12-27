@@ -12,7 +12,9 @@
         <el-col :span="12">
           <el-form-item label="工号："
                         prop="dataCode">
-            <el-input v-model="form.dataCode"></el-input>
+            <template slot-scope>
+              <el-input v-model="form.dataCode" @blur.prevent="userCodeValidation(form)"></el-input>
+            </template>
           </el-form-item>
           <el-form-item label="手机："
                         prop="telephone">

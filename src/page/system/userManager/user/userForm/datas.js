@@ -29,6 +29,22 @@ export default {
       deep: true
     }
   },
+  methods: {
+    userCodeValidation: function (d) {
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/userValidation', { params: { dataCode: d.dataCode, key: d.key } }).then(res => {
+        if (res.data.resultType === 'error') {
+          this.$message.error(res.data.message)
+          this.form.dataCode = ''
+        }
+        if (res.data.resultType === 'ok') {
+          this.$message({
+            message: res.data.message,
+            type: 'success'
+          })
+        }
+      })
+    }
+  },
   data () {
     return {
       form: {
@@ -50,11 +66,11 @@ export default {
       rules: {
         dataCode: [
           { required: true, message: '请输入工号', trigger: 'blur' },
-          { min: 2, max: 5, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
         ],
         name: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
-          { min: 2, max: 5, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
         ],
         telephone: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },

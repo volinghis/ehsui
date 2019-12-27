@@ -26,7 +26,7 @@
               @row-dblclick="handleInfo"
               style="width: 100%">
       <el-table-column type="index"
-      align="center"
+                       align="center"
                        width="50">
       </el-table-column>
       <el-table-column prop="dataCode"
@@ -90,8 +90,7 @@
           </el-tooltip>
         </template>
       </el-table-column>
-      <el-table-column
-                       label="操作"
+      <el-table-column label="操作"
                        align="center"
                        width="240">
         <template slot-scope="scope">
@@ -119,7 +118,7 @@
     </el-pagination>
     <el-dialog title="员工信息"
                :visible.sync="dialogVisible"
-               :before-close="handleClose"
+               :destroy-on-close="true"
                width="40%">
       <user-form ref="addUserForm"
                  class="userForm"
@@ -140,9 +139,12 @@
     </el-dialog>
     <el-drawer title="用户授权"
                :visible.sync="drawer"
+               :destroy-on-close="true"
                size="40%">
       <el-divider></el-divider>
-      <userAuth v-on:userKey="userKey" v-on:roleTable="roleTable"></userAuth>
+      <userAuth @authResult="authResult"
+                :user_key="userKey"
+                :roleTable="roleTable"></userAuth>
     </el-drawer>
   </div>
 </template>
