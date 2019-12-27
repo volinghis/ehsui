@@ -1,10 +1,9 @@
-.account-center-index-wrapper{
-    padding: 10px;
-}
 .block-title {
     padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     i {
-      float: right;
       cursor: pointer;
       color: #fff;
     }
@@ -13,7 +12,6 @@
     }
   }
   .panel-group {
-    // margin-top: 10px;
     .card-panel-col {
       margin-bottom: 10px;
     }

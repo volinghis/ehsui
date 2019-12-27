@@ -9,8 +9,8 @@
                  :rules="rules">
           <el-divider content-position="center"><span style="color:#409EFF">基本信息</span></el-divider>
           <el-form-item label="账 号："
-                        prop="account">
-            <el-input v-model="form.account"></el-input>
+                        prop="dataCode">
+            <el-input v-model="form.dataCode"></el-input>
           </el-form-item>
           <el-form-item label="姓 名："
                         prop="name">
@@ -21,8 +21,9 @@
             <el-input v-model="form.position"></el-input>
           </el-form-item>
           <el-form-item label="部 门："
-                        prop="department">
-            <OrgSelect style="width:100%;"></OrgSelect>
+                        prop="orgName">
+            <OrgSelect style="width:100%;"
+                       v-model="form.orgName"></OrgSelect>
           </el-form-item>
           <el-form-item label="邮 箱："
                         prop="email">
@@ -62,7 +63,10 @@
           </el-form-item>
           <el-form-item label="毕业时间："
                         prop="graduatedDate">
-            <el-input v-model="form.graduatedDate"></el-input>
+            <el-date-picker v-model="form.graduatedDate"
+                            type="date"
+                            placeholder="选择日期">
+            </el-date-picker>
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
@@ -110,10 +114,10 @@ export default {
         checkPass: ''
       },
       form: {
-        account: '',
+        dataCode: '',
         name: '',
         position: '',
-        department: '',
+        orgName: '',
         telephone: '',
         jobNum: '',
         education: '',
@@ -172,6 +176,14 @@ export default {
     },
     initForm () {
       console.log(localStorage.getItem(this.GlobalVars.userLocal))
+      const code = localStorage.getItem(this.GlobalVars.userLocal)
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findOrgUserByAccount', { params: { dataCode: code } })
+        .then((res) => {
+          console.log(res.data)
+          this.form = res.data
+        }).catch(error => {
+          console.log(error)
+        })
     },
     onSubmit (formName) {
       this.$refs[formName].validate((valid) => {

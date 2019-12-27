@@ -9,7 +9,7 @@
          <el-progress :key="items.name"
                    :status="items.color"
                    :text-inside="true"
-                   :stroke-width="16"
+                   :stroke-width="14"
                    :percentage="items.score"></el-progress>
       </el-col>
       <el-col :span="4">

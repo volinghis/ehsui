@@ -3,6 +3,7 @@
     <div class="account-settings-info-left">
       <el-tabs tab-position="left"
                v-model="activeName"
+               @tab-click="handleSelect"
                :style="{height:(this.$store.state.contentHeight -30)+'px'}">
         <el-tab-pane label="个人首页"
                      name="first"></el-tab-pane>
@@ -27,7 +28,7 @@ import ChangePassword from './modules/changePassword'
 export default {
   data () {
     return {
-      activeName: 'first'
+      activeName: 'fourth'
     }
   },
   components: {
@@ -37,8 +38,11 @@ export default {
   mounted () {
   },
   methods: {
-    handleSelect () {
-
+    handleSelect (tab) {
+      console.log(tab)
+      if (tab.name === 'first') {
+        this.$router.push({ name: 'userCenter' })
+      }
     }
   }
 }
