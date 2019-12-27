@@ -13,6 +13,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary"
+                      @click="getLeftMenuRoles"
                      :size="GlobalCss.buttonSize">查询</el-button>
         </el-form-item>
       </el-form>
@@ -70,7 +71,7 @@ export default {
       form: {
         query: '',
         page: 1,
-        size: 20
+        size: 2
       }
     }
   },
@@ -92,8 +93,10 @@ export default {
     handleCurrentChange () {
     },
     getLeftMenuRoles () { // 获取所有待选角色
-      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/menu/findAllRolesByMenuKey', { params: { menuKey: this.currentMenuKey } }).then(res => {
-        this.tableData = res.data
+      this.form['menuKey'] = this.currentMenuKey
+      this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/menu/findAllRolesByMenuKey', this.form).then(res => {
+        this.tableData = res.data.dataList
+        this.totalCount = res.data.totalCount
         this.loading = false
       }).catch(error => {
         console.log(error)
