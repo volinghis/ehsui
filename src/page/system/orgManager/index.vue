@@ -43,17 +43,17 @@
                                    align="center"
                                    label="部门名称">
                   </el-table-column>
-                  <el-table-column prop="name"
+                  <!-- <el-table-column prop="name"
                                    align="center"
                                    label="业务权限">
-                  </el-table-column>
+                  </el-table-column> -->
                   <el-table-column align="center"
                                    width="240"
                                    label="操作">
                     <template slot-scope="scope">
-                      <el-button type="warning"
+                      <!-- <el-button type="warning"
                                  :size="GlobalCss.buttonSize"
-                                 @click="handleAuthToOrg(scope.row)">授权</el-button>
+                                 @click="handleAuthToOrg(scope.row)">授权</el-button> -->
                       <el-button type="primary"
                                  :size="GlobalCss.buttonSize"
                                  @click="handleEdit(scope.row)">编辑</el-button>

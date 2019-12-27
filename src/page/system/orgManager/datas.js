@@ -37,7 +37,7 @@ export default {
         ],
         sort: [
           { required: true, message: '请输入排序号', trigger: 'blur' },
-          { type: 'number', message: '请输入正确数据', trigger: 'blur', transform: (value) => Number(value) }
+          { type: 'number', message: '请输入正确数字', trigger: 'blur', transform: (value) => Number(value) }
         ]
       }
     }
@@ -121,9 +121,18 @@ export default {
                   type: 'success'
                 })
                 this.findOrgsByParentKey()
+                this.initTreeData()
+              }
+              if (res.data.resultType === 'error') {
+                this.$message({
+                  message: res.data.message,
+                  type: 'warning'
+                })
+                this.findOrgsByParentKey()
+                this.initTreeData()
               }
             }).catch((error) => {
-              console.log(error)
+              this.$message.error(error)
             })
         }).catch(() => {
           this.$message({
@@ -145,8 +154,9 @@ export default {
       })
     },
     handleSubmit: function () {
+      // console.log(this.formLabelAlign.dataCode)
       this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/organization/saveOrg', this.formLabelAlign).then(res => {
-        console.log('parentKey====' + this.formLabelAlign.parentKey)
+        // console.log('parentKey====' + this.formLabelAlign.parentKey)
         if (res.data.resultType === 'ok') {
           this.$message({
             message: `部门${this.formLabelAlign.name}保存成功`,
