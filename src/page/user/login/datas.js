@@ -50,14 +50,7 @@ export default {
                 } else {
                   localStorage.removeItem(current.GlobalVars.userLocal)
                 }
-                current.$axios.get(current.GlobalVars.globalServiceServlet + '/base/user/getCurrentUser')
-                  .then(res => {
-                    sessionStorage.setItem(
-                      current.GlobalVars.userToken,
-                      JSON.stringify(res.data)
-                    )
-                    current.$router.push({ name: 'index' })
-                  })
+                current.$router.push({ name: 'index' })
               } else {
                 current.result.message = res.data.message
               }
