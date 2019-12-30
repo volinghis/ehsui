@@ -177,7 +177,7 @@ export default {
     initForm () {
       console.log(localStorage.getItem(this.GlobalVars.userLocal))
       const code = localStorage.getItem(this.GlobalVars.userLocal)
-      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findOrgUserByAccount', { params: { dataCode: code } })
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findOrgUserByAccount', { params: { account: code } })
         .then((res) => {
           console.log(res.data)
           this.form = res.data

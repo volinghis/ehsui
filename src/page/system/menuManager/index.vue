@@ -43,9 +43,11 @@
           </div>
           <!--授权弹框-->
           <el-dialog title="角色授权"
+                     destroy-on-close
                      :visible.sync="dialogTableVisible">
-            <left-roles-table :currentMenuKey="currentMenuKey" :dialogTableVisible="dialogTableVisible"
-                              @handleSelect="handleSelect"/>
+            <left-roles-table :currentMenuKey="currentMenuKey"
+                              :dialogTableVisible="dialogTableVisible"
+                              @handleSelect="handleSelect" />
             <div slot="footer"
                  class="dialog-footer">
               <el-button @click="dialogTableVisible = false"
