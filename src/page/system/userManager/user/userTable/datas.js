@@ -87,7 +87,7 @@ export default {
     },
     // 当前状态：data,  d:当前数据对象, index:当前序号(数组下标)
     changeState: function (e, row, index) {
-      console.log(row.orgKey)
+      // console.log(row.orgKey)
       this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/changeState', row).then(res => {
         if (res.data.state === 0) {
           this.$message({
@@ -117,7 +117,7 @@ export default {
         }
         this.loading = false
       }).catch(error => {
-        console.log(error)
+        this.$message.error(error)
       })
       this.userKey = row.key
       this.drawer = true
@@ -155,7 +155,7 @@ export default {
           this.$emit('findUserByOrgKey', this.$refs.addUserForm.form.orgKey)
         }
       }).catch((error) => {
-        console.log(error)
+        this.$message.error(error)
       })
     },
     handleClose (done) {
@@ -173,8 +173,6 @@ export default {
       //     this.totalCount = res.data.totalCount
       //   })
       // this.tableData = this.userDatas
-      // console.log('organizationKey=========' + this.organizationKey)
-      // console.log('foemmmmmmmmmmmm=========' + this.form)
       this.$emit('getUserBySearch', this.organizationKey, this.form)
     },
     handleCurrentChange (val) { // 页面跳转
@@ -194,11 +192,10 @@ export default {
                 message: res.data.message,
                 type: 'success'
               })
-              // this.initTable()
               this.searchUser()
             }
           }).catch((error) => {
-            console.log(error)
+            this.$message.error(error)
           })
       }).catch(() => {
         this.$message({
@@ -208,13 +205,9 @@ export default {
       })
     },
     authResult: function (val) {
-      console.log('authResult=====' + val)
       if (val === false) {
         this.drawer = false
       }
     }
   }
-  // mounted () {
-  //   this.initTable()
-  // },
 }

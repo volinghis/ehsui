@@ -33,9 +33,9 @@
       </el-table>
     </div>
     <el-drawer title="选择角色"
+               :destroy-on-close="true"
                :append-to-body="true"
                :before-close="handleCloseDrawer"
-               :destroy-on-close="true"
                :visible.sync="innerDrawer">
       <div>
         <el-divider></el-divider>

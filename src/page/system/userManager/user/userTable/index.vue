@@ -138,8 +138,8 @@
       </span>
     </el-dialog>
     <el-drawer title="用户授权"
-               :visible.sync="drawer"
                :destroy-on-close="true"
+               :visible.sync="drawer"
                size="40%">
       <el-divider></el-divider>
       <userAuth @authResult="authResult"

@@ -41,7 +41,6 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        console.log(this.$parent.drawer)
         var roleBeans = []
         roleBeans.push({ roleType: 'ROLE', roleKey: row.key })
         this.$axios.post(this.GlobalVars.globalServiceServlet + '/auth/orgUser/deleteUserRole', { userKey: this.user_key, roleList: roleBeans })
@@ -55,7 +54,7 @@ export default {
               this.$emit('authResult', false)
             }
           }).catch((error) => {
-            console.log(error)
+            this.$message.error(error)
           })
       }).catch(() => {
         this.$message({
@@ -73,7 +72,6 @@ export default {
     },
     selectOver: function () {
       const roles = this.multipleSelection
-      // console.log(roles)
       var roleBeans = []
       for (let i = 0; i < roles.length; i++) {
         const e = roles[i]
@@ -93,9 +91,11 @@ export default {
             })
             this.innerDrawer = false
             this.$emit('authResult', false)
+            this.searchForm.query = ''
           } else {
             this.$message.error(res.data.message)
             this.$emit('authResult', false)
+            this.searchForm.query = ''
           }
         }).catch(error => {
           this.$message.error(error)
