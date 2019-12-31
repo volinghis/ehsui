@@ -45,15 +45,15 @@ export default {
       }
     },
     getTableData: function () {
-      this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamPartsAccount/getList').then(res => {
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamPartsAccount/getList').then(res => {
         this.tableData = res.data
         this.total = res.data.length
       })
     },
     loadAll: function () {
-      this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamPartsAccount/getSuggestions').then(res => {
-        this.restaurants = res.data
-      })
+      // this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamPartsAccount/getSuggestions').then(res => {
+      //   this.restaurants = res.data
+      // })
     },
     handleSelect: function (item) {
       console.log(item)

@@ -56,7 +56,7 @@
                          align="center">
         </el-table-column>
         <el-table-column
-                         prop="code"
+                         prop="deviceCode"
                          label="备件编号"
                          width="110"
                          align="center">
@@ -72,18 +72,18 @@
             </el-image>
           </template>
         </el-table-column>
-        <el-table-column prop="name"
+        <el-table-column prop="deviceName"
                          label="备件名称"
                          width="120"
                          align="center">
         </el-table-column>
-        <el-table-column prop="complete"
+        <el-table-column prop="completePoint"
                          label="资料完整度"
                          width="160"
                          sortable
                          align="center">
           <template slot-scope="scope">
-            <el-progress :percentage="scope.row.complete"
+            <el-progress :percentage="scope.row.completePoint"
                          :color="customColors"
                          align="center"></el-progress>
           </template>
