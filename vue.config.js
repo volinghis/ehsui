@@ -16,10 +16,22 @@ module.exports = {
       }
     }
   },
-  configureWebpack: config => {
-    if (process.env.NODE_ENV !== 'production') {
-      config.entry.app = ['./src/mocks/index', './src/main.js']
+  devServer: {
+    proxy: {
+      '/ehs': {
+        target: 'http://127.0.0.1:18087/ehs',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ehs': '' // rewrite path
+        }
+      }
+
     }
+  },
+  configureWebpack: config => {
+    // if (process.env.NODE_ENV !== 'production') {
+    //   config.entry.app = ['./src/mocks/index.js', './src/main.js']
+    // }
     config.resolve.alias = {
       '@': resolve('./src'),
       '@components': resolve('./src/components')

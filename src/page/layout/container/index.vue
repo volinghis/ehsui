@@ -1,13 +1,18 @@
 <template>
     <el-container >
+
         <el-header ><ehsheader></ehsheader></el-header>
-    <el-container>
-        <el-header class="tabpanel"><el-breadcrumb separator=">">
-          <el-breadcrumb-item >当前位置</el-breadcrumb-item>
-          <el-breadcrumb-item>{{this.$router.currentRoute.meta.title}}</el-breadcrumb-item>
-        </el-breadcrumb>
-        </el-header>
+        <el-container>
+        <el-aside :style="{height:(this.$store.state.contentHeight)+parseInt(GlobalCss.tabHeight)+'px'}">
+          <siders></siders>
+        </el-aside>
+         <el-container >
+           <el-header class="tabHeader">
+            <tabs></tabs>
+           </el-header>
         <el-main :style="{height:this.$store.state.contentHeight+'px'}"><router-view></router-view></el-main>
+        </el-container>
+
     </el-container>
   </el-container>
 
@@ -15,9 +20,13 @@
 <script>
 
 import container from './datas'
+import siders from '../siders/index'
+import tabs from '../tabs/index'
 import ehsheader from '../header/index'
 container.components = {
-  'ehsheader': ehsheader
+  'ehsheader': ehsheader,
+  'siders': siders,
+  'tabs': tabs
 }
 export default container
 

@@ -7,8 +7,7 @@ const servletContextPath = ''
 const setResourceMenuKeyMethod = 'setResourceMenuKey'
 const ehsecharts = 'ehsecharts'
 const setBreadcrumbItemsMethod = 'setBreadcrumbItems'
-const globalServiceServlet = ''
-const eamServiceServlet = ''
+const globalServiceServlet = '/ehs'
 export default {
   computeWindowSizeMethodName,
   servletContextPath,
@@ -19,6 +18,5 @@ export default {
   userLocal,
   ehsecharts,
   setBreadcrumbItemsMethod,
-  globalServiceServlet,
-  eamServiceServlet
+  globalServiceServlet
 }

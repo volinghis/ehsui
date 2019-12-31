@@ -10,12 +10,14 @@ import './styles/index.scss' // global css
 import './styles/font-awesome-4.7.0/scss/font-awesome.scss'
 import GlobalCss from './styles/variables.scss'
 import GlobalVars from './components/global/globalVars.js'
+import GlobalMethods from './components/global/globalMethods.js'
 import Ehsecharts from './components/theme/ehsecharts.project.json'
-import Axios from 'axios'
+import Axios from './configs/axios'
 Vue.config.productionTip = false
-Vue.prototype.Axios = Axios
+Vue.prototype.$axios = Axios
 Vue.prototype.GlobalCss = GlobalCss
 Vue.prototype.GlobalVars = GlobalVars
+Vue.prototype.GlobalMethods = GlobalMethods
 Vue.use(ElementUI)
 ECharts.registerTheme(GlobalVars.ehsecharts, Ehsecharts)
 Vue.component('chart', ECharts)

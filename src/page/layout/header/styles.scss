@@ -1,55 +1,45 @@
-li {
-  width: 100px;
-  background: $menuBgColor;
-  color: $menuText;
-  float: left;
-  list-style-type:none;
+
+.topleft{
   text-align: center;
-  cursor: pointer;
-  padding-top: 10px;
-
-}
-
-li ul {
-  margin-top: 5px;
-  display: none;
-  li{
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+  width: $siderWidth;
+  height: $headerHeight;
+  line-height: $headerHeight;
+  vertical-align: middle;
+  float: left;
+  color: white ;
+  span{
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    color: white;
+  }
+  i{
+    color: white;
+    line-height: $headerHeight;
+    vertical-align: middle;
+    font-size: 36px;
+    margin-right: 5px;
   }
 }
-nav{
-  position:absolute ;
-  z-index: 1;
-}
-@mixin active-li-style {
-  background-color: #1A6CF3;
-}
-li:hover{
-  @include active-li-style();
-}
-.li-active{
-  @include active-li-style();
-}
-
-li:hover ul {
-  margin-left: -40px;
-  display: block;
-  
-}
-
-.topleft {
-  float: left;
-}
 .topright {
-  color: $menuText;
   float: right;
   text-align: right;
+  color: white;
+  font-size: 18px;
+  padding-right: 10px;
   span{
     cursor: pointer;
-    margin-left: 10px !important;
+    margin-left: 2px !important;
+    color: white;
+    font-size: 14px !important;
+
   }
   .fa-user{
     margin-top: 10px !important;
+    color: rgb(135, 208, 104);
+  }
+  .logout{
+    font-size: 20px;
+
   }
 }
