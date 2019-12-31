@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     initTable () {
-      this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getList').then(res => {
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getList').then(res => {
         this.tableData = res.data
         this.total = res.data.length
       })
@@ -53,7 +53,7 @@ export default {
       this.tableId = val.id
     },
     handleAdd () {
-      this.$router.push({ name: '22', params: { flag: 'edit' } })
+      this.$router.push({ name: 'eamLedgerEdit', params: { flag: 'edit' } })
     },
     handleExport () {
       this.$message({
@@ -84,9 +84,9 @@ export default {
       console.log(item)
     },
     loadAll () {
-      this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getSuggestions').then(res => {
-        this.restaurants = res.data
-      })
+      // this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getSuggestions').then(res => {
+      //   this.restaurants = res.data
+      // })
     }
   }
 }

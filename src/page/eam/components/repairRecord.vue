@@ -32,7 +32,7 @@
 export default {
   props: ['tableId'],
   created () {
-    this.initTable()
+    // this.initTable()
   },
   data () {
     return {
@@ -42,18 +42,18 @@ export default {
   watch: {
     tableId: {
       handler (val, oldVal) {
-        this.initTable()
+        // this.initTable()
       }
     }
   },
   methods: {
     initTable () {
       if (this.tableId) {
-        this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
+        this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
           this.tableData = res.data.filter(data => data.refDevice === this.tableId)
         })
       } else {
-        this.Axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
+        this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getRepairRecord').then(res => {
           this.tableData = res.data
         })
       }

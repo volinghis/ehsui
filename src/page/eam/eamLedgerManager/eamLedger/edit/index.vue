@@ -35,7 +35,6 @@
                        :limit="3"
                        :on-exceed="handleExceed">
               <el-button size="mini"
-                         plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
             </el-upload>
@@ -52,7 +51,6 @@
                        :on-exceed="handleExceed"
                        :file-list="fileList">
               <el-button size="mini"
-                         plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
             </el-upload>
@@ -69,7 +67,6 @@
                        :on-exceed="handleExceed"
                        :file-list="fileList">
               <el-button :size="GlobalCss.buttonSize"
-                         plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
             </el-upload>
