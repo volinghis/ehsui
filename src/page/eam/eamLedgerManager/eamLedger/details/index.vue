@@ -26,7 +26,6 @@
                        :on-exceed="handleExceed"
                        :file-list="fileList">
               <el-button :size="GlobalCss.buttonSize"
-                         plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
             </el-upload>
@@ -44,7 +43,6 @@
                        :on-exceed="handleExceed"
                        :file-list="fileList">
               <el-button :size="GlobalCss.buttonSize"
-                         plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
             </el-upload>
@@ -62,7 +60,6 @@
                        :on-exceed="handleExceed"
                        :file-list="fileList">
               <el-button :size="GlobalCss.buttonSize"
-                         plain
                          type="primary"
                          icon="el-icon-upload">上传文件</el-button>
             </el-upload>
@@ -144,7 +141,7 @@
       <el-form-item style="text-align: center;">
         <el-button :size="GlobalCss.buttonSize"
                    type="primary"
-                   @click="handleBack">返回</el-button>
+                   @click="$router.go(-1)">返回</el-button>
         <el-button :size="GlobalCss.buttonSize"
                    @click="handlePrint">打印</el-button>
       </el-form-item>

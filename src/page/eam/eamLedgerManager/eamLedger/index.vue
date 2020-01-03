@@ -8,13 +8,13 @@
             <el-col :span="8">
               <div class="table-search-wrapper">
                 <el-autocomplete class="inline-input"
-                                 v-model="state"
+                                 v-model="queryParam.query"
                                  size="small"
                                  style="margin-bottom:10px;width:100%;"
-                                 :fetch-suggestions="querySearch"
                                  placeholder="可查询设备名称设备编号"
                                  @select="handleSelect">
                   <el-button slot="append"
+                             type="primary"
                              icon="el-icon-search">搜索</el-button>
                 </el-autocomplete>
               </div>
@@ -114,8 +114,7 @@
                                  align="center"
                                  width="100">
                   <template slot-scope="scope">
-                    <el-tag
-                    :type="scope.row.deviceStatus === '正常' ? 'primary' : 'success'"
+                    <el-tag :type="scope.row.deviceStatus === '正常' ? 'primary' : 'success'"
                             disable-transitions>{{scope.row.deviceStatus}}</el-tag>
                   </template>
                 </el-table-column>

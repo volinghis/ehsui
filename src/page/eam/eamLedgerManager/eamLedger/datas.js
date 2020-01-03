@@ -5,7 +5,11 @@ export default {
   },
   data () {
     return {
-      queryParam: {},
+      queryParam: {
+        size: 10,
+        page: 1,
+        query: ''
+      },
       form: {},
       state: '',
       restaurants: [],
@@ -23,9 +27,11 @@ export default {
   },
   methods: {
     initTable () {
-      this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getList').then(res => {
-        this.tableData = res.data
-        this.total = res.data.length
+      this.$axios.post(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getList', this.queryParam).then(res => {
+        this.tableData = res.data.dataList
+        this.total = res.data.totalCount
+      }).catch(error => {
+        console.log(error)
       })
     },
     customColorMethod: function (percentage) {
@@ -40,10 +46,11 @@ export default {
     handleViewClick: function (scope) {
       // 详情查看
       console.log(scope)
-      this.$router.push({ name: '23', params: { flag: 'view', data: scope } })
+      this.$router.push({ name: 'eamLedgerDetail', params: { flag: 'view', data: scope } })
     },
+    // 编辑
     handleEditClick: function (scope) {
-      this.$router.push({ name: '22', params: { flag: 'edit' } })
+      this.$router.push({ name: 'eamLedgerEdit', params: { flag: 'edit', data: scope } })
     },
     handleClick: function (tab, event) {
     },
@@ -53,7 +60,7 @@ export default {
       this.tableId = val.id
     },
     handleAdd () {
-      this.$router.push({ name: 'eamLedgerEdit', params: { flag: 'edit' } })
+      this.$router.push({ name: 'eamLedgerEdit', params: { flag: 'add' } })
     },
     handleExport () {
       this.$message({

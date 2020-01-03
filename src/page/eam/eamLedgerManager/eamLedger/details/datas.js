@@ -11,11 +11,13 @@ export default {
       form: {
         deviceName: '',
         deviceNum: '',
-        deviceTree: '',
+        purchaseTime: '',
         runDate: '',
         factoryName: '',
         person: '',
-        textarea: ''
+        textarea: '',
+        completePoint: 0,
+        deviceStatus: '正常'
       },
       rules: {
         deviceName: [
@@ -51,9 +53,6 @@ export default {
 
     },
     handlePrint: function () {
-    },
-    handleBack: function () {
-      this.$router.go(-1)
     },
     handleRemove (file, fileList) {
     },

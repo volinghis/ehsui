@@ -78,7 +78,7 @@
               <el-card>
                 <el-col :span="12">
                   <el-progress type="circle"
-                               :percentage="75"
+                               :percentage="form.completePoint"
                                :stroke-width="10"></el-progress>
                 </el-col>
                 <el-col :span="12">
@@ -109,10 +109,6 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="设备树"
-                            prop="deviceTree">
-                <el-input v-model="form.deviceTree"></el-input>
-              </el-form-item>
               <el-form-item label="生产厂家"
                             prop="factoryName">
                 <el-input v-model="form.factoryName"></el-input>
@@ -124,6 +120,10 @@
                                 style="width:100%;"
                                 placeholder="选择日期">
                 </el-date-picker>
+              </el-form-item>
+              <el-form-item label="采购时间"
+                            prop="purchaseTime">
+                <el-input v-model="form.purchaseTime"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -145,7 +145,7 @@
           <!--设备参数-->
           <div class="item-block right">
             <span>设备主要参数</span>
-            <params-table @getParamsTable="getParamsTable" @deleteParamsTable="deleteParamsTable"></params-table>
+            <params-table @getParamsTable="getParamsTable" @deleteParamsTable="deleteParamsTable" :deviceKey=deviceKey></params-table>
           </div>
 
           <!--历任点检员-->

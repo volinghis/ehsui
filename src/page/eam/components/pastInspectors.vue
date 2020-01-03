@@ -8,7 +8,7 @@
                   highlight-current-row>
           <el-table-column type="index"
                            align="center"></el-table-column>
-          <el-table-column v-for="(item,index) in master_user.columns"
+          <!-- <el-table-column v-for="(item,index) in master_user.columns"
                            :label="item.label"
                            :prop="item.prop"
                            :key="index"
@@ -21,19 +21,88 @@
               </span>
               <span v-else>{{scope.row[item.prop]}}</span>
             </template>
+          </el-table-column> -->
+          <el-table-column prop="name"
+                           label="姓名"
+                           align="center">
+            align="center">
+            <template slot-scope="scope">
+              <span v-if="scope.row.isSet">
+                <user-select></user-select>
+              </span>
+              <span v-else>{{scope.row['departureTime']}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="serveTime"
+                           label="担任时间"
+                           width="230"
+                           align="center">
+            <template slot-scope="scope">
+              <span v-if="scope.row.isSet">
+                <el-date-picker v-model="master_user.sel['serveTime']"
+                                type="date"
+                                size="mini"
+                                placeholder="选择日期">
+                </el-date-picker>
+              </span>
+              <span v-else>{{scope.row['serveTime']}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="departureTime"
+                           label="离任时间"
+                           width="230"
+                           align="center">
+            <template slot-scope="scope">
+              <span v-if="scope.row.isSet">
+                <el-date-picker v-model="master_user.sel['departureTime']"
+                                type="date"
+                                size="mini"
+                                placeholder="选择日期">
+                </el-date-picker>
+              </span>
+              <span v-else>{{scope.row['departureTime']}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="department"
+                           align="center"
+                           label="部门">
+            <template slot-scope="scope">
+              <span v-if="scope.row.isSet">
+                <el-input size="mini"
+                          :readonly="true"
+                          placeholder="请输入内容"
+                          v-model="master_user.sel['department']"></el-input>
+              </span>
+              <span v-else>{{scope.row['department']}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="remark"
+                           align="center"
+                           label="备注">
+            <template slot-scope="scope">
+              <span v-if="scope.row.isSet">
+                <el-input size="mini"
+                          placeholder="请输入内容"
+                          v-model="master_user.sel['remark']"></el-input>
+              </span>
+              <span v-else>{{scope.row['remark']}}</span>
+            </template>
           </el-table-column>
           <el-table-column label="操作"
-                           width="170">
+                           width="220">
             <template slot-scope="scope">
-              <el-button type="text"
+              <el-button type="success"
+                         :size="GlobalCss.buttonSize"
                          @click.stop="saveRow(scope.row,scope.$index)">
                 <!-- {{scope.row.isSet?'保存':"修改"}} -->保存
               </el-button>
-              <el-button type="text"
+              <el-button type="primary"
+                         :size="GlobalCss.buttonSize"
                          @click="editRow(scope.row,scope.$index)">
                 编辑
               </el-button>
-              <el-button type="text"
+              <el-button type="warning"
+                         :size="GlobalCss.buttonSize"
                          @click="deleteRow(scope.$index,master_user.data)">
                 删除
               </el-button>
@@ -51,33 +120,16 @@
 </template>
 
 <script>
+import UserSelect from '@components/org/user-selector/index.vue'
 export default {
+  components: {
+    UserSelect
+  },
   name: '',
   data () {
     return {
       master_user: {
         sel: null, // 选中行
-        columns: [{
-          prop: 'name',
-          label: '姓名'
-        },
-        {
-          prop: 'department',
-          label: '部门'
-        },
-        {
-          prop: 'serveTime',
-          label: '担任时间'
-        },
-        {
-          prop: 'departureTime',
-          label: '离任时间'
-        },
-        {
-          prop: 'remark',
-          label: '备注'
-        }
-        ],
         data: []
       }
     }
@@ -114,8 +166,7 @@ export default {
     deleteRow (index, rows) { // 删除
       rows.splice(index, 1)
     }
-  },
-  components: {}
+  }
 }
 </script>
 
@@ -135,18 +186,18 @@ export default {
   margin-bottom: 10px;
   text-align: center;
 }
-// .el-table th>.cell{
-//   text-align: center;
-// }
-// .el-table td div {
-//   text-align: center;
-// }
-// .buttonAdd{
-//   float: left;
-//   margin-top: 10px;
-//   margin-bottom: 3px;
-// }
-// // .item-block span {
-// //   font-weight: bold;
-// // }
+.el-table th > .cell {
+  text-align: center;
+}
+.el-table td div {
+  text-align: center;
+}
+.buttonAdd {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+.item-block span {
+  font-weight: bold;
+}
 </style>

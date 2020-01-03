@@ -12,14 +12,17 @@ export default {
     return {
       dialogTableVisible: false,
       paramsTableDatas: [],
+      deviceKey: '',
       form: {
         deviceName: '',
         deviceNum: '',
-        deviceTree: '',
+        purchaseTime: '',
         runDate: '',
         factoryName: '',
         person: '',
-        textarea: ''
+        textarea: '',
+        deviceStatus: '正常',
+        completePoint: 0
       },
       rules: {
         deviceName: [
@@ -73,10 +76,23 @@ export default {
     }
   },
   mounted: function () {
-    const user = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
-    this.form.person = user.username
+    const deviceData = this.$route.params.data
+    if (this.$route.params.flag === 'edit') {
+      this.form = deviceData
+      this.deviceKey = deviceData.key
+    } else {
+      this.getCurrentUser() // 只在新增的时候获取当前用户名称
+    }
   },
   methods: {
+    getCurrentUser () {
+      const user = JSON.parse(sessionStorage.getItem(this.GlobalVars.userToken))
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/auth/orgUser/findOrgUserByAccount', { params: { account: user.account } }).then(res => {
+        this.form.person = res.data.name
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     handleAvatarSuccess: function (res, file) {
     },
     getParamsTable (data) {
@@ -88,8 +104,22 @@ export default {
     submitForm: function (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          console.log(this.$refs[formName].model)
-          console.log(this.paramsTableDatas)
+          const reqBean = {
+            eamLedger: this.form,
+            paramsList: this.paramsTableDatas
+          }
+          console.log(reqBean)
+          this.$axios.post(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/saveEamLedger', reqBean).then(res => {
+            if (res.data.resultType === 'ok') {
+              this.$message({
+                message: res.data.message,
+                type: 'success'
+              })
+              this.$refs[formName].resetFields() // 表单重置（暂不能重置全部项）
+            }
+          }).catch(error => {
+            console.log(error)
+          })
         } else {
           return false
         }

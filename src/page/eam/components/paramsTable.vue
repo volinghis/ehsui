@@ -11,7 +11,6 @@
           <el-table-column v-for="(item,index) in eam_params.columns"
                            :label="item.label"
                            :prop="item.prop"
-                           :width="item.width"
                            :key="index"
                            align="center">
             <template slot-scope="scope">
@@ -24,17 +23,22 @@
             </template>
           </el-table-column>
           <el-table-column label="操作"
-                           width="170">
+                           align="center"
+                           width="220">
             <template slot-scope="scope">
-              <el-button type="text"
-                         @click.stop="saveRow(scope.row,scope.$index)" v-if="scope.row.isSet">保存
-               <!-- {{scope.row.isSet?'保存':"修改"}} -->
+              <el-button type="success"
+                         :size="GlobalCss.buttonSize"
+                         @click.stop="saveRow(scope.row,scope.$index)"
+                         v-if="scope.row.isSet">保存
+                <!-- {{scope.row.isSet?'保存':"修改"}} -->
               </el-button>
-              <el-button type="text"
+              <el-button type="primary"
+                         :size="GlobalCss.buttonSize"
                          @click="editRow(scope.row,scope.$index)">
                 编辑
               </el-button>
-              <el-button type="text"
+              <el-button type="warning"
+                         :size="GlobalCss.buttonSize"
                          @click="deleteRow(scope.$index,eam_params.data)">
                 删除
               </el-button>
@@ -60,18 +64,11 @@ export default {
         sel: null, // 选中行
         columns: [{
           prop: 'paramName',
-          label: '参数名称',
-          width: 150
+          label: '参数名称'
         },
         {
           prop: 'paramValue',
-          label: '参数值',
-          width: 150
-        },
-        {
-          prop: 'date',
-          label: '修改日期',
-          width: 160
+          label: '参数值'
         },
         {
           prop: 'remark',
@@ -82,7 +79,25 @@ export default {
       }
     }
   },
+  props: {
+    deviceKey: String
+  },
+  // mounted () {
+  //   this.getParamsDataByKey()
+  // },
+  watch: {
+    deviceKey: function (val) {
+      this.getParamsDataByKey(val)
+    }
+  },
   methods: {
+    getParamsDataByKey (res) {
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getEamParamsByKey', { params: { key: res } }).then(res => {
+        this.eam_params.data = res.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     add () {
       for (let i of this.eam_params.data) {
         if (i.isSet) return this.$message.warning('请先保存当前编辑项')
@@ -90,7 +105,6 @@ export default {
       let j = {
         'paramName': '',
         'paramValue': '',
-        'date': '',
         'remark': '',
         'isSet': true
       }
