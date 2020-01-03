@@ -1,18 +1,18 @@
 <template >
-  <div>
+  <div class="data-percentage-wrapper">
     <template v-for="(items,index) in datas">
     <el-row  :key="index">
-      <el-col :span="7">
-        <span >{{items.name}}</span>
+      <el-col :span="6">
+        <span >{{items.name}}:</span>
       </el-col>
-      <el-col :span="11">
+      <el-col :span="14">
          <el-progress :key="items.name"
                    :status="items.color"
                    :text-inside="true"
-                   :stroke-width="16"
+                   :stroke-width="14"
                    :percentage="items.score"></el-progress>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="4">
         <a href="#"><span style="color: #409EFF">去补全</span></a>
       </el-col>
     </el-row>
@@ -40,8 +40,11 @@ export default {
 }
 </script>
 <style scoped>
+.data-percentage-wrapper{
+    padding: 10px 0px;
+}
   .el-row{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .el-col{
     padding-left: 10px;
