@@ -145,13 +145,13 @@
           <!--设备参数-->
           <div class="item-block right">
             <span>设备主要参数</span>
-            <params-table @getParamsTable="getParamsTable" @deleteParamsTable="deleteParamsTable" :deviceKey=deviceKey></params-table>
+            <params-table @getParamsTable="getParamsTable" :deviceKey=deviceKey :isDisable="false"></params-table>
           </div>
 
           <!--历任点检员-->
           <div class="item-block right">
             <span>历任点检员</span>
-            <past-inspectors></past-inspectors>
+            <past-inspectors @getInspectors="getInspectors" :deviceKey=deviceKey :isDisable="false"></past-inspectors>
           </div>
            <div class="item-block right">
             <span>定期工作标准</span>
@@ -165,53 +165,7 @@
           </div>
           <!--子设备-->
           <div class="item-block right">
-            <span>关联子设备</span>
-            <el-button type="primary"
-                       icon="fa fa-plus pull-left"
-                       @click="dialogTableVisible = true"
-                       style="float:right;"
-                       :size="GlobalCss.buttonSize">选择设备</el-button>
-            <el-table :data="tableData"
-                      size="small"
-                      style="width: 100%">
-              <el-table-column prop="deviceNum"
-                               label="设备编号"></el-table-column>
-              <el-table-column prop="deviceName"
-                               label="设备名称"></el-table-column>
-              <el-table-column prop="installLocation"
-                               label="类型"></el-table-column>
-              <el-table-column prop="deviceModel"
-                               label="型号"></el-table-column>
-              <el-table-column prop="brand"
-                               width="100"
-                               label="品牌"></el-table-column>
-              <el-table-column align="center"
-                               width="200"
-                               label="操作">
-                <template slot-scope="scope">
-                  <el-button type="text"
-                             @click="handleEditClick(scope.row)"
-                             icon="el-icon-edit"
-                             :size="GlobalCss.buttonSize">编辑</el-button>
-                  <el-button @click="handleDeleteClick(scope.row)"
-                             type="text"
-                             icon="el-icon-delete"
-                             :size="GlobalCss.buttonSize">删除</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-
-            <!--设备选择弹窗-->
-            <el-dialog title="设备台账"
-                       :visible.sync="dialogTableVisible">
-              <eam-list></eam-list>
-              <div slot="footer"
-                   class="dialog-footer">
-                <el-button @click="dialogTableVisible = false">取 消</el-button>
-                <el-button type="primary"
-                           @click="dialogTableVisible = false">确 定</el-button>
-              </div>
-            </el-dialog>
+            <ChildEamTable @getRelatedKeys="getRelatedKeys" :deviceKey="deviceKey"/>
           </div>
         </el-col>
       </el-row>

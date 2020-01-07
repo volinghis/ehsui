@@ -43,39 +43,14 @@ export default {
       orgValue: this.propOrgValue,
       defaultProps: Object.assign({ multiple: false, checkStrictly: true, emitPath: false }, this.props),
       options: [{
-        value: 'zhinan',
-        label: 'MISS组织',
-        disabled: 'disabled',
-        org: true,
+        value: 'rootOrg',
+        label: '大唐韩城第二发电厂有限公司',
         children: [{
-          value: 'shejiyuanze',
-          label: '行政部',
-          disabled: 'disabled',
-          org: true,
+          value: 'equipmentDivision',
+          label: '设备部',
           children: [{
-            value: 'yizhi',
-            label: '人力'
-          }, {
-            value: 'fankui',
-            label: '出纳'
-          }, {
-            value: 'xiaolv',
-            label: '采购部'
-          }, {
-            value: 'kekong',
-            label: '合同管理部'
-          }]
-        }, {
-          value: 'daohang',
-          label: '财务部',
-          disabled: 'disabled',
-          org: true,
-          children: [{
-            value: 'cexiangdaohang',
-            label: '报销'
-          }, {
-            value: 'dingbudaohang',
-            label: '审计'
+            value: 'a38f38f0-0703-4596-aa47-515a12e889f5',
+            label: '赵子龙'
           }]
         }]
       }]

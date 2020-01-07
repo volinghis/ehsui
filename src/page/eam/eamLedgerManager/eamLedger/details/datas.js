@@ -1,13 +1,16 @@
 import ParamsTable from '../../../components/paramsTable'
 import PastInspectors from '../../../components/pastInspectors'
+import ChildEamTable from '../../../components/childEamTable'
 export default {
   name: 'eamAccountPrintDetail',
   components: {
-    paramsTable: ParamsTable,
-    pastInspectors: PastInspectors
+    ParamsTable,
+    PastInspectors,
+    ChildEamTable
   },
   data () {
     return {
+      deviceKey: '',
       form: {
         deviceName: '',
         deviceNum: '',
@@ -45,8 +48,9 @@ export default {
       eamInfos: {}
     }
   },
-  created: function () {
+  mounted: function () {
     this.eamInfos = this.$route.params.data
+    this.deviceKey = this.$route.params.data.key
   },
   methods: {
     handleAvatarSuccess: function (res, file) {

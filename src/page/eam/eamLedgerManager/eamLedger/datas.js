@@ -11,11 +11,8 @@ export default {
         query: ''
       },
       form: {},
-      state: '',
       restaurants: [],
       activeName: 'first',
-      currentPage: 1,
-      pageSize: 10,
       total: 0,
       tableData: [],
       tableId: ''
@@ -43,10 +40,9 @@ export default {
         return '#67c23a'
       }
     },
-    handleViewClick: function (scope) {
+    handldbClick: function (row) {
       // 详情查看
-      console.log(scope)
-      this.$router.push({ name: 'eamLedgerDetail', params: { flag: 'view', data: scope } })
+      this.$router.push({ name: 'eamLedgerDetail', params: { flag: 'view', data: row } })
     },
     // 编辑
     handleEditClick: function (scope) {
@@ -69,11 +65,29 @@ export default {
         type: 'warning'
       })
     },
-    handleDelete () {
-      this.$message({
-        showClose: true,
-        message: '继续删除',
+    handleDelete (row) {
+      this.$confirm('此操作将删除相关联设备, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
         type: 'warning'
+      }).then(() => {
+        console.log(row.key)
+        this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/deleteEamLedgerByKey', { params: { key: row.key } }).then(res => {
+          if (res.data.resultType === 'ok') {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+            this.initTable()
+          } else {
+            this.$message({
+              type: 'info',
+              message: '删除失败!'
+            })
+          }
+        }).catch(error => {
+          console.log(error)
+        })
       })
     },
     querySearch (queryString, cb) {

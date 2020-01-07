@@ -1,47 +1,51 @@
 <template>
   <div class="table-wrapper">
     <div>
-      <el-form :inline="true" label-width="80px" :size="GlobalCss.buttonSize">
-        <el-form-item label="设备编号:">
-          <el-input v-model="queryParam.deviceNum"/>
-        </el-form-item>
-        <el-form-item label="设备名称:">
-          <el-input v-model="queryParam.deviceNum"/>
-        </el-form-item>
-        <el-button type="primary" :size="GlobalCss.buttonSize"
-                   @click="$refs.table.refresh(true)"
-                   icon="el-icon-search">查询</el-button>
-        <el-button :size="GlobalCss.buttonSize"
-                   @click="() => (queryParam = {})">重置</el-button>
-      </el-form>
+      <el-autocomplete class="inline-input"
+                       v-model="queryParam.query"
+                       :size="GlobalCss.buttonSize"
+                       style="margin-bottom:10px;width:40%;"
+                       placeholder="可查询设备名称设备编号">
+        <el-button slot="append"
+                   type="primary"
+                   icon="el-icon-search">搜索</el-button>
+      </el-autocomplete>
     </div>
     <div class="table-list">
       <el-table :data="tableData"
                 style="width: 100%"
+                @selection-change="handleSelectionChange"
                 border
                 :size="GlobalCss.controlSize">
         <el-table-column type="selection"
-                         width="50" align="center"> </el-table-column>
+                         width="50"
+                         align="center"> </el-table-column>
         <el-table-column prop="deviceNum"
-                         label="设备编号" align="center"></el-table-column>
+                         label="设备编号"
+                         align="center"></el-table-column>
         <el-table-column prop="deviceName"
-                         label="设备名称" align="center"></el-table-column>
+                         label="设备名称"
+                         align="center"></el-table-column>
         <el-table-column prop="installLocation"
-                         label="类型" align="center"></el-table-column>
+                         label="类型"
+                         align="center"></el-table-column>
         <el-table-column prop="deviceModel"
-                         label="型号" align="center"></el-table-column>
-        <el-table-column prop="brand"
-                         label="品牌" align="center"></el-table-column>
-        <el-table-column prop="position"
-                         label="位置" align="center"></el-table-column>
+                         label="型号"
+                         align="center"></el-table-column>
+        <el-table-column prop="supplier"
+                         label="品牌"
+                         align="center"></el-table-column>
+        <el-table-column prop="installLocation"
+                         label="位置"
+                         align="center"></el-table-column>
       </el-table>
     </div>
     <div class="pagination"
          style="text-align:right;margin-top:12px;">
       <el-pagination background
                      layout="total, prev, pager, next"
-                     :current-page="1"
-                     :page-size="10"
+                     :current-page="queryParam.page"
+                     :page-size="queryParam.size"
                      :total="100"
                      @current-change="handlePageChange">
       </el-pagination>
@@ -52,68 +56,46 @@
 export default {
   data () {
     return {
-      queryParam: {},
+      queryParam: {
+        size: 10,
+        page: 1,
+        query: ''
+      },
       form: {},
-      tableData: [
-        {
-          deviceNum: '2019100001',
-          deviceName: '锅炉',
-          installLocation: '锅炉专业',
-          deviceModel: '6314-2RS',
-          purchaseTime: '2016-05-02',
-          brand: '西安东恒',
-          position: '一号机组'
-        },
-        {
-          deviceNum: '2019100001',
-          deviceName: '锅炉',
-          installLocation: '锅炉专业',
-          deviceModel: '6314-2RS',
-          purchaseTime: '2016-05-02',
-          brand: '西安东恒',
-          position: '一号机组'
-        },
-        {
-          deviceNum: '2019100001',
-          deviceName: '锅炉',
-          installLocation: '锅炉专业',
-          deviceModel: '6314-2RS',
-          purchaseTime: '2016-05-02',
-          brand: '西安东恒',
-          position: '一号机组'
-        },
-        {
-          deviceNum: '2019100001',
-          deviceName: '锅炉',
-          installLocation: '锅炉专业',
-          deviceModel: '6314-2RS',
-          purchaseTime: '2016-05-02',
-          brand: '西安东恒',
-          position: '一号机组'
-        }
-      ]
+      tableData: []
     }
   },
+  props: {
+    deviceKey: String
+  },
   mounted: function () {
+    this.initTable()
   },
   methods: {
-    customColorMethod: function (percentage) {
-      if (percentage < 30) {
-        return '#909399'
-      } else if (percentage < 70) {
-        return '#e6a23c'
-      } else {
-        return '#67c23a'
-      }
+    initTable () {
+      this.queryParam['deviceKey'] = this.deviceKey
+      this.$axios.post(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/getLeftEamLedgerList', this.queryParam).then(res => {
+        this.tableData = res.data.dataList
+        this.total = res.data.totalCount
+      }).catch(error => {
+        console.log(error)
+      })
     },
     handlePageChange: function () {
     },
-    handConfirmClick: function () {
-    },
     handleEditClick: function () {
+    },
+    handleSelectionChange (val) {
+      this.$emit('handlerSelect', val)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+// 搜索按钮样式
+/deep/.el-input-group__append{
+  background-color:#409EFF;
+  border-color:#409EFF ;
+  color: #ffffff;
+}
 </style>

@@ -4,6 +4,7 @@
       <el-col :span="24">
         <el-table size="mini"
                   :data="eam_params.data"
+                  border
                   style="width: 100%"
                   highlight-current-row>
           <el-table-column type="index"
@@ -30,16 +31,15 @@
                          :size="GlobalCss.buttonSize"
                          @click.stop="saveRow(scope.row,scope.$index)"
                          v-if="scope.row.isSet">保存
-                <!-- {{scope.row.isSet?'保存':"修改"}} -->
               </el-button>
               <el-button type="primary"
                          :size="GlobalCss.buttonSize"
                          @click="editRow(scope.row,scope.$index)">
                 编辑
               </el-button>
-              <el-button type="warning"
+              <el-button type="danger"
                          :size="GlobalCss.buttonSize"
-                         @click="deleteRow(scope.$index,eam_params.data)">
+                         @click="deleteRow(scope.row,scope.$index)">
                 删除
               </el-button>
             </template>
@@ -48,6 +48,7 @@
       </el-col>
       <el-col :span="24">
         <div class="el-table-add-row"
+             v-if="!isDisable"
              style="width: 100%;color:#409EFF;cursor:pointer;"
              @click="add()"><span>+ 添加设备参数</span></div>
       </el-col>
@@ -80,11 +81,9 @@ export default {
     }
   },
   props: {
-    deviceKey: String
+    deviceKey: String,
+    isDisable: Boolean
   },
-  // mounted () {
-  //   this.getParamsDataByKey()
-  // },
   watch: {
     deviceKey: function (val) {
       this.getParamsDataByKey(val)
@@ -118,7 +117,7 @@ export default {
           this.$message.warning('不能保存空值或补充完整')
           return
         }
-        row[k] = data[k] // 将sel里面的value赋值给这一行。ps(for....in..)的妙用，细心的同学发现这里我并没有循环对象row
+        row[k] = data[k] // 将sel里面的value赋值给这一行。
       }
       this.$emit('getParamsTable', data)
 
@@ -126,14 +125,28 @@ export default {
     },
     editRow (row) { // 编辑
       for (let i of this.eam_params.data) {
-        if (i.isSet) return this.$message.warning('请先保存当前编辑11项')
+        if (i.isSet) return this.$message.warning('请先保存当前编辑')
       }
       this.eam_params.sel = row
       row.isSet = true
     },
-    deleteRow (index, rows) { // 删除
-      rows.splice(index, 1)
-      this.$emit('deleteParamsTable', index)
+    deleteRow (rows, index) { // 删除
+      this.$axios.get(this.GlobalVars.globalServiceServlet + '/eam/eamLedger/deleteEamParams', { params: { key: rows.key } }).then(res => {
+        if (res.data.resultType === 'ok') {
+          this.eam_params.data.splice(index, 1)
+          this.$message({
+            message: res.data.message,
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: res.data.message,
+            type: 'info'
+          })
+        }
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   components: {}
